@@ -1,0 +1,24 @@
+{
+  "name": "Dijital Tefsir Kütüphanesi",
+  "short_name": "Tefsir Kütüphanesi",
+  "description": "114 Sûre Detaylı Tahlil ve PDF Tefsir Kütüphanesi",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1712",
+  "theme_color": "#1b4d2e",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
