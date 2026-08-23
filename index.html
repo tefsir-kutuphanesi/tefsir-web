@@ -165,16 +165,6 @@
             line-height: 1.65;
         }
 
-        .aktif-konu-vurgusu {
-            background: #e9f5ed;
-            border-left: 3px solid var(--primary);
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
-            margin-top: 0.4rem;
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
         .user-notes {
             width: 100%;
             height: 60px;
@@ -239,7 +229,6 @@
             gap: 0.35rem;
             margin-left: auto;
         }
-        .select-btn:hover { background: #d97706; }
 
         .btn-temizle {
             background: #7f1d1d;
@@ -253,11 +242,6 @@
             display: inline-flex;
             align-items: center;
             white-space: nowrap;
-        }
-        #btn-disa-aktar, #btn-ice-aktar {
-            background: #1e3a2f;
-            color: #86efac;
-            border: 1px solid #14532d;
         }
 
         .search-shelf {
@@ -333,23 +317,6 @@
         .book-tab-btn:hover { background: #40444b; color: #fff; }
         .book-tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
         .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.4rem; }
-        .ekol-move-select {
-            background: #202225;
-            color: #dcddde;
-            border: 1px solid #40444b;
-            border-radius: 4px;
-            font-size: 0.68rem;
-            padding: 0.2rem 0.3rem;
-            flex-shrink: 0;
-            max-width: 6.2rem;
-        }
-
-        .reader-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #222;
-        }
 
         #pdf-viewer-wrap {
             overflow: auto;
@@ -419,7 +386,6 @@
             cursor: grab;
             accent-color: var(--primary);
         }
-        #pdf-sayfa-slider:active { cursor: grabbing; }
 
         #pdf-fihrist-panel {
             display: none;
@@ -448,20 +414,6 @@
             overflow-y: auto;
             padding: 0.35rem;
         }
-        .fihrist-oge {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: transparent;
-            border: none;
-            color: #dcddde;
-            font-size: 0.78rem;
-            padding: 0.4rem 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            line-height: 1.35;
-        }
-        .fihrist-oge:hover { background: #40444b; color: #fff; }
         .fihrist-bos {
             color: #8fa397;
             font-size: 0.78rem;
@@ -620,4 +572,28 @@
             </div>
             <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
-        </div
+        </div>
+
+        <div class="card">
+            <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE ÖZETİ VE AYET AYET KONU DAĞILIMI:</strong>
+            <div class="fihrist-box" id="fihrist-metin">Yükleniyor...</div>
+        </div>
+
+        <div class="card">
+            <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
+            <div style="position:relative;">
+                <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()" style="padding-right:44px;"></textarea>
+                <button id="mikrofon-btn" class="btn-top" style="position:absolute; right:6px; bottom:8px; padding:0.25rem 0.45rem; background:var(--primary);" onclick="sesleYaz()">🎙️</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="shelf-panel">
+        <div class="shelf-topbar">
+            <button class="ekol-tab-btn active" onclick="ekolDegistir(this, 'hepsi')">Tüm Tefsirler</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'rivayet')">Rivâyet</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'dirayet')">Dirâyet</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'isari')">İşârî / Tasavvufî</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'ahkam')">Ahkâm</button>
+            
+            <input type="text" class="searc
