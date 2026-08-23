@@ -11,6 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tefsir Kütüphanesi">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         :root {
             --bg-base: #f0f3f0;
@@ -164,6 +165,16 @@
             line-height: 1.65;
         }
 
+        .aktif-konu-vurgusu {
+            background: #e9f5ed;
+            border-left: 3px solid var(--primary);
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            margin-top: 0.4rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
         .user-notes {
             width: 100%;
             height: 60px;
@@ -178,7 +189,7 @@
             resize: vertical;
         }
 
-        .reader-panel {
+        .shelf-panel {
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -186,15 +197,377 @@
             overflow: hidden;
         }
 
+        .shelf-topbar {
+            background: var(--bg-surface);
+            padding: 0.5rem 0.8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .ekol-tab-btn {
+            background: var(--bg-base);
+            border: 1.5px solid var(--border);
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: 0.15s;
+        }
+        .ekol-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .select-btn {
+            background: #b45309;
+            color: #ffffff;
+            padding: 0.45rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #78350f;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-left: auto;
+        }
+        .select-btn:hover { background: #d97706; }
+
+        .btn-temizle {
+            background: #7f1d1d;
+            color: #fca5a5;
+            border: 1px solid #991b1b;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        #btn-disa-aktar, #btn-ice-aktar {
+            background: #1e3a2f;
+            color: #86efac;
+            border: 1px solid #14532d;
+        }
+
+        .search-shelf {
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+            width: 140px;
+        }
+
+        .reader-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            height: calc(100% - 50px);
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .reader-grid { grid-template-columns: 1fr; }
+        }
+
+        .outline-sidebar {
+            background: #18191c;
+            border-right: 1px solid #36393f;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .sidebar-tabs {
+            padding: 0.55rem 0.75rem;
+            background: #202225;
+            border-bottom: 1px solid #36393f;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #b9bbbe;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sidebar-content {
+            flex: 1 1 auto;
+            overflow-y: auto !important;
+            max-height: 100%;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .sidebar-content::-webkit-scrollbar { width: 8px; }
+        .sidebar-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        .book-tab-btn {
+            background: #2f3136;
+            color: #dcddde;
+            border: 1px solid #40444b;
+            padding: 0.6rem 0.7rem;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.78rem;
+            cursor: pointer;
+            line-height: 1.35;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            transition: 0.15s;
+        }
+        .book-tab-btn:hover { background: #40444b; color: #fff; }
+        .book-tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
+        .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.4rem; }
+        .ekol-move-select {
+            background: #202225;
+            color: #dcddde;
+            border: 1px solid #40444b;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            padding: 0.2rem 0.3rem;
+            flex-shrink: 0;
+            max-width: 6.2rem;
+        }
+
         .reader-frame {
             width: 100%;
             height: 100%;
             border: none;
-            background: #202225;
+            background: #222;
         }
+
+        #pdf-viewer-wrap {
+            overflow: auto;
+            background: #525659;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #pdf-canvas {
+            display: block;
+            background: #fff;
+        }
+
+        #pdf-page-container {
+            display: none;
+            position: relative;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            height: fit-content;
+        }
+
+        /* PDF.js standart metin katmanı: görünmez ama seçilip kopyalanabilir metin */
+        .textLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            line-height: 1;
+            opacity: 1;
+        }
+        .textLayer span, .textLayer br {
+            color: transparent;
+            position: absolute;
+            white-space: pre;
+            cursor: text;
+            transform-origin: 0% 0%;
+        }
+        .textLayer ::selection {
+            background: rgba(46, 133, 85, 0.4);
+        }
+
+        #pdf-toolbar {
+            display: none;
+            background: #18191c;
+            border-bottom: 1px solid #36393f;
+            padding: 0.45rem 0.75rem;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        #pdf-sayfa-bilgi, #pdf-zoom-bilgi {
+            color: #dcddde;
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        #pdf-sayfa-slider {
+            width: 110px;
+            flex-shrink: 0;
+            cursor: grab;
+            accent-color: var(--primary);
+        }
+        #pdf-sayfa-slider:active { cursor: grabbing; }
+
+        #pdf-viewer-wrap { position: relative; }
+
+        #pdf-fihrist-panel {
+            display: none;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: min(320px, 85%);
+            max-height: calc(100% - 1rem);
+            background: #26282c;
+            border: 1px solid #40444b;
+            border-radius: 8px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+            overflow: hidden;
+            flex-direction: column;
+            z-index: 20;
+        }
+        #pdf-fihrist-baslik {
+            background: #18191c;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid #40444b;
+        }
+        #pdf-fihrist-liste {
+            overflow-y: auto;
+            padding: 0.35rem;
+        }
+        .fihrist-oge {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: #dcddde;
+            font-size: 0.78rem;
+            padding: 0.4rem 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            line-height: 1.35;
+        }
+        .fihrist-oge:hover { background: #40444b; color: #fff; }
+        .fihrist-bos {
+            color: #8fa397;
+            font-size: 0.78rem;
+            padding: 0.7rem;
+            text-align: center;
+        }
+
+        #not-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        #not-modal-kutu {
+            background: #26282c;
+            border: 1px solid #40444b;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #not-modal-baslik {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #18191c;
+            color: #fff;
+            font-weight: 700;
+            padding: 0.7rem 0.9rem;
+            border-bottom: 1px solid #40444b;
+        }
+        #not-modal-kapat {
+            background: transparent;
+            border: none;
+            color: #dcddde;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.1rem 0.4rem;
+        }
+        #not-modal-aciklama {
+            color: #8fa397;
+            font-size: 0.75rem;
+            padding: 0.6rem 0.9rem 0;
+            line-height: 1.4;
+        }
+        #not-modal-metin {
+            margin: 0.6rem 0.9rem;
+            flex: 1;
+            min-height: 220px;
+            background: #202225;
+            color: #dcddde;
+            border: 1px solid #40444b;
+            border-radius: 6px;
+            font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            padding: 0.6rem;
+            resize: none;
+        }
+        #not-modal-aksiyon {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 0.9rem 0.9rem;
+        }
+        #not-modal-aksiyon .btn-top { flex: 1; }
+
+        .empty-notice {
+            color: #8fa397;
+            text-align: center;
+            padding: 3rem 1.2rem;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        #modal-ara {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            display: none; justify-content: center; align-items: center; z-index: 10000;
+        }
+        .modal-box {
+            background: var(--bg-surface); width: 850px; max-width: 95%; max-height: 80vh;
+            border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;
+        }
+        .modal-list { overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem; max-height: 60vh; }
+        .m-item { padding: 0.5rem; border: 1px solid var(--border); border-radius: 5px; cursor: pointer; background: var(--bg-base); }
+        .m-item:hover { border-color: var(--primary); background: rgba(27,77,46,0.08); }
     </style>
 </head>
 <body>
+
+<div id="modal-ara">
+    <div class="modal-box">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong id="m-baslik" style="font-size: 0.95rem; color: var(--primary);">Kur'an Arama Sonuçları</strong>
+            <button class="btn-act" style="background:#dc2626; padding:0.25rem 0.5rem;" onclick="document.getElementById('modal-ara').style.display='none'">Kapat ✕</button>
+        </div>
+        <div class="modal-list" id="m-sonuc"></div>
+    </div>
+</div>
 
 <header>
     <div>
@@ -212,25 +585,24 @@
         <div class="nav-card">
             <div>
                 <label>Sure Seçin</label>
-                <select id="sure-sec" onchange="sureDegisti()">
-                    <option value="1">1. Fatiha Suresi</option>
-                </select>
+                <select id="sure-sec" onchange="sureDegisti()"></select>
             </div>
             <div>
                 <label>Ayet No</label>
-                <input type="number" id="ayet-sec" value="1" min="1">
+                <input type="number" id="ayet-sec" value="1" min="1" onchange="ayetYukle()">
             </div>
         </div>
 
         <div class="search-box">
-            <input type="text" id="ara-inp" placeholder="Kur'an'da ara...">
-            <button class="btn-act">🔍 Ara</button>
+            <input type="text" id="ara-inp" placeholder="Kur'an'da ara: kalp, adalet, takva..." onkeydown="if(event.key==='Enter') kuranAra()">
+            <button class="btn-act" onclick="kuranAra()">🔍 Ara</button>
+            <button class="btn-act" style="background:#0284c7;" onclick="sesCal()">🔊 Dinle</button>
         </div>
 
         <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <strong style="font-size: 0.8rem; color: var(--primary);">DİYANET İŞLERİ MEALİ</strong>
-                <button class="btn-top" style="background:var(--bg-base); color:var(--text-main); border:1px solid var(--border);">📋 Kopyala</button>
+                <button class="btn-top" style="background:var(--bg-base); color:var(--text-main); border:1px solid var(--border);" onclick="kopyala()">📋 Kopyala</button>
             </div>
             <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
@@ -238,54 +610,11 @@
 
         <div class="card">
             <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE ÖZETİ VE AYET AYET KONU DAĞILIMI:</strong>
-            <div class="fihrist-box" id="fihrist-metin">Fâtiha sûresi Mekke döneminde inmiştir. 7 âyettir. Kur'an-ı Kerim'in ilk sûresi olduğu için "başlangıç" anlamına gelen "Fâtiha" adını almıştır.</div>
+            <div class="fihrist-box" id="fihrist-metin">Yükleniyor...</div>
         </div>
 
         <div class="card">
             <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
             <div style="position:relative;">
-                <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..."></textarea>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sağ Panel: pCloud PDF Görüntüleyici -->
-    <div class="reader-panel">
-        <iframe 
-            id="pdfViewer" 
-            class="reader-frame" 
-            src="https://e.pcloud.link/publink/show?code=kZebIy7ZV01MpHuO4HLmixDYQfDFLbIajT6X" 
-            allowfullscreen>
-        </iframe>
-    </div>
-</div>
-
-<script>
-    // pCloud link haritası
-    const tefsirLinkleri = {
-        "1": "https://e.pcloud.link/publink/show?code=kZebIy7ZV01MpHuO4HLmixDYQfDFLbIajT6X"
-    };
-
-    function sureDegisti() {
-        const secilenSure = document.getElementById('sure-sec').value;
-        if (tefsirLinkleri[secilenSure]) {
-            document.getElementById('pdfViewer').src = tefsirLinkleri[secilenSure];
-        }
-    }
-
-    function notIndir() {
-        const not = document.getElementById('not-alani').value;
-        if (!not) {
-            alert('Henüz kaydedilecek bir not yazmadınız.');
-            return;
-        }
-        const blob = new Blob([not], { type: 'text/plain;charset=utf-8' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'tefsir_notlarim.txt';
-        a.click();
-    }
-</script>
-
-</body>
-</html>
+                <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()" style="padding-right:44px;"></textarea>
+                <button id="mikrofon-btn" onclick="ses
