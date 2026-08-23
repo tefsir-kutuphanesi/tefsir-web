@@ -359,6 +359,8 @@
             align-items: flex-start;
             padding: 1rem 0;
             -webkit-overflow-scrolling: touch;
+            position: relative;
+            flex: 1;
         }
 
         #pdf-canvas {
@@ -373,7 +375,6 @@
             height: fit-content;
         }
 
-        /* PDF.js standart metin katmanı: görünmez ama seçilip kopyalanabilir metin */
         .textLayer {
             position: absolute;
             top: 0;
@@ -419,8 +420,6 @@
             accent-color: var(--primary);
         }
         #pdf-sayfa-slider:active { cursor: grabbing; }
-
-        #pdf-viewer-wrap { position: relative; }
 
         #pdf-fihrist-panel {
             display: none;
@@ -569,6 +568,21 @@
     </div>
 </div>
 
+<div id="not-modal">
+    <div id="not-modal-kutu">
+        <div id="not-modal-baslik">
+            <span id="not-modal-baslik-yazi">Sayfa Notu</span>
+            <button id="not-modal-kapat" onclick="notModalKapat()">✕</button>
+        </div>
+        <p id="not-modal-aciklama">Bu sayfa hakkındaki notlarınızı buraya kaydedebilirsiniz.</p>
+        <textarea id="not-modal-metin" placeholder="Notlarınızı buraya yazın..."></textarea>
+        <div id="not-modal-aksiyon">
+            <button class="btn-top" style="background:var(--primary);" onclick="notModalKaydet()">Kaydet</button>
+            <button class="btn-top" onclick="notModalKapat()">Vazgeç</button>
+        </div>
+    </div>
+</div>
+
 <header>
     <div>
         <h1>DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
@@ -606,15 +620,4 @@
             </div>
             <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
-        </div>
-
-        <div class="card">
-            <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE ÖZETİ VE AYET AYET KONU DAĞILIMI:</strong>
-            <div class="fihrist-box" id="fihrist-metin">Yükleniyor...</div>
-        </div>
-
-        <div class="card">
-            <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
-            <div style="position:relative;">
-                <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()" style="padding-right:44px;"></textarea>
-                <button id="mikrofon-btn" onclick="ses
+        </div
