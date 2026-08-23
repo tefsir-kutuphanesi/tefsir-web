@@ -333,23 +333,6 @@
         .book-tab-btn:hover { background: #40444b; color: #fff; }
         .book-tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
         .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.4rem; }
-        .ekol-move-select {
-            background: #202225;
-            color: #dcddde;
-            border: 1px solid #40444b;
-            border-radius: 4px;
-            font-size: 0.68rem;
-            padding: 0.2rem 0.3rem;
-            flex-shrink: 0;
-            max-width: 6.2rem;
-        }
-
-        .reader-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #222;
-        }
 
         #pdf-viewer-wrap {
             overflow: auto;
@@ -359,6 +342,8 @@
             align-items: flex-start;
             padding: 1rem 0;
             -webkit-overflow-scrolling: touch;
+            position: relative;
+            flex: 1;
         }
 
         #pdf-canvas {
@@ -373,7 +358,6 @@
             height: fit-content;
         }
 
-        /* PDF.js standart metin katmanı: görünmez ama seçilip kopyalanabilir metin */
         .textLayer {
             position: absolute;
             top: 0;
@@ -418,9 +402,6 @@
             cursor: grab;
             accent-color: var(--primary);
         }
-        #pdf-sayfa-slider:active { cursor: grabbing; }
-
-        #pdf-viewer-wrap { position: relative; }
 
         #pdf-fihrist-panel {
             display: none;
@@ -449,20 +430,6 @@
             overflow-y: auto;
             padding: 0.35rem;
         }
-        .fihrist-oge {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: transparent;
-            border: none;
-            color: #dcddde;
-            font-size: 0.78rem;
-            padding: 0.4rem 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            line-height: 1.35;
-        }
-        .fihrist-oge:hover { background: #40444b; color: #fff; }
         .fihrist-bos {
             color: #8fa397;
             font-size: 0.78rem;
@@ -569,6 +536,21 @@
     </div>
 </div>
 
+<div id="not-modal">
+    <div id="not-modal-kutu">
+        <div id="not-modal-baslik">
+            <span id="not-modal-baslik-yazi">Sayfa Notu</span>
+            <button id="not-modal-kapat" onclick="notModalKapat()">✕</button>
+        </div>
+        <p id="not-modal-aciklama">Bu sayfa hakkındaki notlarınızı buraya kaydedebilirsiniz.</p>
+        <textarea id="not-modal-metin" placeholder="Notlarınızı buraya yazın..."></textarea>
+        <div id="not-modal-aksiyon">
+            <button class="btn-top" style="background:var(--primary);" onclick="notModalKaydet()">Kaydet</button>
+            <button class="btn-top" onclick="notModalKapat()">Vazgeç</button>
+        </div>
+    </div>
+</div>
+
 <header>
     <div>
         <h1>DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
@@ -604,7 +586,7 @@
                 <strong style="font-size: 0.8rem; color: var(--primary);">DİYANET İŞLERİ MEALİ</strong>
                 <button class="btn-top" style="background:var(--bg-base); color:var(--text-main); border:1px solid var(--border);" onclick="kopyala()">📋 Kopyala</button>
             </div>
-            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
         </div>
 
@@ -617,4 +599,11 @@
             <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
             <div style="position:relative;">
                 <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()" style="padding-right:44px;"></textarea>
-                <button id="mikrofon-btn" onclick="ses
+                <button id="mikrofon-btn" class="btn-top" style="position:absolute; right:6px; bottom:8px; padding:0.25rem 0.45rem; background:var(--primary);" onclick="sesleYaz()">🎙️</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="shelf-panel">
+        <div class="shelf-topbar">
+            <button class="ekol-tab-btn active" onclick="ekolDe
