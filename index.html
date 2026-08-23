@@ -165,6 +165,16 @@
             line-height: 1.65;
         }
 
+        .aktif-konu-vurgusu {
+            background: #e9f5ed;
+            border-left: 3px solid var(--primary);
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            margin-top: 0.4rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
         .user-notes {
             width: 100%;
             height: 60px;
@@ -229,6 +239,7 @@
             gap: 0.35rem;
             margin-left: auto;
         }
+        .select-btn:hover { background: #d97706; }
 
         .btn-temizle {
             background: #7f1d1d;
@@ -242,6 +253,11 @@
             display: inline-flex;
             align-items: center;
             white-space: nowrap;
+        }
+        #btn-disa-aktar, #btn-ice-aktar {
+            background: #1e3a2f;
+            color: #86efac;
+            border: 1px solid #14532d;
         }
 
         .search-shelf {
@@ -317,6 +333,23 @@
         .book-tab-btn:hover { background: #40444b; color: #fff; }
         .book-tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
         .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.4rem; }
+        .ekol-move-select {
+            background: #202225;
+            color: #dcddde;
+            border: 1px solid #40444b;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            padding: 0.2rem 0.3rem;
+            flex-shrink: 0;
+            max-width: 6.2rem;
+        }
+
+        .reader-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #222;
+        }
 
         #pdf-viewer-wrap {
             overflow: auto;
@@ -326,8 +359,6 @@
             align-items: flex-start;
             padding: 1rem 0;
             -webkit-overflow-scrolling: touch;
-            position: relative;
-            flex: 1;
         }
 
         #pdf-canvas {
@@ -342,6 +373,7 @@
             height: fit-content;
         }
 
+        /* PDF.js standart metin katmanı: görünmez ama seçilip kopyalanabilir metin */
         .textLayer {
             position: absolute;
             top: 0;
@@ -385,6 +417,57 @@
             flex-shrink: 0;
             cursor: grab;
             accent-color: var(--primary);
+        }
+        #pdf-sayfa-slider:active { cursor: grabbing; }
+
+        #pdf-viewer-wrap { position: relative; }
+
+        #pdf-fihrist-panel {
+            display: none;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: min(320px, 85%);
+            max-height: calc(100% - 1rem);
+            background: #26282c;
+            border: 1px solid #40444b;
+            border-radius: 8px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+            overflow: hidden;
+            flex-direction: column;
+            z-index: 20;
+        }
+        #pdf-fihrist-baslik {
+            background: #18191c;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid #40444b;
+        }
+        #pdf-fihrist-liste {
+            overflow-y: auto;
+            padding: 0.35rem;
+        }
+        .fihrist-oge {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: #dcddde;
+            font-size: 0.78rem;
+            padding: 0.4rem 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            line-height: 1.35;
+        }
+        .fihrist-oge:hover { background: #40444b; color: #fff; }
+        .fihrist-bos {
+            color: #8fa397;
+            font-size: 0.78rem;
+            padding: 0.7rem;
+            text-align: center;
         }
 
         #not-modal {
@@ -486,21 +569,6 @@
     </div>
 </div>
 
-<div id="not-modal">
-    <div id="not-modal-kutu">
-        <div id="not-modal-baslik">
-            <span id="not-modal-baslik-yazi">Sayfa Notu</span>
-            <button id="not-modal-kapat" onclick="notModalKapat()">✕</button>
-        </div>
-        <p id="not-modal-aciklama">Bu sayfa hakkındaki notlarınızı buraya kaydedebilirsiniz.</p>
-        <textarea id="not-modal-metin" placeholder="Notlarınızı buraya yazın..."></textarea>
-        <div id="not-modal-aksiyon">
-            <button class="btn-top" style="background:var(--primary);" onclick="notModalKaydet()">Kaydet</button>
-            <button class="btn-top" onclick="notModalKapat()">Vazgeç</button>
-        </div>
-    </div>
-</div>
-
 <header>
     <div>
         <h1>DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
@@ -536,7 +604,7 @@
                 <strong style="font-size: 0.8rem; color: var(--primary);">DİYANET İŞLERİ MEALİ</strong>
                 <button class="btn-top" style="background:var(--bg-base); color:var(--text-main); border:1px solid var(--border);" onclick="kopyala()">📋 Kopyala</button>
             </div>
-            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
         </div>
 
@@ -549,31 +617,4 @@
             <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
             <div style="position:relative;">
                 <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()" style="padding-right:44px;"></textarea>
-                <button id="mikrofon-btn" class="btn-top" style="position:absolute; right:6px; bottom:8px; padding:0.25rem 0.45rem; background:var(--primary);" onclick="sesleYaz()">🎙️</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="shelf-panel">
-        <div class="shelf-topbar">
-            <button class="ekol-tab-btn active" onclick="ekolDegistir(this, 'hepsi')">Tüm Tefsirler</button>
-            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'rivayet')">Rivâyet</button>
-            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'dirayet')">Dirâyet</button>
-            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'isari')">İşârî / Tasavvufî</button>
-            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'ahkam')">Ahkâm</button>
-            
-            <input type="text" class="search-shelf" id="search-shelf" placeholder="Kütüphanede ara..." oninput="kitapFiltrele()">
-            <label class="select-btn" for="pdf-dosya-sec">📂 PDF Ekle</label>
-            <input type="file" id="pdf-dosya-sec" accept="application/pdf" multiple style="display:none;" onchange="dosyadanKitapEkle(event)">
-            <button class="btn-temizle" onclick="kutuphaneyiTemizle()">🗑️ Temizle</button>
-        </div>
-
-        <div class="reader-grid">
-            <div class="outline-sidebar">
-                <div class="sidebar-tabs">
-                    <span>KÜLLİYAT / KİTAPLAR</span>
-                    <span id="kitap-sayisi" style="font-size:0.75rem; color:#8fa397;">0 Kitap</span>
-                </div>
-                <div class="sidebar-content" id="kitap-listesi">
-                    <div class="empty-notice">Henüz eklenmiş bir tefsir kitabı bulunmuyor. Üstteki <strong>"📂 PDF Ekle"</strong> butonundan arşivinizi ekleyebilirsiniz.</div>
-                </div
+                <button id="mikrofon-btn" onclick="ses
