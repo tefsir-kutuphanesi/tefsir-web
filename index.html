@@ -1,47 +1,53 @@
-
 <!DOCTYPE html>
 <html>
 <başlık>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tefsir</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dijital Tefsir Kütüphanesi</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-gövde { kenar boşluğu: 0; dolgu: 10 piksel; yazı tipi ailesi: Arial, sans-serif; arka plan: #f0f0f0; }
-başlık { arka plan: #1b4d2e; renk: beyaz; dolgu: 15 piksel; kenar yarıçapı: 5 piksel; }
-.card { arka plan: beyaz; dolgu: 15 piksel; kenar boşluğu: 10 piksel; kenar yarıçapı: 5 piksel; }
-etiket { display: block; margin: 10px 0 5px 0; font-weight: bold; font-size: 13px; }
-input, select, textarea { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px; font-family: Arial; }
-düğme { arka plan: #1b4d2e; renk: beyaz; kenarlık: yok; dolgu: 8px 15px; kenar yarıçapı: 4px; imleç: işaretçi; kenar boşluğu: 5px 5px 5px 0; yazı tipi kalınlığı: kalın; }
-düğme:üzerine gelindiğinde { arka plan: #0d2a1a; }
-.mavi { arka plan: #0284c7; }
-.mavi:üzerine gelindiğinde arka plan rengi #0170a0 olacak şekilde ayarlanmış; }
-.arabic { font-size: 20px; direction: rtl; text-align: right; padding: 15px; background: #f9f9f9; border-right: 4px solid #1b4d2e; margin: 10px 0; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 10px 0; }
-.book { background: #2a302c; color: white; padding: 10px; border-radius: 4px; cursor: pointer; border: 1px solid #3d4540; text-align: center; font-size: 12px; }
-.kitap:üzerinegelin { arka plan: #1b4d2e; }
-.title { font-weight: bold; color: #1b4d2e; margin: 15px 0 10px 0; padding-bottom: 5px; border-bottom: 2px solid #ccc; }
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
-.modal-inner { background: white; width: 95%; height: 95%; margin: auto; margin-top: 2.5%; border-radius: 8px; display: flex; flex-direction: column; }
-.modal-header { background: #0d2a1a; color: white; padding: 10px; display: flex; justify-content: space-between; border-radius: 8px 8px 0 0; }
-.modal-header butonu { margin: 0; padding: 5px 10px; }
-iframe { flex: 1; border: none; }
-.row { display: flex; gap: 5px; margin: 5px 0; }
-.row input { flex: 1; }
-.row düğmesi { flex: 0; }
+* {kenar boşluğu:0; dolgu:0; kutu boyutu:köşelik kutusu;}
+gövde {font-family:'Roboto',sans-serif; background:#f5f5f5; color:#333; line-height:1.6;}
+başlık {arka plan:#1a472f; renk:beyaz; dolgu:20px; metin hizalama:ortalanmış;}
+başlık h1 {yazı boyutu: 24 piksel; alt kenar boşluğu: 5 piksel;}
+başlık p {yazı boyutu: 13 piksel; opaklık: 0,8;}
+.container {maksimum genişlik: 1000 piksel; kenar boşluğu: 20 piksel otomatik; dolgu: 0 15 piksel;}
+.section {background:white; margin:15px 0; padding:20px; border-radius:8px; border:1px solid #eee;}
+.bölüm-başlığı {yazı-boyutu:16px; yazı-ağırlığı:kalın; renk:#1a472f; alt kenar boşluğu:15px; alt kenarlık:2px düz #1a472f; alt dolgu:10px;}
+etiket {görüntüleme:blok; yazı tipi boyutu:13px; yazı tipi kalınlığı:kalın; kenar boşluğu:10px 0 5px 0; renk:#555;}
+input, select, textarea {width:100%; padding:10px; margin:5px 0; border:1px solid #ddd; border-radius:5px; font-family:inherit; font-size:14px;}
+düğme {arka plan:#1a472f; renk:beyaz; kenarlık:yok; dolgu:10px 20px; kenar yarıçapı:5px; imleç:işaretçi; yazı tipi kalınlığı:kalın; kenar boşluğu:5px 5px 5px 0;}
+düğme:üzerime {arka plan:#0f2818;}
+düğme.mavi {arka plan:#0284c7;}
+düğme.mavi:üzerinegel {arka plan:#0170a0;}
+.row {display:flex; gap:10px; flex-wrap:wrap;}
+.row.grid {display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px;}
+.row.grid düğmesi {margin:0; width:100%; padding:15px 10px; text-align:center; font-size:12px;}
+.arabic {font-family:'Amiri',serif; font-size:24px; direction:rtl; text-align:right; line-height:2.5; background:#f9f9f9; padding:20px; border-radius:5px; border-right:5px solid #1a472f; margin:15px 0; min-height:100px;}
+.meal {font-size:15px; line-height:1.8; margin:15px 0; color:#333;}
+.modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center;}
+.modal-content {background:white; width:90%; height:90%; border-radius:8px; display:flex; flex-direction:column;}
+.modal-header {background:#1a472f; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;}
+.modal-header h2 {font-size:16px; flex:1;}
+.modal-header butonu {margin:0; padding:8px 15px;}
+iframe {flex:1; border:none;}
 </style>
 </head>
 <body>
 
 <başlık>
-<h2>Dijital Tefsir Kutuphanesi</h2>
+<h1>ğŸ“– Dijital Tefsir Kütüphanesi</h1>
 <p>114 Sure ve 30+ Tefsir Eseri</p>
 </header>
 
-<div class="card">
-<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
-<div>
-<label>Kesin Secin</label>
-<select id="sure" onchange="yeni()">
+<div class="container">
+
+<div class="section">
+<div class="section-title">Sure ve Ayet SeÃ§imi</div>
+<div class="row">
+<div style="flex:2;">
+<label>Sure SeÃ§in</label>
+<select id="sure" onchange="yeniAyet()">
 <option value="1">1. Fatiha</option>
 <option value = "2">2. Bakara</option>
 <option value="3">3. Al-i İmran</option>
@@ -158,52 +164,62 @@ iframe { flex: 1; border: none; }
 <option value="114">114. Nas</option>
 </select>
 </div>
-<div>
+<div style="flex:1;">
 <label>Ayet No</label>
-<input type="number" id="ayet" value="1" min="1" onchange="yeni()">
+<input type="number" id="ayet" value="1" min="1" onchange="yeniAyet()">
 </div>
 </div>
 
 <div class="row">
-<input type="text" id="ara" placeholder="Kelime ara...">
+<input type="text" id="ara" placeholder="Ara'yı girin..." style="flex:1;">
 <button onclick="araYap()">Ara</button>
 <button class="blue" onclick="sesOynat()">Ses</button>
 </div>
 </div>
 
-<div class="card">
-<b>Kuran Metni</b>
+<div class="section">
+<div class="section-title">Kuran Metni</div>
 <div class="arabic" id="arap">Yükleniyor...</div>
-<p id="meal"></p>
+<div class="meal" id="meal">Yükleniyor...</div>
+<div class="row">
 <button onclick="geri()">Geri</button>
 <button onclick="ileri()">İleri</button>
 </div>
+</div>
 
-<div class="card">
+<div class="section">
 <label>Notunuz:</label>
-<textarea id="not" rows="4"></textarea>
+<textarea id="not" row="4" placeholder="Notunuzu yazın..."></textarea>
 </div>
 
-<div class="card">
-<div class="title">Tefsir Kutuphanesi</div>
+<div class="section">
+<div class="section-title">Tefsir Kutuphanesi</div>
 
-<div class="title">RivÃ¢yet Tefsirler</div>
-<div class = "ızgara" id = "rivayet"></div>
-
-<div class="title">Dirüş Tefsirler</div>
-<div class="grid" id="dirayet"></div>
-
-<div class="title">Isari Tefsirler</div>
-<div class="grid" id="isari"></div>
+<div style="margin-bottom:20px;">
+<h3 style="font-size:14px; color:#1a472f; margin-bottom:10px;">Rivayet Tefsirler</h3>
+<div class="row grid" id="rivayet"></div>
 </div>
 
-<div class="modal" id="pdf">
-<div class="modal-inner">
+<div style="margin-bottom:20px;">
+<h3 style="font-size:14px; color:#1a472f; margin-bottom:10px;">Dirayet Tefsirler</h3>
+<div class="row grid" id="dirayet"></div>
+</div>
+
+<div>
+<h3 style="font-size:14px; color:#1a472f; margin-bottom:10px;">İsari Tefsirler</h3>
+<div class="row grid" id="isari"></div>
+</div>
+</div>
+
+</div>
+
+<div class="modal" id="pdfModal">
+<div class="modal-content">
 <div class="modal-header">
-<b id="baslik">PDF</b>
-<button onclick="kapat()">Kapat</button>
+<h2 id="pdfBaslik">PDF</h2>
+<button onclick="kapatPdf()">Kapat</button>
 </div>
-<iframe id="frame"></iframe>
+<iframe id="pdfFrame"></iframe>
 </div>
 </div>
 
@@ -247,69 +263,84 @@ sabit kitaplar = [
 
 sure = 1, ayet = 1 olsun;
 
-fonksiyon bas() {
+fonksiyon başlat() {
 ["rivayet","dirayet","isari"].forEach(t => {
 let grid = document.getElementById(t);
-kitaplar.filtre(k => kt == t).forEach(k => {
-let btn = document.createElement("div");
-düğme.sınıfAdı = "kitap";
+kitaplar.filtre(k => kt === t).forEach(k => {
+let btn = document.createElement("button");
 düğme.metin içeriği = kn;
-btn.onclick = () => pdfAc(kn, ki);
+btn.onclick = () => acPdf(kn, ki);
 ızgara.altbilgi(düğme);
 });
 });
-yeni();
+yeniAyet();
 }
 
-asenkron fonksiyon yeni() {
+asenkron fonksiyon yeniAyet() {
 emin = parseInt(document.getElementById("sure").value);
 ayet = parseInt(document.getElementById("ayet").value) || 1;
+document.getElementById("arap").textContent = "YÜkleniyor...";
+document.getElementById("meal").textContent = "Yükleniyor...";
 denemek {
 let ar = wait fetch("https://api.alquran.cloud/v1/ayah/"+sure+":"+ayet+"/quran-uthmani").then(r => r.json());
 let tr = await fetch("https://api.alquran.cloud/v1/ayah/"+sure+":"+ayet+"/tr.diyanet").then(r => r.json());
-document.getElementById("arap").textContent = ar.data ? ar.data.text : "";
-document.getElementById("meal").textContent = tr.data ? tr.data.text : "";
-} catch(e) { }
+document.getElementById("arap").textContent = ar.data?.text || "Hata";
+document.getElementById("meal").textContent = tr.data?.text || "Hata";
+} catch(e) {
+document.getElementById("arap").textContent = "Bağlantı hatası";
+document.getElementById("meal").textContent = "BaÄŸlantÄ± hatasÄ±";
+}
 }
 
-function geri() { if(ayet > 1) ayet--; document.getElementById("ayet").value = ayet; yeni(); }
-function ileri() { ayet++; document.getElementById("ayet").value = ayet; yeni(); }
+fonksiyon geri() {
+eğer (ayet > 1) {
+ayet--;
+document.getElementById("ayet").value = ayet;
+yeniAyet();
+}
+}
+
+fonksiyon ileri() {
+ayet++;
+document.getElementById("ayet").value = ayet;
+yeniAyet();
+}
 
 asenkron fonksiyon sesOynat() {
 denemek {
 let res = wait fetch("https://api.alquran.cloud/v1/ayah/"+sure+":"+ayet+"/ar.alafasy").then(r => r.json());
+if(res.data?.audio) {
 yeni Audio(res.data.audio).play();
-} catch(e) { }
+}
+} catch(e) {}
 }
 
 asenkron fonksiyon araYap() {
-let kelime = document.getElementById("ara").value;
+let kelime = document.getElementById("ara").value.trim();
 Eğer (!kelime) değilse, geri dön;
 denemek {
 let res = await fetch("https://api.alquran.cloud/v1/search/"+encodeURIComponent(kelime)+"/all/tr.diyanet").then(r => r.json());
-eğer (res.data && res.data.matches[0]) {
+eğer (res.data?.matches && res.data.matches[0]) {
 m = res.data.matches[0];
 document.getElementById("sure").value = m.surah.number;
 document.getElementById("ayet").value = m.numberInSurah;
-yeni();
+yeniAyet();
 }
-} catch(e) { }
-}
-
-fonksiyon pdfAc(ad, id) {
-document.getElementById("baslik").textContent = reklam;
-document.getElementById("frame").src = "https://drive.google.com/file/d/"+id+"/preview";
-document.getElementById("pdf").style.display = "flex";
+} catch(e) {}
 }
 
-fonksiyon kapat() {
-document.getElementById("pdf").style.display = "none";
+fonksiyon acPdf(ad, id) {
+document.getElementById("pdfBaslik").textContent = reklam;
+document.getElementById("pdfFrame").src = "https://drive.google.com/file/d/"+id+"/preview";
+document.getElementById("pdfModal").style.display = "flex";
 }
 
-bas();
+fonksiyon kapatPdf() {
+document.getElementById("pdfModal").style.display = "none";
+}
+
+başlat();
 </script>
 
 </body>
 </html>
-
-
