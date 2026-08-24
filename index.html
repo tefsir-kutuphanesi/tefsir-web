@@ -3,297 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DİJİTAL TEFSİR KÜTÜPHANESİ - 114 SURE DETAYLI TAHLİL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>DİJİTAL TEFSİR KÜTÜPHANESİ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #f0f3f0;
-            --bg-surface: #ffffff;
+            --bg: #f4f6f4;
+            --surface: #ffffff;
             --primary: #1b4d2e;
             --primary-dark: #123520;
             --accent: #c48c2b;
-            --text-main: #1f2421;
-            --text-muted: #55635a;
+            --text: #1f2421;
             --border: #d0ded5;
-            --arabic-font: 'Amiri', serif;
         }
 
         .dark-mode {
-            --bg-base: #0f1712;
-            --bg-surface: #17221b;
+            --bg: #121413;
+            --surface: #1c201d;
             --primary: #2d7a46;
-            --primary-dark: #1a4d2c;
-            --text-main: #e8ede9;
-            --text-muted: #8fa397;
-            --border: #26382e;
+            --primary-dark: #153820;
+            --text: #e8ede9;
+            --border: #2c332e;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 2rem; }
 
         header {
             background: linear-gradient(135deg, #0e2417, var(--primary));
-            color: #ffffff;
-            padding: 0.6rem 1rem;
+            color: #fff;
+            padding: 0.8rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--accent);
+            border-bottom: 3px solid var(--accent);
         }
-
-        header h1 { font-size: 1.05rem; font-weight: 700; }
-        header p { font-size: 0.65rem; color: #a4c9b3; }
 
         .btn-top {
             background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(196,140,43,0.5);
+            border: 1px solid rgba(255,255,255,0.3);
             color: #fff;
-            padding: 0.35rem 0.65rem;
+            padding: 0.4rem 0.7rem;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
 
-        .main-layout {
+        .container {
+            max-width: 1200px;
+            margin: 0.8rem auto;
+            padding: 0 0.8rem;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            padding: 0.8rem;
-            flex: 1;
+            gap: 1rem;
         }
 
-        @media (min-width: 950px) {
-            .main-layout { display: grid; grid-template-columns: 420px 1fr; }
-        }
-
-        .side-col {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .nav-card {
-            background: var(--bg-surface);
-            padding: 0.6rem;
-            border-radius: 8px;
+        .card {
+            background: var(--surface);
             border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 0.5rem;
         }
 
-        label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.2rem; }
-        select, input {
+        label { font-size: 0.75rem; font-weight: 700; color: #666; }
+        select, input, textarea {
             width: 100%;
-            padding: 0.45rem;
+            padding: 0.5rem;
             border-radius: 6px;
             border: 1px solid var(--border);
-            background: var(--bg-base);
-            color: var(--text-main);
-            font-size: 0.85rem;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 0.9rem;
         }
 
-        .search-box {
-            background: var(--bg-surface);
-            padding: 0.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
+        .search-bar {
             display: flex;
-            gap: 0.3rem;
+            gap: 0.4rem;
         }
 
         .btn-act {
             background: var(--primary);
-            color: white;
-            padding: 0.45rem 0.7rem;
-            border-radius: 6px;
+            color: #fff;
             border: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.75rem;
+            font-weight: 700;
+            font-size: 0.8rem;
             white-space: nowrap;
         }
 
-        .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
         .arabic-text {
-            font-family: var(--arabic-font);
-            font-size: 1.5rem;
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
             direction: rtl;
             text-align: right;
-            line-height: 1.8;
+            line-height: 2;
             color: var(--primary-dark);
             background: rgba(27, 77, 46, 0.05);
-            padding: 0.6rem;
+            padding: 0.8rem;
             border-radius: 6px;
-            border-right: 3px solid var(--primary);
+            border-right: 4px solid var(--primary);
         }
 
-        .meal-text { font-size: 0.85rem; line-height: 1.5; }
+        .meal-text { font-size: 0.9rem; line-height: 1.6; }
 
         .fihrist-box {
             background: #fffdf5;
             border: 1px solid #f0e2be;
-            padding: 0.75rem;
+            padding: 0.8rem;
             border-radius: 8px;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: #452b07;
-            max-height: 220px;
-            overflow-y: auto;
             line-height: 1.6;
         }
 
-        .fihrist-header {
+        .fihrist-title {
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 0.4rem;
+            border-bottom: 1px solid #e2d1a3;
             padding-bottom: 0.3rem;
-            border-bottom: 1.5px solid #eedbb0;
-            font-size: 0.85rem;
         }
 
-        .fihrist-item {
-            margin-bottom: 0.4rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 1px dashed #eedbb0;
-        }
-        .fihrist-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .fihrist-item strong { color: var(--primary-dark); }
-
-        .user-notes {
-            width: 100%;
-            height: 75px;
-            padding: 0.45rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: var(--bg-base);
-            color: var(--text-main);
-            font-size: 0.85rem;
-            line-height: 1.4;
-            resize: vertical;
-        }
-
-        .shelf-panel {
-            background: #18191c;
+        .kulliyat-section {
+            background: #1c201d;
             border-radius: 8px;
-            border: 1px solid #36393f;
+            padding: 1rem;
+            color: #fff;
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
-            padding: 0.8rem;
         }
 
-        .shelf-topbar {
-            color: #ffffff;
-            font-size: 0.9rem;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #36393f;
-            padding-bottom: 0.5rem;
-        }
-
-        .book-list-pane {
+        .kulliyat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 0.5rem;
-            max-height: 400px;
+            max-height: 450px;
             overflow-y: auto;
-            background: #202225;
-            padding: 0.6rem;
-            border-radius: 6px;
+            padding-right: 0.3rem;
         }
 
-        .book-btn {
-            background: #2f3136;
-            color: #dcddde;
-            border: 1px solid #40444b;
-            padding: 0.65rem 0.75rem;
+        .book-item {
+            background: #2a302c;
+            border: 1px solid #3d4540;
+            padding: 0.7rem;
             border-radius: 6px;
-            text-align: left;
-            font-size: 0.8rem;
-            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .book-btn:hover { background: #40444b; color: #fff; }
-        .book-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: bold; }
-
-        .viewer-box {
-            background: #202225;
-            padding: 1.2rem;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            text-align: center;
-        }
-
-        .btn-open-pdf {
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.4rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            color: #e8ede9;
+            font-size: 0.82rem;
+            font-weight: 600;
         }
 
-        #modal-ara {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-            display: none; justify-content: center; align-items: center; z-index: 10000;
+        .book-item:hover {
+            background: var(--primary);
+            border-color: var(--primary);
         }
-        .modal-box {
-            background: var(--bg-surface); width: 90%; max-width: 750px; max-height: 80vh;
-            border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;
+
+        .tag {
+            font-size: 0.65rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: #a4c9b3;
         }
-        .modal-list { overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem; max-height: 60vh; }
-        .m-item { padding: 0.6rem; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; background: var(--bg-base); }
     </style>
 </head>
 <body>
 
-<div id="modal-ara">
-    <div class="modal-box">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="font-size: 0.95rem; color: var(--primary);">Kur'an-ı Kerim Arama Sonuçları</strong>
-            <button class="btn-act" style="background:#dc2626; padding:0.25rem 0.5rem;" onclick="document.getElementById('modal-ara').style.display='none'">✕ Kapat</button>
-        </div>
-        <div class="modal-list" id="m-sonuc"></div>
-    </div>
-</div>
-
 <header>
     <div>
-        <h1>DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
-        <p>114 Sure Özel Tahlili & Kalıcı Külliyat Portalı</p>
+        <h1 style="font-size:1.1rem;">DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
+        <p style="font-size:0.7rem; color:#a4c9b3;">114 Sure Tahlili ve 48 Eserlik Tefsir Portalı</p>
     </div>
     <div style="display: flex; gap: 0.4rem;">
         <button class="btn-top" onclick="notIndir()">💾 Notları İndir</button>
-        <button class="btn-top" onclick="document.body.classList.toggle('dark-mode')">🌙 Gece Modu</button>
+        <button class="btn-top" onclick="document.body.classList.toggle('dark-mode')">🌙 Tema</button>
     </div>
 </header>
 
-<div class="main-layout">
-    <div class="side-col">
-        <div class="nav-card">
+<div class="container">
+    <div class="card">
+        <div class="nav-grid">
             <div>
                 <label>Sure Seçin</label>
                 <select id="sure-sec" onchange="sureDegisti()">
@@ -329,12 +233,12 @@
                     <option value="88">88. Gâşiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
                     <option value="91">91. Şems</option><option value="92">92. Leyl</option><option value="93">93. Duhâ</option>
                     <option value="94">94. İnşirâh</option><option value="95">95. Tîn</option><option value="96">96. Alak</option>
-                    <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzâl</option><option value="100">100. Âdiyât</option>
-                    <option value="101">101. Kâria</option><option value="102">102. Tekâsür</option><option value="103">103. Asr</option>
-                    <option value="104">104. Hümeze</option><option value="105">105. Fîl</option><option value="106">106. Kureyş</option>
-                    <option value="107">107. Mâûn</option><option value="108">108. Kevser</option><option value="109">109. Kâfirûn</option>
-                    <option value="110">110. Nasr</option><option value="111">111. Tebbet</option><option value="112">112. İhlâs</option>
-                    <option value="113">113. Felak</option><option value="114">114. Nâs</option>
+                    <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzâl</option>
+                    <option value="100">100. Âdiyât</option><option value="101">101. Kâria</option><option value="102">102. Tekâsür</option>
+                    <option value="103">103. Asr</option><option value="104">104. Hümeze</option><option value="105">105. Fîl</option>
+                    <option value="106">106. Kureyş</option><option value="107">107. Mâûn</option><option value="108">108. Kevser</option>
+                    <option value="109">109. Kâfirûn</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
+                    <option value="112">112. İhlâs</option><option value="113">113. Felak</option><option value="114">114. Nâs</option>
                 </select>
             </div>
             <div>
@@ -343,62 +247,102 @@
             </div>
         </div>
 
-        <div class="search-box">
-            <input type="text" id="ara-inp" placeholder="Kur'an mealinde kelime ara..." onkeydown="if(event.key==='Enter') kuranAra()">
+        <div class="search-bar">
+            <input type="text" id="ara-inp" placeholder="Sure adı veya kelime ara..." onkeydown="if(event.key==='Enter') kuranAra()">
             <button class="btn-act" onclick="kuranAra()">🔍 Ara</button>
             <button class="btn-act" id="btn-ses" style="background:#0284c7;" onclick="sesCalDurdur()">🔊 Dinle</button>
         </div>
+    </div>
 
-        <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <strong style="font-size: 0.8rem; color: var(--primary);">DİYANET İŞLERİ MEALİ</strong>
-                <button class="btn-top" style="background:var(--bg-base); color:var(--text-main); border:1px solid var(--border);" onclick="kopyala()">📋 Kopyala</button>
+    <div class="card">
+        <strong style="font-size:0.85rem; color:var(--primary);">DİYANET İŞLERİ MEALİ</strong>
+        <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
+    </div>
+
+    <div class="card">
+        <strong style="font-size:0.85rem; color:var(--accent);">📖 SURE VE DETAYLI AYET KONU DAĞILIMI</strong>
+        <div class="fihrist-box" id="fihrist-metin">
+            <div class="fihrist-title" id="f-baslik">1. Fâtiha Sûresi (Mekke Dönemi • 7 Âyet)</div>
+            <div id="f-icerik">
+                • <strong>Âyet 1-4:</strong> Allah'ın rububiyeti, Rahman ve Rahim sıfatları, Din gününün mutlak hakimiyeti.<br>
+                • <strong>Âyet 5:</strong> Tevhid ve kulluk ilkesi: 'Yalnız sana kulluk eder, yalnız senden yardım dileriz.'<br>
+                • <strong>Âyet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası ve sapmışların yolundan sığınma.
             </div>
-            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-            <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
-        </div>
-
-        <div class="card">
-            <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE VE DETAYLI AYET KONU DAĞILIMI:</strong>
-            <div class="fihrist-box" id="fihrist-metin"></div>
-        </div>
-
-        <div class="card">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <label>📝 Bu Ayet Hakkında Notunuz:</label>
-                <button class="btn-act" id="btn-mikrofon" style="padding:0.2rem 0.5rem;" onclick="sesleYaz()">🎙️ Sesle Yaz</button>
-            </div>
-            <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()"></textarea>
         </div>
     </div>
 
-    <div class="shelf-panel">
-        <div class="shelf-topbar">
-            <span>📚 48 Eserlik Tefsir Külliyatı</span>
-            <span id="aktif-kitap-adi" style="color:#86efac; font-size:0.75rem;">Taberi Tefsiri Cilt 1</span>
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
+            <button class="btn-act" id="btn-mikrofon" style="padding:0.25rem 0.5rem;" onclick="sesleYaz()">🎙️ Sesle Yaz</button>
         </div>
+        <textarea id="not-alani" style="height:80px;" placeholder="Notunuzu buraya yazın..." oninput="notKaydet()"></textarea>
+    </div>
 
-        <div class="viewer-box">
-            <p style="color:#dcddde; font-size:0.9rem;" id="kitap-durum-yazi">Seçili Eser: <strong>Taberi Tefsiri Cilt 1</strong></p>
-            <a id="btn-pdf-link" class="btn-open-pdf" href="https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/taberi_1.pdf" target="_blank">
-                📖 Seçili Eseri Tam Ekran Oku / İndir
-            </a>
+    <div class="kulliyat-section">
+        <div style="font-weight:700; font-size:1rem; border-bottom:1px solid #3d4540; padding-bottom:0.5rem;">
+            📚 48 Eserlik Tefsir Külliyatı (Doğrudan Aç / Oku)
         </div>
+        <div class="kulliyat-grid" id="kulliyat-listesi"></div>
+    </div>
+</div>
 
-        <div class="book-list-pane">
-            <button class="book-btn active" onclick="kitapSec(this, 'Taberi Tefsiri Cilt 1', 'taberi_1.pdf')"><span>Taberi Tefsiri Cilt 1</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 1', 'ibn_kesir_1.pdf')"><span>İbn Kesir Tefsiri Cilt 1</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 2', 'ibn_kesir_2.pdf')"><span>İbn Kesir Tefsiri Cilt 2</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 3', 'ibn_kesir_3.pdf')"><span>İbn Kesir Tefsiri Cilt 3</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 4', 'ibn_kesir_4.pdf')"><span>İbn Kesir Tefsiri Cilt 4</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 5', 'ibn_kesir_5.pdf')"><span>İbn Kesir Tefsiri Cilt 5</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 6', 'ibn_kesir_6.pdf')"><span>İbn Kesir Tefsiri Cilt 6</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 7', 'ibn_kesir_7.pdf')"><span>İbn Kesir Tefsiri Cilt 7</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 8', 'ibn_kesir_8.pdf')"><span>İbn Kesir Tefsiri Cilt 8</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 9', 'ibn_kesir_9.pdf')"><span>İbn Kesir Tefsiri Cilt 9</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 10', 'ibn_kesir_10.pdf')"><span>İbn Kesir Tefsiri Cilt 10</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 11', 'ibn_kesir_11.pdf')"><span>İbn Kesir Tefsiri Cilt 11</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 12', 'ibn_kesir_12.pdf')"><span>İbn Kesir Tefsiri Cilt 12</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 13', 'ibn_kesir_13.pdf')"><span>İbn Kesir Tefsiri Cilt 13</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 14', 'ibn_kesir_14.pdf')"><span>İbn Kesir Tefsiri Cilt 14</span><small>RİVAYET</small></button>
-            <button class="book-btn" onclick="kitap
+<script>
+    const BASE_RELEASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
+
+    const sureBilgileri = {
+        "1": { ad: "1. Fâtiha Sûresi", tur: "Mekke Dönemi • 7 Âyet", icerik: "• <strong>Âyet 1-4:</strong> Allah'ın sıfatları, hamd ve din günü hakimiyeti.<br>• <strong>Âyet 5:</strong> Tevhid ve kulluk ilkesi.<br>• <strong>Âyet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası." },
+        "2": { ad: "2. Bakara Sûresi", tur: "Medine Dönemi • 286 Âyet", icerik: "• <strong>Âyet 1-5:</strong> Muttakilerin özellikleri.<br>• <strong>Âyet 30-39:</strong> Hz. Âdem ve melekler.<br>• <strong>Âyet 183-187:</strong> Oruç hükümleri.<br>• <strong>Âyet 255:</strong> Âyetü'l-Kürsî.<br>• <strong>Âyet 285-286:</strong> Âmenerrasulü." },
+        "3": { ad: "3. Âl-i İmrân Sûresi", tur: "Medine Dönemi • 200 Âyet", icerik: "• <strong>Âyet 1-9:</strong> Muhkem ve müteşabih âyetler.<br>• <strong>Âyet 33-63:</strong> Hz. Meryem ve Hz. İsa kıssası.<br>• <strong>Âyet 121-180:</strong> Uhud Savaşı tahlili ve şehitlik." },
+        "4": { ad: "4. Nisâ Sûresi", tur: "Medine Dönemi • 176 Âyet", icerik: "• <strong>Âyet 1-14:</strong> Yetim hakları ve miras hükümleri.<br>• <strong>Âyet 58-59:</strong> Emanet ve adalet emri.<br>• <strong>Âyet 153-159:</strong> Ehl-i Kitap ve Hz. İsa." },
+        "5": { ad: "5. Mâide Sûresi", tur: "Medine Dönemi • 120 Âyet", icerik: "• <strong>Âyet 1-5:</strong> Ahitler ve helal-haram hükümleri.<br>• <strong>Âyet 6:</strong> Abdest ve teyemmüm hükümleri.<br>• <strong>Âyet 27-32:</strong> Habil ile Kabil kıssası." },
+        "6": { ad: "6. En'âm Sûresi", tur: "Mekke Dönemi • 165 Âyet", icerik: "• <strong>Âyet 1-12:</strong> Tevhidin kâinattaki delilleri.<br>• <strong>Âyet 74-83:</strong> Hz. İbrahim'in tevhid arayışı.<br>• <strong>Âyet 151-153:</strong> On temel ahlaki emir." },
+        "7": { ad: "7. A'râf Sûresi", tur: "Mekke Dönemi • 206 Âyet", icerik: "• <strong>Âyet 11-25:</strong> Âdem ile İblis kıssası.<br>• <strong>Âyet 46-49:</strong> A'râf ehlinin halleri.<br>• <strong>Âyet 103-171:</strong> Hz. Musa ve Firavun kıssası." },
+        "8": { ad: "8. Enfâl Sûresi", tur: "Medine Dönemi • 75 Âyet", icerik: "• <strong>Âyet 1-19:</strong> Bedir Savaşı ve zaferin dinamikleri.<br>• <strong>Âyet 41:</strong> Ganimet taksim esasları.<br>• <strong>Âyet 60:</strong> Savunma ve hazırlık emri." },
+        "9": { ad: "9. Tevbe Sûresi", tur: "Medine Dönemi • 129 Âyet", icerik: "• <strong>Âyet 1-28:</strong> Müşriklerle ilişkiler ve antlaşmalar.<br>• <strong>Âyet 60:</strong> Zekâtın verileceği 8 sınıf.<br>• <strong>Âyet 117-119:</strong> Samimi tevbelerin kabulü." },
+        "10": { ad: "10. Yûnus Sûresi", tur: "Mekke Dönemi • 109 Âyet", icerik: "• <strong>Âyet 1-10:</strong> Vahyin hakikati ve nizam.<br>• <strong>Âyet 71-93:</strong> Hz. Nuh ve Hz. Musa kıssaları.<br>• <strong>Âyet 98:</strong> Hz. Yunus'un kavminin kurtuluşu." }
+    };
+
+    const kitaplar = [
+        { ad: "Taberi Tefsiri Cilt 1", dosya: "taberi_1.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 1", dosya: "ibn_kesir_1.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 2", dosya: "ibn_kesir_2.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 3", dosya: "ibn_kesir_3.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 4", dosya: "ibn_kesir_4.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 5", dosya: "ibn_kesir_5.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 6", dosya: "ibn_kesir_6.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 7", dosya: "ibn_kesir_7.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 8", dosya: "ibn_kesir_8.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 9", dosya: "ibn_kesir_9.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 10", dosya: "ibn_kesir_10.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 11", dosya: "ibn_kesir_11.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 12", dosya: "ibn_kesir_12.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 13", dosya: "ibn_kesir_13.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 14", dosya: "ibn_kesir_14.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 15", dosya: "ibn_kesir_15.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 16", dosya: "ibn_kesir_16.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 1", dosya: "Tefsir._.n.i_Abbas_01.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 2", dosya: "Tefsir._.n.i_Abbas_02.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 3", dosya: "Tefsir._.n.i_Abbas_03.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 4", dosya: "Tefsir._.n.i_Abbas_04.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 5", dosya: "Tefsir._.n.i_Abbas_05.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Mukatil b. Süleyman Tefsiri", dosya: "mukatil_1.pdf", ekol: "Rivâyet" },
+        { ad: "Suyuti Tefsiri", dosya: "suyuti_1.pdf", ekol: "Rivâyet" },
+        { ad: "Fahruddin Razi Cilt 1", dosya: "razi_1.pdf", ekol: "Dirâyet" },
+        { ad: "Fahruddin Razi Cilt 23", dosya: "Fahrudd._Er_R.Tefs._Keb._Mef.u.l_Gayb_Orjinal_23_Cilt_.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 2", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.2.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 3", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.3.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 4", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.4.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 5", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.5.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Nesefi Tefsiri", dosya: "Nesefi_Tefsiri.pdf", ekol: "Dirâyet" },
+        { ad: "Zemahşeri - Keşşaf", dosya: "Zemah.r.-.Ke.Tefsiri.1.pdf", ekol: "Dirâyet" },
+        { ad: "İbn Arabi Tefsiri", dosya: "ibn_arabi_1.pdf", ekol: "İşârî" },
+        { ad: "Ruhu'l Beyan Tefsiri", dosya: "ruhul_beyan_1.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 1", dosya: "Abd.k.ir.Geyl.Tefsiri.1.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 2", dosya: "Abd.k.ir.Geyl.Tefsiri.2.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 3", dosya: "Abd.k.ir.Geyl.Tefsiri.3.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 4", dosya: "Abd.k.ir.Geyl.Tefsiri.4.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 5", dosya: "Abd.k.ir.Geyl.Tefsiri.5.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 6", dosya: "Abd.k.ir.Geyl.Tefsiri.6.2012.pdf", ekol: "İşârî" },
+   
