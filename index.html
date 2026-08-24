@@ -36,12 +36,12 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-main); height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
 
         header {
             background: linear-gradient(135deg, #0e2417, var(--primary));
             color: #ffffff;
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -50,36 +50,36 @@
             z-index: 10;
         }
 
-        header h1 { font-size: 1.05rem; font-weight: 700; }
-        header p { font-size: 0.7rem; color: #a4c9b3; }
+        header h1 { font-size: 1rem; font-weight: 700; }
+        header p { font-size: 0.65rem; color: #a4c9b3; }
 
         .btn-top {
             background: rgba(255,255,255,0.15);
             border: 1px solid rgba(196,140,43,0.5);
             color: #fff;
-            padding: 0.35rem 0.7rem;
+            padding: 0.35rem 0.65rem;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
         }
 
         .main-layout {
             display: grid;
             grid-template-columns: 440px 1fr;
-            height: calc(100vh - 48px);
+            flex: 1;
             overflow: hidden;
         }
 
         @media (max-width: 900px) {
-            .main-layout { grid-template-columns: 1fr; height: auto; overflow-y: auto; }
-            body { overflow-y: auto; height: auto; }
+            .main-layout { display: flex; flex-direction: column; overflow-y: auto; }
+            body { overflow-y: auto; }
         }
 
         .side-col {
             background: var(--bg-surface);
             border-right: 1px solid var(--border);
-            padding: 0.7rem;
+            padding: 0.75rem;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -119,12 +119,12 @@
         .btn-act {
             background: var(--primary);
             color: white;
-            padding: 0.4rem 0.7rem;
+            padding: 0.4rem 0.65rem;
             border-radius: 6px;
             border: none;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             white-space: nowrap;
         }
 
@@ -140,7 +140,7 @@
 
         .arabic-text {
             font-family: var(--arabic-font);
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             direction: rtl;
             text-align: right;
             line-height: 1.8;
@@ -151,7 +151,7 @@
             border-right: 3px solid var(--primary);
         }
 
-        .meal-text { font-size: 0.85rem; line-height: 1.5; }
+        .meal-text { font-size: 0.82rem; line-height: 1.5; }
 
         .fihrist-box {
             background: #fffdf5;
@@ -160,20 +160,20 @@
             border-radius: 8px;
             font-size: 0.78rem;
             color: #5c3e0e;
-            max-height: 220px;
+            max-height: 180px;
             overflow-y: auto;
-            line-height: 1.65;
+            line-height: 1.55;
         }
 
         .user-notes {
             width: 100%;
-            height: 60px;
+            height: 65px;
             padding: 0.4rem;
             border: 1px solid var(--border);
             border-radius: 6px;
             background: var(--bg-base);
             color: var(--text-main);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             line-height: 1.4;
             resize: vertical;
         }
@@ -181,9 +181,9 @@
         .shelf-panel {
             display: flex;
             flex-direction: column;
-            height: 100%;
             background: #202225;
-            overflow: hidden;
+            min-height: 500px;
+            flex: 1;
         }
 
         .shelf-topbar {
@@ -194,15 +194,14 @@
             gap: 0.4rem;
             align-items: center;
             flex-wrap: wrap;
-            flex-shrink: 0;
         }
 
         .ekol-tab-btn {
             background: var(--bg-base);
-            border: 1.5px solid var(--border);
-            padding: 0.4rem 0.75rem;
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.65rem;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
             color: var(--text-main);
@@ -219,15 +218,15 @@
             border-radius: 5px;
             padding: 0.3rem 0.6rem;
             font-size: 0.75rem;
-            width: 140px;
+            width: 130px;
             margin-left: auto;
         }
 
         .reader-grid {
             display: grid;
-            grid-template-columns: 340px 1fr;
-            height: calc(100% - 50px);
-            overflow: hidden;
+            grid-template-columns: 320px 1fr;
+            flex: 1;
+            min-height: 450px;
         }
 
         @media (max-width: 900px) {
@@ -240,6 +239,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            max-height: 600px;
             overflow: hidden;
         }
 
@@ -263,39 +263,38 @@
             gap: 0.35rem;
         }
 
-        .sidebar-content::-webkit-scrollbar { width: 8px; }
-        .sidebar-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        .sidebar-content::-webkit-scrollbar { width: 6px; }
+        .sidebar-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
 
         .book-tab-btn {
             background: #2f3136;
             color: #dcddde;
             border: 1px solid #40444b;
-            padding: 0.6rem 0.7rem;
+            padding: 0.55rem 0.65rem;
             border-radius: 6px;
             text-align: left;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            line-height: 1.35;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .book-tab-btn:hover { background: #40444b; color: #fff; }
         .book-tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
-        .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
+        .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px; }
 
         #pdf-viewer-wrap {
             overflow: auto;
             background: #525659;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 1rem 0;
-            position: relative;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0.5rem;
             flex: 1;
+            min-height: 400px;
         }
 
-        #pdf-canvas { display: block; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+        #pdf-canvas { display: block; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.5); max-width: 100%; height: auto; }
 
         #pdf-toolbar {
             display: flex;
@@ -303,12 +302,24 @@
             border-bottom: 1px solid #36393f;
             padding: 0.45rem 0.75rem;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
             flex-shrink: 0;
+            flex-wrap: wrap;
         }
 
-        #pdf-sayfa-bilgi, #pdf-zoom-bilgi { color: #dcddde; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
-        #pdf-sayfa-slider { width: 110px; accent-color: var(--primary); cursor: pointer; }
+        #pdf-sayfa-bilgi, #pdf-zoom-bilgi { color: #dcddde; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+        #pdf-sayfa-slider { width: 90px; accent-color: var(--primary); cursor: pointer; }
+
+        #pdf-durum-mesaj {
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            margin-top: 1rem;
+            max-width: 90%;
+        }
 
         #modal-ara {
             position: fixed; inset: 0; background: rgba(0,0,0,0.8);
@@ -328,7 +339,7 @@
     <div class="modal-box">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <strong style="font-size: 0.95rem; color: var(--primary);">Kur'an Arama Sonuçları</strong>
-            <button class="btn-act" style="background:#dc2626; padding:0.25rem 0.5rem;" onclick="document.getElementById('modal-ara').style.display='none'">Kapat ✕</button>
+            <button class="btn-act" style="background:#dc2626; padding:0.25rem 0.5rem;" onclick="document.getElementById('modal-ara').style.display='none'">✕</button>
         </div>
         <div class="modal-list" id="m-sonuc"></div>
     </div>
@@ -420,6 +431,7 @@
 
                 <div id="pdf-viewer-wrap">
                     <canvas id="pdf-canvas"></canvas>
+                    <div id="pdf-durum-mesaj" style="display:none;"></div>
                 </div>
             </div>
         </div>
@@ -431,9 +443,8 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
-    const BASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
+    const BASE_RELEASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
 
-    // Releases Üzerindeki 48 Kitabın Tam Otomatik Listesi
     const kitaplar = [
         { ad: "Taberi Tefsiri Cilt 1", dosya: "taberi_1.pdf", ekol: "rivayet" },
         { ad: "İbn Kesir Tefsiri Cilt 1", dosya: "ibn_kesir_1.pdf", ekol: "rivayet" },
@@ -474,7 +485,4 @@
         { ad: "Abdulkadir Geylani Tefsiri Cilt 3", dosya: "Abd.k.ir.Geyl.Tefsiri.3.2012.pdf", ekol: "isari" },
         { ad: "Abdulkadir Geylani Tefsiri Cilt 4", dosya: "Abd.k.ir.Geyl.Tefsiri.4.2012.pdf", ekol: "isari" },
         { ad: "Abdulkadir Geylani Tefsiri Cilt 5", dosya: "Abd.k.ir.Geyl.Tefsiri.5.2012.pdf", ekol: "isari" },
-        { ad: "Abdulkadir Geylani Tefsiri Cilt 6", dosya: "Abd.k.ir.Geyl.Tefsiri.6.2012.pdf", ekol: "isari" },
-        { ad: "Bahrul Medid Tefsiri", dosya: "n_Ac.e_el_Haseni_Bahr.l_Med._t.Tefs.l.Kur_anli_Mec._Orjinal_.pdf", ekol: "isari" },
-        { ad: "Keşfü't Tefsir Cilt 2", dosya: "Ke.Tefsiri.Cilt.2.pdf", ekol: "dirayet" },
-        { ad: "Keşfü't Tefsir C
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 6", dosya: "Abd.k.ir.Geyl.Tefsiri.6.2012.pdf",
