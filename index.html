@@ -56,15 +56,15 @@
         }
 
         .main-layout {
-            display: grid;
-            grid-template-columns: 420px 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 0.8rem;
             padding: 0.8rem;
             flex: 1;
         }
 
-        @media (max-width: 950px) {
-            .main-layout { display: flex; flex-direction: column; }
+        @media (min-width: 1024px) {
+            .main-layout { display: grid; grid-template-columns: 420px 1fr; }
         }
 
         .side-col {
@@ -113,16 +113,6 @@
             font-weight: 600;
             font-size: 0.75rem;
             white-space: nowrap;
-        }
-
-        .btn-act.recording {
-            background: #dc2626 !important;
-            animation: pulse 1s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { opacity: 1; }
-            to { opacity: 0.5; }
         }
 
         .card {
@@ -231,25 +221,28 @@
         }
 
         .reader-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
+            display: flex;
+            flex-direction: column;
             flex: 1;
-            min-height: 550px;
         }
 
-        @media (max-width: 950px) {
-            .reader-layout { display: flex; flex-direction: column; }
+        @media (min-width: 1024px) {
+            .reader-layout { display: grid; grid-template-columns: 280px 1fr; }
         }
 
         .book-list-pane {
             background: #202225;
-            border-right: 1px solid #36393f;
             padding: 0.5rem;
-            max-height: 600px;
+            max-height: 250px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 0.35rem;
+            border-bottom: 1px solid #36393f;
+        }
+
+        @media (min-width: 1024px) {
+            .book-list-pane { max-height: 600px; border-right: 1px solid #36393f; border-bottom: none; }
         }
 
         .book-btn {
@@ -262,8 +255,8 @@
             font-size: 0.78rem;
             cursor: pointer;
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            justify-content: space-between;
+            align-items: center;
         }
         .book-btn:hover { background: #40444b; color: #fff; }
         .book-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: bold; }
@@ -336,7 +329,46 @@
         <div class="nav-card">
             <div>
                 <label>Sure Seçin</label>
-                <select id="sure-sec" onchange="sureDegisti()"></select>
+                <select id="sure-sec" onchange="sureDegisti()">
+                    <option value="1">1. Fâtiha</option><option value="2">2. Bakara</option><option value="3">3. Âl-i İmrân</option>
+                    <option value="4">4. Nisâ</option><option value="5">5. Mâide</option><option value="6">6. En'âm</option>
+                    <option value="7">7. A'râf</option><option value="8">8. Enfâl</option><option value="9">9. Tevbe</option>
+                    <option value="10">10. Yûnus</option><option value="11">11. Hûd</option><option value="12">12. Yûsuf</option>
+                    <option value="13">13. Ra'd</option><option value="14">14. İbrâhîm</option><option value="15">15. Hicr</option>
+                    <option value="16">16. Nahl</option><option value="17">17. İsrâ</option><option value="18">18. Kehf</option>
+                    <option value="19">19. Meryem</option><option value="20">20. Tâhâ</option><option value="21">21. Enbiyâ</option>
+                    <option value="22">22. Hac</option><option value="23">23. Mü'minûn</option><option value="24">24. Nûr</option>
+                    <option value="25">25. Furkân</option><option value="26">26. Şuarâ</option><option value="27">27. Neml</option>
+                    <option value="28">28. Kasas</option><option value="29">29. Ankebût</option><option value="30">30. Rûm</option>
+                    <option value="31">31. Lokmân</option><option value="32">32. Secde</option><option value="33">33. Ahzâb</option>
+                    <option value="34">34. Sebe'</option><option value="35">35. Fâtır</option><option value="36">36. Yâsîn</option>
+                    <option value="37">37. Sâffât</option><option value="38">38. Sâd</option><option value="39">39. Zümer</option>
+                    <option value="40">40. Mü'min</option><option value="41">41. Fussilet</option><option value="42">42. Şûrâ</option>
+                    <option value="43">43. Zuhrûf</option><option value="44">44. Duhân</option><option value="45">45. Câsiye</option>
+                    <option value="46">46. Ahkâf</option><option value="47">47. Muhammed</option><option value="48">48. Fetih</option>
+                    <option value="49">49. Hucurât</option><option value="50">50. Kâf</option><option value="51">51. Zâriyât</option>
+                    <option value="52">52. Tûr</option><option value="53">53. Necm</option><option value="54">54. Kamer</option>
+                    <option value="55">55. Rahmân</option><option value="56">56. Vâkıa</option><option value="57">57. Hadîd</option>
+                    <option value="58">58. Mücâdele</option><option value="59">59. Haşr</option><option value="60">60. Mümtehine</option>
+                    <option value="61">61. Saf</option><option value="62">62. Cuma</option><option value="63">63. Münâfikûn</option>
+                    <option value="64">64. Tegâbün</option><option value="65">65. Talâk</option><option value="66">66. Tahrîm</option>
+                    <option value="67">67. Mülk</option><option value="68">68. Kalem</option><option value="69">69. Hâkka</option>
+                    <option value="70">70. Meâric</option><option value="71">71. Nûh</option><option value="72">72. Cin</option>
+                    <option value="73">73. Müzzemmil</option><option value="74">74. Müddessir</option><option value="75">75. Kıyâme</option>
+                    <option value="76">76. İnsân</option><option value="77">77. Mürselât</option><option value="78">78. Nebe'</option>
+                    <option value="79">79. Nâziât</option><option value="80">80. Abese</option><option value="81">81. Tekvîr</option>
+                    <option value="82">82. İnfitâr</option><option value="83">83. Mutaffifîn</option><option value="84">84. İnşikâk</option>
+                    <option value="85">85. Bürûc</option><option value="86">86. Târık</option><option value="87">87. A'lâ</option>
+                    <option value="88">88. Gâşiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
+                    <option value="91">91. Şems</option><option value="92">92. Leyl</option><option value="93">93. Duhâ</option>
+                    <option value="94">94. İnşirâh</option><option value="95">95. Tîn</option><option value="96">96. Alak</option>
+                    <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzâl</option>
+                    <option value="100">100. Âdiyât</option><option value="101">101. Kâria</option><option value="102">102. Tekâsür</option>
+                    <option value="103">103. Asr</option><option value="104">104. Hümeze</option><option value="105">105. Fîl</option>
+                    <option value="106">106. Kureyş</option><option value="107">107. Mâûn</option><option value="108">108. Kevser</option>
+                    <option value="109">109. Kâfirûn</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
+                    <option value="112">112. İhlâs</option><option value="113">113. Felak</option><option value="114">114. Nâs</option>
+                </select>
             </div>
             <div>
                 <label>Ayet No</label>
@@ -361,7 +393,11 @@
 
         <div class="card">
             <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE VE DETAYLI AYET KONU DAĞILIMI:</strong>
-            <div class="fihrist-box" id="fihrist-metin">Konu fihristi yükleniyor...</div>
+            <div class="fihrist-box" id="fihrist-metin">
+                <div class="fihrist-item"><strong>Ayet 1-4:</strong> Allah'ın rububiyeti, Rahman ve Rahim isimleri, Din gününün mutlak sahibi oluşu.</div>
+                <div class="fihrist-item"><strong>Ayet 5:</strong> Tevhid ve kulluk ilkesi: 'Yalnız sana ibadet eder, yalnız senden yardım dileriz.'</div>
+                <div class="fihrist-item"><strong>Ayet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası ve hidayet talebi.</div>
+            </div>
         </div>
 
         <div class="card">
@@ -399,77 +435,16 @@
 <script>
     const BASE_RELEASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
 
-    const sureListesi = [
-        "1. Fâtiha", "2. Bakara", "3. Âl-i İmrân", "4. Nisâ", "5. Mâide", "6. En'âm", "7. A'râf", "8. Enfâl", "9. Tevbe", "10. Yûnus",
-        "11. Hûd", "12. Yûsuf", "13. Ra'd", "14. İbrâhîm", "15. Hicr", "16. Nahl", "17. İsrâ", "18. Kehf", "19. Meryem", "20. Tâhâ",
-        "21. Enbiyâ", "22. Hac", "23. Mü'minûn", "24. Nûr", "25. Furkân", "26. Şuarâ", "27. Neml", "28. Kasas", "29. Ankebût", "30. Rûm",
-        "31. Lokmân", "32. Secde", "33. Ahzâb", "34. Sebe'", "35. Fâtır", "36. Yâsîn", "37. Sâffât", "38. Sâd", "39. Zümer", "40. Mü'min",
-        "41. Fussilet", "42. Şûrâ", "43. Zuhrûf", "44. Duhân", "45. Câsiye", "46. Ahkâf", "47. Muhammed", "48. Fetih", "49. Hucurât", "50. Kâf",
-        "51. Zâriyât", "52. Tûr", "53. Necm", "54. Kamer", "55. Rahmân", "56. Vâkıa", "57. Hadîd", "58. Mücâdele", "59. Haşr", "60. Mümtehine",
-        "61. Saf", "62. Cuma", "63. Münâfikûn", "64. Tegâbün", "65. Talâk", "66. Tahrîm", "67. Mülk", "68. Kalem", "69. Hâkka", "70. Meâric",
-        "71. Nûh", "72. Cin", "73. Müzzemmil", "74. Müddessir", "75. Kıyâme", "76. İnsân", "77. Mürselât", "78. Nebe'", "79. Nâziât", "80. Abese",
-        "81. Tekvîr", "82. İnfitâr", "83. Mutaffifîn", "84. İnşikâk", "85. Bürûc", "86. Târık", "87. A'lâ", "88. Gâşiye", "89. Fecr", "90. Beled",
-        "91. Şems", "92. Leyl", "93. Duhâ", "94. İnşirâh", "95. Tîn", "96. Alak", "97. Kadir", "98. Beyyine", "99. Zilzâl", "100. Âdiyât",
-        "101. Kâria", "102. Tekâsür", "103. Asr", "104. Hümeze", "105. Fîl", "106. Kureyş", "107. Mâûn", "108. Kevser", "109. Kâfirûn", "110. Nasr",
-        "111. Tebbet", "112. İhlâs", "113. Felak", "114. Nâs"
-    ];
-
     const detayliFihrist = {
         "1": [
             "<strong>Ayet 1-4:</strong> Allah'ın rububiyeti, Rahman ve Rahim isimleri, Din gününün mutlak sahibi oluşu.",
             "<strong>Ayet 5:</strong> Tevhid ve kulluk ilkesi: 'Yalnız sana ibadet eder, yalnız senden yardım dileriz.'",
-            "<strong>Ayet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası ve sapmışların yolundan sığınma."
+            "<strong>Ayet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası ve hidayet talebi."
         ],
         "2": [
             "<strong>Ayet 1-5:</strong> Muttakilerin vasıfları ve gayba iman.",
             "<strong>Ayet 6-20:</strong> Kâfirlerin ve münafıkların psikolojisi ve misalleri.",
             "<strong>Ayet 30-39:</strong> Hz. Âdem'in halife kılınması, meleklerin secdesi ve İblis'in isyanı.",
-            "<strong>Ayet 40-123:</strong> İsrailoğulları tarihi, nimetler, buzağı hadisesi ve Hz. Musa dönemi.",
+            "<strong>Ayet 40-123:</strong> İsrailoğulları tarihi, nimetler ve Hz. Musa dönemi.",
             "<strong>Ayet 124-141:</strong> Hz. İbrahim, Kâbe'nin inşası ve haniflik.",
-            "<strong>Ayet 142-152:</strong> Kıblenin Mescid-i Aksa'dan Kâbe'ye çevrilmesi.",
-            "<strong>Ayet 178-182:</strong> Kısas ve vasiyet hükümleri.",
-            "<strong>Ayet 183-187:</strong> Oruç farziyeti, Ramazan ayı ve itikaf kuralları.",
-            "<strong>Ayet 255:</strong> Âyetü'l-Kürsî (Tevhidin ve ilahi hakimiyetin zirvesi).",
-            "<strong>Ayet 282:</strong> Müdayene (Borçlanma ve kayıt altına alma) ayeti.",
-            "<strong>Ayet 285-286:</strong> Âmenerrasulü (İman esasları ve af duası)."
-        ],
-        "3": [
-            "<strong>Ayet 1-9:</strong> Muhkem ve müteşabih ayetler, ilimde derinleşenler (Râsihûn).",
-            "<strong>Ayet 33-63:</strong> İmran ailesi, Hz. Meryem'in adanışı, Hz. Zekeriya ve Hz. İsa'nın mucizevi doğumu.",
-            "<strong>Ayet 121-180:</strong> Uhud Savaşı tahlili, istişare, sabır, şehitlerin fazileti ve münafıkların tavrı."
-        ],
-        "4": [
-            "<strong>Ayet 1-14:</strong> Yetim hakları, nikah ve miras taksim kuralları (Ferâiz).",
-            "<strong>Ayet 58-59:</strong> Emanetlerin ehline verilmesi, adalet ve Allah'a, Resulüne ve Ülü'l-Emr'e itaat.",
-            "<strong>Ayet 153-159:</strong> Ehl-i Kitabın iddiaları ve Hz. İsa'nın çarmıh meselesi."
-        ]
-    };
-
-    const kitaplar = [
-        { ad: "Taberi Tefsiri Cilt 1", dosya: "taberi_1.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 1", dosya: "ibn_kesir_1.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 2", dosya: "ibn_kesir_2.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 3", dosya: "ibn_kesir_3.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 4", dosya: "ibn_kesir_4.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 5", dosya: "ibn_kesir_5.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 6", dosya: "ibn_kesir_6.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 7", dosya: "ibn_kesir_7.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 8", dosya: "ibn_kesir_8.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 9", dosya: "ibn_kesir_9.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 10", dosya: "ibn_kesir_10.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 11", dosya: "ibn_kesir_11.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 12", dosya: "ibn_kesir_12.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 13", dosya: "ibn_kesir_13.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 14", dosya: "ibn_kesir_14.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 15", dosya: "ibn_kesir_15.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 16", dosya: "ibn_kesir_16.pdf", ekol: "rivayet" },
-        { ad: "Tefsiru İbn Abbas Cilt 1", dosya: "Tefsir._.n.i_Abbas_01.Cilt.pdf", ekol: "rivayet" },
-        { ad: "Tefsiru İbn Abbas Cilt 2", dosya: "Tefsir._.n.i_Abbas_02.Cilt.pdf", ekol: "rivayet" },
-        { ad: "Tefsiru İbn Abbas Cilt 3", dosya: "Tefsir._.n.i_Abbas_03.Cilt.pdf", ekol: "rivayet" },
-        { ad: "Tefsiru İbn Abbas Cilt 4", dosya: "Tefsir._.n.i_Abbas_04.Cilt.pdf", ekol: "rivayet" },
-        { ad: "Tefsiru İbn Abbas Cilt 5", dosya: "Tefsir._.n.i_Abbas_05.Cilt.pdf", ekol: "rivayet" },
-        { ad: "Mukatil b. Süleyman Tefsiri", dosya: "mukatil_1.pdf", ekol: "rivayet" },
-        { ad: "Suyuti Tefsiri", dosya: "suyuti_1.pdf", ekol: "rivayet" },
-        { ad: "Fahruddin Razi Cilt 1", dosya: "razi_1.pdf", ekol: "dirayet" },
-        { ad: "Fahruddin Razi Cilt 23", dosya: "Fahrudd._Er_R.Tefs._Keb._Mef.u.l_Gayb_Orjinal_23_Cilt_.pdf", ekol: "dirayet" },
-        { ad: "Beydavi Tefsiri Cilt 2", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.2.Cild.p
+            "<strong>Ayet 142-152:</stro
