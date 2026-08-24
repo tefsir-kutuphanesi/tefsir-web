@@ -56,15 +56,15 @@
         }
 
         .main-layout {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 420px 1fr;
             gap: 0.8rem;
             padding: 0.8rem;
             flex: 1;
         }
 
-        @media (min-width: 1024px) {
-            .main-layout { display: grid; grid-template-columns: 420px 1fr; }
+        @media (max-width: 950px) {
+            .main-layout { display: flex; flex-direction: column; }
         }
 
         .side-col {
@@ -226,7 +226,7 @@
             flex: 1;
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 950px) {
             .reader-layout { display: grid; grid-template-columns: 280px 1fr; }
         }
 
@@ -241,7 +241,7 @@
             border-bottom: 1px solid #36393f;
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 950px) {
             .book-list-pane { max-height: 600px; border-right: 1px solid #36393f; border-bottom: none; }
         }
 
@@ -447,4 +447,4 @@
             "<strong>Ayet 30-39:</strong> Hz. Âdem'in halife kılınması, meleklerin secdesi ve İblis'in isyanı.",
             "<strong>Ayet 40-123:</strong> İsrailoğulları tarihi, nimetler ve Hz. Musa dönemi.",
             "<strong>Ayet 124-141:</strong> Hz. İbrahim, Kâbe'nin inşası ve haniflik.",
-            "<strong>Ayet 142-152:</stro
+            "<strong>Ayet 142-152:</strong>
