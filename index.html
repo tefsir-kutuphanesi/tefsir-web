@@ -165,16 +165,6 @@
             line-height: 1.65;
         }
 
-        .aktif-konu-vurgusu {
-            background: #e9f5ed;
-            border-left: 3px solid var(--primary);
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
-            margin-top: 0.4rem;
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
         .user-notes {
             width: 100%;
             height: 60px;
@@ -183,7 +173,6 @@
             border-radius: 6px;
             background: var(--bg-base);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
             font-size: 0.85rem;
             line-height: 1.4;
             resize: vertical;
@@ -217,47 +206,11 @@
             font-weight: 700;
             cursor: pointer;
             color: var(--text-main);
-            transition: 0.15s;
         }
         .ekol-tab-btn.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
-        }
-
-        .select-btn {
-            background: #b45309;
-            color: #ffffff;
-            padding: 0.45rem 0.85rem;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            border: 1px solid #78350f;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            margin-left: auto;
-        }
-        .select-btn:hover { background: #d97706; }
-
-        .btn-temizle {
-            background: #7f1d1d;
-            color: #fca5a5;
-            border: 1px solid #991b1b;
-            padding: 0.4rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            white-space: nowrap;
-        }
-        #btn-disa-aktar, #btn-ice-aktar {
-            background: #1e3a2f;
-            color: #86efac;
-            border: 1px solid #14532d;
         }
 
         .search-shelf {
@@ -267,11 +220,12 @@
             padding: 0.3rem 0.6rem;
             font-size: 0.75rem;
             width: 140px;
+            margin-left: auto;
         }
 
         .reader-grid {
             display: grid;
-            grid-template-columns: 360px 1fr;
+            grid-template-columns: 340px 1fr;
             height: calc(100% - 50px);
             overflow: hidden;
         }
@@ -296,15 +250,13 @@
             font-size: 0.78rem;
             font-weight: 700;
             color: #b9bbbe;
-            flex-shrink: 0;
             display: flex;
             justify-content: space-between;
         }
 
         .sidebar-content {
-            flex: 1 1 auto;
-            overflow-y: auto !important;
-            max-height: 100%;
+            flex: 1;
+            overflow-y: auto;
             padding: 0.5rem;
             display: flex;
             flex-direction: column;
@@ -327,29 +279,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
-            transition: 0.15s;
         }
         .book-tab-btn:hover { background: #40444b; color: #fff; }
         .book-tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
-        .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.4rem; }
-        .ekol-move-select {
-            background: #202225;
-            color: #dcddde;
-            border: 1px solid #40444b;
-            border-radius: 4px;
-            font-size: 0.68rem;
-            padding: 0.2rem 0.3rem;
-            flex-shrink: 0;
-            max-width: 6.2rem;
-        }
-
-        .reader-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #222;
-        }
+        .book-tab-btn strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
 
         #pdf-viewer-wrap {
             overflow: auto;
@@ -358,45 +291,14 @@
             justify-content: center;
             align-items: flex-start;
             padding: 1rem 0;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #pdf-canvas {
-            display: block;
-            background: #fff;
-        }
-
-        #pdf-page-container {
-            display: none;
             position: relative;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-            height: fit-content;
+            flex: 1;
         }
 
-        /* PDF.js standart metin katmanı: görünmez ama seçilip kopyalanabilir metin */
-        .textLayer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            line-height: 1;
-            opacity: 1;
-        }
-        .textLayer span, .textLayer br {
-            color: transparent;
-            position: absolute;
-            white-space: pre;
-            cursor: text;
-            transform-origin: 0% 0%;
-        }
-        .textLayer ::selection {
-            background: rgba(46, 133, 85, 0.4);
-        }
+        #pdf-canvas { display: block; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
 
         #pdf-toolbar {
-            display: none;
+            display: flex;
             background: #18191c;
             border-bottom: 1px solid #36393f;
             padding: 0.45rem 0.75rem;
@@ -405,144 +307,8 @@
             flex-shrink: 0;
         }
 
-        #pdf-sayfa-bilgi, #pdf-zoom-bilgi {
-            color: #dcddde;
-            font-size: 0.78rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        #pdf-sayfa-slider {
-            width: 110px;
-            flex-shrink: 0;
-            cursor: grab;
-            accent-color: var(--primary);
-        }
-        #pdf-sayfa-slider:active { cursor: grabbing; }
-
-        #pdf-viewer-wrap { position: relative; }
-
-        #pdf-fihrist-panel {
-            display: none;
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            width: min(320px, 85%);
-            max-height: calc(100% - 1rem);
-            background: #26282c;
-            border: 1px solid #40444b;
-            border-radius: 8px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.5);
-            overflow: hidden;
-            flex-direction: column;
-            z-index: 20;
-        }
-        #pdf-fihrist-baslik {
-            background: #18191c;
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.82rem;
-            padding: 0.55rem 0.75rem;
-            border-bottom: 1px solid #40444b;
-        }
-        #pdf-fihrist-liste {
-            overflow-y: auto;
-            padding: 0.35rem;
-        }
-        .fihrist-oge {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: transparent;
-            border: none;
-            color: #dcddde;
-            font-size: 0.78rem;
-            padding: 0.4rem 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            line-height: 1.35;
-        }
-        .fihrist-oge:hover { background: #40444b; color: #fff; }
-        .fihrist-bos {
-            color: #8fa397;
-            font-size: 0.78rem;
-            padding: 0.7rem;
-            text-align: center;
-        }
-
-        #not-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        #not-modal-kutu {
-            background: #26282c;
-            border: 1px solid #40444b;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 480px;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        #not-modal-baslik {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #18191c;
-            color: #fff;
-            font-weight: 700;
-            padding: 0.7rem 0.9rem;
-            border-bottom: 1px solid #40444b;
-        }
-        #not-modal-kapat {
-            background: transparent;
-            border: none;
-            color: #dcddde;
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0.1rem 0.4rem;
-        }
-        #not-modal-aciklama {
-            color: #8fa397;
-            font-size: 0.75rem;
-            padding: 0.6rem 0.9rem 0;
-            line-height: 1.4;
-        }
-        #not-modal-metin {
-            margin: 0.6rem 0.9rem;
-            flex: 1;
-            min-height: 220px;
-            background: #202225;
-            color: #dcddde;
-            border: 1px solid #40444b;
-            border-radius: 6px;
-            font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-            font-size: 0.8rem;
-            line-height: 1.5;
-            padding: 0.6rem;
-            resize: none;
-        }
-        #not-modal-aksiyon {
-            display: flex;
-            gap: 0.5rem;
-            padding: 0 0.9rem 0.9rem;
-        }
-        #not-modal-aksiyon .btn-top { flex: 1; }
-
-        .empty-notice {
-            color: #8fa397;
-            text-align: center;
-            padding: 3rem 1.2rem;
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
+        #pdf-sayfa-bilgi, #pdf-zoom-bilgi { color: #dcddde; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+        #pdf-sayfa-slider { width: 110px; accent-color: var(--primary); cursor: pointer; }
 
         #modal-ara {
             position: fixed; inset: 0; background: rgba(0,0,0,0.8);
@@ -554,7 +320,6 @@
         }
         .modal-list { overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem; max-height: 60vh; }
         .m-item { padding: 0.5rem; border: 1px solid var(--border); border-radius: 5px; cursor: pointer; background: var(--bg-base); }
-        .m-item:hover { border-color: var(--primary); background: rgba(27,77,46,0.08); }
     </style>
 </head>
 <body>
@@ -562,7 +327,7 @@
 <div id="modal-ara">
     <div class="modal-box">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong id="m-baslik" style="font-size: 0.95rem; color: var(--primary);">Kur'an Arama Sonuçları</strong>
+            <strong style="font-size: 0.95rem; color: var(--primary);">Kur'an Arama Sonuçları</strong>
             <button class="btn-act" style="background:#dc2626; padding:0.25rem 0.5rem;" onclick="document.getElementById('modal-ara').style.display='none'">Kapat ✕</button>
         </div>
         <div class="modal-list" id="m-sonuc"></div>
@@ -572,7 +337,7 @@
 <header>
     <div>
         <h1>DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
-        <p>114 Sure Özel Tahlili & Kalıcı Hafızalı Külliyat Portalı</p>
+        <p>114 Sure Özel Tahlili & Kalıcı Külliyat Portalı</p>
     </div>
     <div style="display: flex; gap: 0.4rem;">
         <button class="btn-top" onclick="notIndir()">💾 Notları İndir</button>
@@ -594,7 +359,7 @@
         </div>
 
         <div class="search-box">
-            <input type="text" id="ara-inp" placeholder="Kur'an'da ara: kalp, adalet, takva..." onkeydown="if(event.key==='Enter') kuranAra()">
+            <input type="text" id="ara-inp" placeholder="Kur'an'da ara..." onkeydown="if(event.key==='Enter') kuranAra()">
             <button class="btn-act" onclick="kuranAra()">🔍 Ara</button>
             <button class="btn-act" style="background:#0284c7;" onclick="sesCal()">🔊 Dinle</button>
         </div>
@@ -604,17 +369,112 @@
                 <strong style="font-size: 0.8rem; color: var(--primary);">DİYANET İŞLERİ MEALİ</strong>
                 <button class="btn-top" style="background:var(--bg-base); color:var(--text-main); border:1px solid var(--border);" onclick="kopyala()">📋 Kopyala</button>
             </div>
-            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
         </div>
 
         <div class="card">
-            <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE ÖZETİ VE AYET AYET KONU DAĞILIMI:</strong>
+            <strong style="font-size: 0.8rem; color: var(--accent);">📖 SURE ÖZETİ VE KONU DAĞILIMI:</strong>
             <div class="fihrist-box" id="fihrist-metin">Yükleniyor...</div>
         </div>
 
         <div class="card">
-            <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
-            <div style="position:relative;">
-                <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()" style="padding-right:44px;"></textarea>
-                <button id="mikrofon-btn" onclick="ses
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
+                <button class="btn-act" style="padding:0.2rem 0.5rem;" onclick="sesleYaz()">🎙️ Sesle Yaz</button>
+            </div>
+            <textarea class="user-notes" id="not-alani" placeholder="Ayet hakkındaki notlarınızı buraya yazın..." oninput="notKaydet()"></textarea>
+        </div>
+    </div>
+
+    <div class="shelf-panel">
+        <div class="shelf-topbar">
+            <button class="ekol-tab-btn active" onclick="ekolDegistir(this, 'hepsi')">Tüm Tefsirler</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'rivayet')">Rivâyet</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'dirayet')">Dirâyet</button>
+            <button class="ekol-tab-btn" onclick="ekolDegistir(this, 'isari')">İşârî</button>
+            <input type="text" class="search-shelf" id="search-shelf" placeholder="Külliyatta ara..." oninput="kitapFiltrele()">
+        </div>
+
+        <div class="reader-grid">
+            <div class="outline-sidebar">
+                <div class="sidebar-tabs">
+                    <span>KÜLLİYAT / ESERLER</span>
+                    <span id="kitap-sayisi" style="font-size:0.75rem; color:#8fa397;">0 Kitap</span>
+                </div>
+                <div class="sidebar-content" id="kitap-listesi"></div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; height:100%; overflow:hidden; background:#36393f;">
+                <div id="pdf-toolbar">
+                    <button class="btn-top" onclick="pdfOncekiSayfa()">◀ Önceki</button>
+                    <input type="range" id="pdf-sayfa-slider" min="1" max="1" value="1" oninput="pdfSliderDegisti(this.value)">
+                    <span id="pdf-sayfa-bilgi">1 / 1</span>
+                    <button class="btn-top" onclick="pdfSonrakiSayfa()">Sonraki ▶</button>
+                    <div style="margin-left:auto; display:flex; gap:0.3rem; align-items:center;">
+                        <button class="btn-top" onclick="pdfZoom(0.15)">🔍 +</button>
+                        <span id="pdf-zoom-bilgi">%100</span>
+                        <button class="btn-top" onclick="pdfZoom(-0.15)">🔍 -</button>
+                    </div>
+                </div>
+
+                <div id="pdf-viewer-wrap">
+                    <canvas id="pdf-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    if (window.pdfjsLib) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    const BASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
+
+    // Releases Üzerindeki 48 Kitabın Tam Otomatik Listesi
+    const kitaplar = [
+        { ad: "Taberi Tefsiri Cilt 1", dosya: "taberi_1.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 1", dosya: "ibn_kesir_1.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 2", dosya: "ibn_kesir_2.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 3", dosya: "ibn_kesir_3.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 4", dosya: "ibn_kesir_4.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 5", dosya: "ibn_kesir_5.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 6", dosya: "ibn_kesir_6.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 7", dosya: "ibn_kesir_7.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 8", dosya: "ibn_kesir_8.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 9", dosya: "ibn_kesir_9.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 10", dosya: "ibn_kesir_10.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 11", dosya: "ibn_kesir_11.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 12", dosya: "ibn_kesir_12.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 13", dosya: "ibn_kesir_13.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 14", dosya: "ibn_kesir_14.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 15", dosya: "ibn_kesir_15.pdf", ekol: "rivayet" },
+        { ad: "İbn Kesir Tefsiri Cilt 16", dosya: "ibn_kesir_16.pdf", ekol: "rivayet" },
+        { ad: "Tefsiru İbn Abbas Cilt 1", dosya: "Tefsir._.n.i_Abbas_01.Cilt.pdf", ekol: "rivayet" },
+        { ad: "Tefsiru İbn Abbas Cilt 2", dosya: "Tefsir._.n.i_Abbas_02.Cilt.pdf", ekol: "rivayet" },
+        { ad: "Tefsiru İbn Abbas Cilt 3", dosya: "Tefsir._.n.i_Abbas_03.Cilt.pdf", ekol: "rivayet" },
+        { ad: "Tefsiru İbn Abbas Cilt 4", dosya: "Tefsir._.n.i_Abbas_04.Cilt.pdf", ekol: "rivayet" },
+        { ad: "Tefsiru İbn Abbas Cilt 5", dosya: "Tefsir._.n.i_Abbas_05.Cilt.pdf", ekol: "rivayet" },
+        { ad: "Mukatil b. Süleyman Tefsiri", dosya: "mukatil_1.pdf", ekol: "rivayet" },
+        { ad: "Suyuti Tefsiri", dosya: "suyuti_1.pdf", ekol: "rivayet" },
+        { ad: "Fahruddin Razi - Mefatihu'l Gayb Cilt 1", dosya: "razi_1.pdf", ekol: "dirayet" },
+        { ad: "Fahruddin Razi - Mefatihu'l Gayb Cilt 23", dosya: "Fahrudd._Er_R.Tefs._Keb._Mef.u.l_Gayb_Orjinal_23_Cilt_.pdf", ekol: "dirayet" },
+        { ad: "Beydavi Tefsiri Cilt 2", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.2.Cild.pdf", ekol: "dirayet" },
+        { ad: "Beydavi Tefsiri Cilt 3", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.3.Cild.pdf", ekol: "dirayet" },
+        { ad: "Beydavi Tefsiri Cilt 4", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.4.Cild.pdf", ekol: "dirayet" },
+        { ad: "Beydavi Tefsiri Cilt 5", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.5.Cild.pdf", ekol: "dirayet" },
+        { ad: "Nesefi Tefsiri", dosya: "Nesefi_Tefsiri.pdf", ekol: "dirayet" },
+        { ad: "Zemahşeri - Keşşaf Tefsiri", dosya: "Zemah.r.-.Ke.Tefsiri.1.pdf", ekol: "dirayet" },
+        { ad: "İbn Arabi Tefsiri", dosya: "ibn_arabi_1.pdf", ekol: "isari" },
+        { ad: "Ruhu'l Beyan Tefsiri", dosya: "ruhul_beyan_1.pdf", ekol: "isari" },
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 1", dosya: "Abd.k.ir.Geyl.Tefsiri.1.2012.pdf", ekol: "isari" },
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 2", dosya: "Abd.k.ir.Geyl.Tefsiri.2.2012.pdf", ekol: "isari" },
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 3", dosya: "Abd.k.ir.Geyl.Tefsiri.3.2012.pdf", ekol: "isari" },
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 4", dosya: "Abd.k.ir.Geyl.Tefsiri.4.2012.pdf", ekol: "isari" },
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 5", dosya: "Abd.k.ir.Geyl.Tefsiri.5.2012.pdf", ekol: "isari" },
+        { ad: "Abdulkadir Geylani Tefsiri Cilt 6", dosya: "Abd.k.ir.Geyl.Tefsiri.6.2012.pdf", ekol: "isari" },
+        { ad: "Bahrul Medid Tefsiri", dosya: "n_Ac.e_el_Haseni_Bahr.l_Med._t.Tefs.l.Kur_anli_Mec._Orjinal_.pdf", ekol: "isari" },
+        { ad: "Keşfü't Tefsir Cilt 2", dosya: "Ke.Tefsiri.Cilt.2.pdf", ekol: "dirayet" },
+        { ad: "Keşfü't Tefsir C
