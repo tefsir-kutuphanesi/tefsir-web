@@ -188,42 +188,30 @@
             border: 1px solid #36393f;
             display: flex;
             flex-direction: column;
-            min-height: 550px;
-            overflow: hidden;
+            gap: 0.8rem;
+            padding: 0.8rem;
         }
 
         .shelf-topbar {
-            background: #202225;
-            padding: 0.6rem;
-            border-bottom: 1px solid #36393f;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 700;
             display: flex;
-            gap: 0.4rem;
+            justify-content: space-between;
             align-items: center;
-        }
-
-        .reader-layout {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        @media (min-width: 950px) {
-            .reader-layout { display: grid; grid-template-columns: 280px 1fr; }
+            border-bottom: 1px solid #36393f;
+            padding-bottom: 0.5rem;
         }
 
         .book-list-pane {
-            background: #202225;
-            padding: 0.5rem;
-            max-height: 250px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.5rem;
+            max-height: 400px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-            border-bottom: 1px solid #36393f;
-        }
-
-        @media (min-width: 950px) {
-            .book-list-pane { max-height: 580px; border-right: 1px solid #36393f; border-bottom: none; }
+            background: #202225;
+            padding: 0.6rem;
+            border-radius: 6px;
         }
 
         .book-btn {
@@ -242,43 +230,24 @@
         .book-btn:hover { background: #40444b; color: #fff; }
         .book-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: bold; }
 
-        .viewer-pane {
-            background: #2f3136;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 400px;
-        }
-
-        .viewer-header {
+        .viewer-box {
             background: #202225;
-            padding: 0.6rem 0.8rem;
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #36393f;
-        }
-
-        .viewer-content {
-            flex: 1;
+            padding: 1.2rem;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 2rem 1rem;
+            justify-content: center;
+            gap: 0.8rem;
             text-align: center;
-            gap: 1rem;
         }
 
         .btn-open-pdf {
             background: var(--primary);
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 0.75rem 1.4rem;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
@@ -375,7 +344,7 @@
         </div>
 
         <div class="search-box">
-            <input type="text" id="ara-inp" placeholder="Kur'an mealinde ara..." onkeydown="if(event.key==='Enter') kuranAra()">
+            <input type="text" id="ara-inp" placeholder="Kur'an mealinde kelime ara..." onkeydown="if(event.key==='Enter') kuranAra()">
             <button class="btn-act" onclick="kuranAra()">🔍 Ara</button>
             <button class="btn-act" id="btn-ses" style="background:#0284c7;" onclick="sesCalDurdur()">🔊 Dinle</button>
         </div>
@@ -405,22 +374,31 @@
 
     <div class="shelf-panel">
         <div class="shelf-topbar">
-            <strong style="color:#dcddde; font-size:0.85rem;">48 Eserlik Tefsir Külliyatı</strong>
+            <span>📚 48 Eserlik Tefsir Külliyatı</span>
+            <span id="aktif-kitap-adi" style="color:#86efac; font-size:0.75rem;">Taberi Tefsiri Cilt 1</span>
         </div>
 
-        <div class="reader-layout">
-            <div class="book-list-pane">
-                <button class="book-btn active" onclick="kitapSec(this, 'Taberi Tefsiri Cilt 1', 'taberi_1.pdf')"><span>Taberi Tefsiri Cilt 1</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 1', 'ibn_kesir_1.pdf')"><span>İbn Kesir Tefsiri Cilt 1</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 2', 'ibn_kesir_2.pdf')"><span>İbn Kesir Tefsiri Cilt 2</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 3', 'ibn_kesir_3.pdf')"><span>İbn Kesir Tefsiri Cilt 3</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 4', 'ibn_kesir_4.pdf')"><span>İbn Kesir Tefsiri Cilt 4</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 5', 'ibn_kesir_5.pdf')"><span>İbn Kesir Tefsiri Cilt 5</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 6', 'ibn_kesir_6.pdf')"><span>İbn Kesir Tefsiri Cilt 6</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 7', 'ibn_kesir_7.pdf')"><span>İbn Kesir Tefsiri Cilt 7</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 8', 'ibn_kesir_8.pdf')"><span>İbn Kesir Tefsiri Cilt 8</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 9', 'ibn_kesir_9.pdf')"><span>İbn Kesir Tefsiri Cilt 9</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 10', 'ibn_kesir_10.pdf')"><span>İbn Kesir Tefsiri Cilt 10</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 11', 'ibn_kesir_11.pdf')"><span>İbn Kesir Tefsiri Cilt 11</span><small>RİVAYET</small></button>
-                <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 12', 'ibn_kesir_12.pdf')"><span>İbn Kesir Tefsiri Cilt 12</span><small>RİVAYET</small></button>
-                <button cl
+        <div class="viewer-box">
+            <p style="color:#dcddde; font-size:0.9rem;" id="kitap-durum-yazi">Seçili Eser: <strong>Taberi Tefsiri Cilt 1</strong></p>
+            <a id="btn-pdf-link" class="btn-open-pdf" href="https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/taberi_1.pdf" target="_blank">
+                📖 Seçili Eseri Tam Ekran Oku / İndir
+            </a>
+        </div>
+
+        <div class="book-list-pane">
+            <button class="book-btn active" onclick="kitapSec(this, 'Taberi Tefsiri Cilt 1', 'taberi_1.pdf')"><span>Taberi Tefsiri Cilt 1</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 1', 'ibn_kesir_1.pdf')"><span>İbn Kesir Tefsiri Cilt 1</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 2', 'ibn_kesir_2.pdf')"><span>İbn Kesir Tefsiri Cilt 2</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 3', 'ibn_kesir_3.pdf')"><span>İbn Kesir Tefsiri Cilt 3</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 4', 'ibn_kesir_4.pdf')"><span>İbn Kesir Tefsiri Cilt 4</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 5', 'ibn_kesir_5.pdf')"><span>İbn Kesir Tefsiri Cilt 5</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 6', 'ibn_kesir_6.pdf')"><span>İbn Kesir Tefsiri Cilt 6</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 7', 'ibn_kesir_7.pdf')"><span>İbn Kesir Tefsiri Cilt 7</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 8', 'ibn_kesir_8.pdf')"><span>İbn Kesir Tefsiri Cilt 8</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 9', 'ibn_kesir_9.pdf')"><span>İbn Kesir Tefsiri Cilt 9</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 10', 'ibn_kesir_10.pdf')"><span>İbn Kesir Tefsiri Cilt 10</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 11', 'ibn_kesir_11.pdf')"><span>İbn Kesir Tefsiri Cilt 11</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 12', 'ibn_kesir_12.pdf')"><span>İbn Kesir Tefsiri Cilt 12</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 13', 'ibn_kesir_13.pdf')"><span>İbn Kesir Tefsiri Cilt 13</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitapSec(this, 'İbn Kesir Tefsiri Cilt 14', 'ibn_kesir_14.pdf')"><span>İbn Kesir Tefsiri Cilt 14</span><small>RİVAYET</small></button>
+            <button class="book-btn" onclick="kitap
