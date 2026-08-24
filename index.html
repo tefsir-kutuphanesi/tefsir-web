@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DİJİTAL TEFSİR KÜTÜPHANESİ - 114 SURE DETAYLI TAHLİL</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <style>
         :root {
             --bg-base: #f0f3f0;
@@ -434,13 +434,17 @@
 </div>
 
 <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            for (let registration of registrations) { registration.unregister(); }
+        });
+    }
+
     if (window.pdfjsLib) {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
     }
 
     const BASE_RELEASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
 
     const kitaplar = [
-        { ad: "Taberi Tefsiri Cilt 1", dosya: "taberi_1.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 1", dosya: "ibn_kesir_1.pdf", ekol: "rivayet" },
-        { ad: "İbn Kesir Tefsiri Cilt 2", dosya: "ibn_kesir_2.pdf", e
+        { ad: "Taber
