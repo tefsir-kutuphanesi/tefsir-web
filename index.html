@@ -16,6 +16,9 @@
             border-bottom: 3px solid #c48c2b;
         }
         
+        header h1 { font-size: 1.3rem; }
+        header p { font-size: 0.85rem; color: #a4c9b3; }
+        
         .container { max-width: 1200px; margin: 1rem auto; padding: 0 1rem; }
         .card { background: white; border: 1px solid #d0ded5; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
         
@@ -27,6 +30,7 @@
             border-radius: 6px;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
         }
         
         .btn {
@@ -72,6 +76,7 @@
             font-size: 0.8rem;
             text-align: center;
             transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
         }
         
         .kitap-btn:hover {
@@ -99,6 +104,8 @@
             background: rgba(0,0,0,0.8);
             z-index: 999;
             padding: 1rem;
+            align-items: center;
+            justify-content: center;
         }
         
         .pdf-inner {
@@ -109,7 +116,6 @@
             border-radius: 10px;
             display: flex;
             flex-direction: column;
-            margin: auto;
         }
         
         .pdf-header {
@@ -122,6 +128,12 @@
             border-radius: 10px 10px 0 0;
         }
         
+        .pdf-header strong {
+            flex: 1;
+            margin-right: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
         .pdf-header button {
             background: rgba(255,255,255,0.2);
             color: white;
@@ -130,6 +142,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
+            font-family: 'Inter', sans-serif;
         }
         
         .pdf-header button:hover {
@@ -159,13 +172,29 @@
             font-size: 0.8rem;
             padding: 0.5rem;
         }
+
+        .search-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-row input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .search-row .btn {
+            flex: 0 0 auto;
+            margin-bottom: 0;
+            padding: 0.6rem 1rem;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>ğŸ“– DÄ°JÄ°TAL TEFSÄ°R KÃœTÃœPHANESÄ°</h1>
-    <p style="font-size: 0.85rem; color: #a4c9b3;">114 Sure & 48 Tefsir Eseri</p>
+    <p>114 Sure & 48 Tefsir Eseri</p>
 </header>
 
 <div class="container">
@@ -298,8 +327,8 @@
             </div>
         </div>
         
-        <div style="display: flex; gap: 0.5rem;">
-            <input type="text" id="arama" placeholder="Kelime ara..." style="flex: 1;">
+        <div class="search-row">
+            <input type="text" id="arama" placeholder="Kelime ara..." />
             <button class="btn" onclick="kuranAra()">ğŸ” Ara</button>
             <button class="btn" style="background: #0284c7;" onclick="sesOynat()">ğŸ”Š Dinle</button>
         </div>
@@ -307,7 +336,7 @@
 
     <!-- Kur'an Metni -->
     <div class="card">
-        <strong style="color: #1b4d2e;">ğŸ“– Kur'an Metni</strong>
+        <strong style="color: #1b4d2e; font-size: 1rem;">ğŸ“– Kur'an Metni</strong>
         <div class="arabic" id="arap"></div>
         <p id="meal" style="font-size: 0.95rem; line-height: 1.8;"></p>
         <div class="buttons-row">
@@ -451,34 +480,4 @@ async function kuranAra() {
         if (res.data?.matches[0]) {
             const m = res.data.matches[0];
             document.getElementById("sure-sec").value = m.surah.number;
-            document.getElementById("ayet-no").value = m.numberInSurah;
-            ayetYukle();
-        }
-    } catch (e) {
-        alert("Arama hatasÄ±");
-    }
-}
-
-function pdfAc(ad, id) {
-    document.getElementById("pdfBaslik").textContent = ad;
-    document.getElementById("pdfFrame").src = `https://drive.google.com/file/d/${id}/preview`;
-    document.getElementById("pdfModal").style.display = "flex";
-}
-
-function pdfKapat() {
-    document.getElementById("pdfModal").style.display = "none";
-    document.getElementById("pdfFrame").src = "";
-}
-
-kitapListesiOlustur();
-ayetYukle();
-</script>
-
-</body>
-</html>
-```
-
-**Bu versiyon:**
-âœ… PDF'ler sayfada aÃ§Ä±lÄ±yor  
-âœ… Ekole gÃ¶re gruplandÄ±rÄ±lmÄ±ÅŸ  
-âœ… TÃ¼m Ã¶zellikler Ã§
+            document.getEl
