@@ -51,9 +51,7 @@ button.green:hover{background:#0f7d35}
 .notes-body{flex:1;overflow-y:auto;padding:20px}
 .notes-entry{background:var(--card);padding:15px;margin:10px 0;border-left:3px solid var(--primary);border-radius:5px}
 .notes-entry strong{display:block;color:var(--primary);margin-bottom:5px}
-.arama-sonuc{background:var(--card);padding:10px;margin:5px 0;border-radius:5px;cursor:pointer;border-left:3px solid var(--primary)}
-.arama-sonuc:hover{background:var(--card)}
-.close-btn{background:#ff4444;padding:6px 12px;font-size:12px}
+.close-btn{background:#ff4444;padding:6px 12px;font-size:12px;margin:0}
 .close-btn:hover{background:#cc0000}
 </style>
 </head>
@@ -62,10 +60,10 @@ button.green:hover{background:#0f7d35}
 <header>
 <div>
 <h1>ğŸ“– DÄ°JÄ°TAL TEFSÄ°R KÃœTÃœPHANESI</h1>
-<p>114 Sure Ã–zel Tahlili & KalÄ±cÄ± HafÄ±zalÄ± KÃ¼tÃ¼pyat PortalÄ±</p>
+<p>114 Sure Ã–zel Tahlili & KalÄ±cÄ± HafÄ±zalÄ± Portal</p>
 </div>
 <div class="header-buttons">
-<button class="notes-btn" onclick="notlarAc()">ğŸ“ NotlarÄ± Ä°ndir</button>
+<button class="notes-btn" onclick="notlarAc()">ğŸ“ NotlarÄ±m</button>
 <button class="theme-toggle" onclick="temaAyarla()">ğŸŒ™ Gece Modu</button>
 </div>
 </header>
@@ -88,17 +86,16 @@ button.green:hover{background:#0f7d35}
 </div>
 
 <div class="row">
-<input type="text" id="ara" placeholder="Kur'an'da ara: kalp, adalet, takva..." style="flex:1">
+<input type="text" id="ara" placeholder="Kur'an'da ara..." style="flex:1">
 <button onclick="araYap()" class="blue">ğŸ” Ara</button>
 <button class="green" onclick="sesOynat()">ğŸ”Š Dinle</button>
 </div>
-<div id="arama-sonuclari"></div>
 </div>
 
 <div class="section">
-<div class="section-title">DÄ°YANET Ä°ÅLERÄ° MEALÄ°</div>
+<div class="section-title">DÄ°YANET MEALÄ°</div>
 <div class="arabic" id="arap">Ø§Ù„Ù’Ø­ÙÙ…Ù’Ø¯Ù Ù„ÙÙ„ÙÙ‘Ù‡Ù Ø±ÙØ¨ÙÙ‘ Ø§Ù„Ù’Ø¹ÙØ§Ù„ÙÙ…ÙÙŠÙ†Ù</div>
-<div class="meal" id="meal">Hamd, Alemlerin Rabbi Allah'a mahsustur.</div>
+<div class="meal" id="meal">YÃ¼kleniyor...</div>
 <div class="row">
 <button onclick="geri()">â—€ Geri (â† OK)</button>
 <button onclick="ileri()">Ä°leri (â†’ OK) â–¶</button>
@@ -106,16 +103,16 @@ button.green:hover{background:#0f7d35}
 </div>
 
 <div class="section">
-<div class="section-title">ğŸ“š SURE Ã–ZETÄ° VE AYET AYET KONU DAÄILIMI</div>
+<div class="section-title">ğŸ“š SURE Ã–ZETÄ°</div>
 <div class="fihrist">
-<div class="fihrist-title" id="fihrist-baslik">4. NisÃ¢ SÃ»resi</div>
+<div class="fihrist-title" id="fihrist-baslik">4. NisÃ¢</div>
 <div id="fihrist-icerik">YÃ¼kleniyor...</div>
 </div>
 </div>
 
 <div class="section">
-<label>ğŸ“ Bu Ayet HakkÄ±nda KiÅŸisel Notunuz:</label>
-<textarea id="not" rows="5" placeholder="Ayet hakkÄ±ndaki notlarÄ±nÄ±zÄ± buraya yazÄ±n..." oninput="notKaydetOto()"></textarea>
+<label>ğŸ“ KiÅŸisel Not:</label>
+<textarea id="not" rows="5" placeholder="Bu ayet hakkÄ±nda notunuzu yazÄ±n..." oninput="notKaydetOto()"></textarea>
 </div>
 
 <div class="section">
@@ -136,11 +133,10 @@ button.green:hover{background:#0f7d35}
 </div>
 
 <div class="pdf-container" id="pdfContainer">
-<div class="pdf-tabs" id="pdfTabs"></div>
 <div class="pdf-controls">
 <button onclick="pdfGeri()">â—€ Ã–nceki</button>
 <button onclick="pdfSonraki()">Sonraki â–¶</button>
-<button onclick="savePdfPosition()" class="blue">ğŸ’¾ Konumu Kaydet</button>
+<button onclick="savePdfPosition()" class="blue">ğŸ’¾ Kaydet</button>
 <button onclick="closePdfViewer()" class="close-btn">âœ• Kapat</button>
 </div>
 <div class="pdf-viewer">
@@ -151,37 +147,13 @@ button.green:hover{background:#0f7d35}
 <div class="notes-modal" id="notesModal">
 <div class="notes-content">
 <div class="notes-header">
-<h2>ğŸ“ TÃ¼m NotlarÄ±m</h2>
+<h2>ğŸ“ NotlarÄ±m</h2>
 <button class="close-btn" onclick="notlarKapat()">âœ•</button>
 </div>
-<div class="notes-body" id="notesList">Notlar yÃ¼kleniyor...</div>
+<div class="notes-body" id="notesList">YÃ¼kleniyor...</div>
 </div>
 </div>
 
 <script>
 const kitaplar=[{n:"Taberi 1",t:"rivayet",i:"17AuQcJQCdqfLTgHooqKAWvwxRu2IPaen"},{n:"Tenvir Mikbas 1",t:"rivayet",i:"1whLtZC2U2m3PY1jm8NSW_RIvYbKVePAV"},{n:"Tenvir Mikbas 2",t:"rivayet",i:"1YhoN8rjp-sYpU8Esj5mLAUXEycXIgdCb"},{n:"Tenvir Mikbas 3",t:"rivayet",i:"1umfwiyLC5S6tOz67qiUfdHA0fxB6I7fH"},{n:"Tenvir Mikbas 4",t:"rivayet",i:"1tE466Fh0x0Qy6wTHDUVVFxA8nFghYwTj"},{n:"Tenvir Mikbas 5",t:"rivayet",i:"14cxwaKogr8MSWdXl2kHm5CNWt9sc9LyV"},{n:"MukÃ¢til Suleyman",t:"rivayet",i:"1SivtbfcJI1-iEEiUC8dcokFKiNaLBlrQ"},{n:"Suyuti",t:"rivayet",i:"1u2hUvPJu3oyd2oSdFzUXjDeFs6j_i809"},{n:"Ibn Kesir 1",t:"rivayet",i:"1OFWy7WO7MIe5QkoEPyQJa5iKlhVjKsNX"},{n:"Ibn Kesir 2",t:"rivayet",i:"1Qx6dveHuhl2L3ruCQ-V_TNUnWvHwzVVG"},{n:"Ibn Kesir 3",t:"rivayet",i:"1fa6dws7_aAZwVIXuJLJHjU6hfB1WAlot"},{n:"Ibn Kesir 4",t:"rivayet",i:"1DjAxWGf_edywexJK3Hbbl6RhvClaDrNu"},{n:"Ibn Kesir 5",t:"rivayet",i:"1SRHcPJ5AkT4S_qK0LsW6jIGa0xcv04e6"},{n:"Ibn Kesir 6",t:"rivayet",i:"1liex53XmmgdCe2hbwOARsItcwinFts1O"},{n:"Ibn Kesir 7",t:"rivayet",i:"1-kWWVom9GiZfQb6juu7T4qR2aTly_3R0"},{n:"Ibn Kesir 8",t:"rivayet",i:"1YmZ_U-H0nK_5Zs6nchZWbQnYSY8lh26s"},{n:"Ibn Kesir 9",t:"rivayet",i:"1lw4VzWejP4X8l81P4KdUjJYCkgLZ3-Yh"},{n:"Ibn Kesir 10",t:"rivayet",i:"12t9KglZpLyYzHNpp93XEvKHt0MuAbQOd"},{n:"Ibn Kesir 11",t:"rivayet",i:"1F4Kyv-Xj1M0TQr7M9hp_dS_fW_89HaP4"},{n:"Ibn Kesir 12",t:"rivayet",i:"17lsjsZ1P_W4ksgXDaA5HyX-PVGbX199H"},{n:"Ibn Kesir 13",t:"rivayet",i:"1BgDwelDbrhRnB3eGoAFu5KA24bbqvKSn"},{n:"Ibn Kesir 14",t:"rivayet",i:"1bNAqlFRX0e3v8TOe9MwlCe5IxVU50sx8"},{n:"Ibn Kesir 15",t:"rivayet",i:"11l9QnyOpFbYGdfEGIYL_gMWAkuwGG_hK"},{n:"Ibn Kesir 16",t:"rivayet",i:"1GOxp69rrbLQe1dbUunfQl7Z1dktWGJR6"},{n:"Zemahseri 1",t:"dirayet",i:"14-5anuSZ2jTgD5gUxofRzBk_r6UvufYW"},{n:"Zemahseri 2",t:"dirayet",i:"1ic_iENC4ZcrdXyr4CLlcmRQTei3_fGiZ"},{n:"Zemahseri 3",t:"dirayet",i:"1CrI_4WfblWiFuhKLDnGkokuQzc5GebpH"},{n:"Zemahseri 4",t:"dirayet",i:"10n5Vb_BGKDLvoNZwgmp607N10S5_Bd8Z"},{n:"Zemahseri 5",t:"dirayet",i:"1kIdcSP0fu0N8vjBQqmx85fCeAIPuOgg0"},{n:"Zemahseri 6",t:"dirayet",i:"1dBRsVyT4ARWk7HuHrrQTheg2rSj8xU5a"},{n:"Fahreddin 1",t:"dirayet",i:"1yQrjP-4HCur2hMKyHbPFXrsXsxNM9SBy"},{n:"Fahreddin 23",t:"dirayet",i:"1w75ogY59sqAplZjs0NNVfmZFiCJdkf8f"},{n:"Beydavi 2",t:"dirayet",i:"1G30UFysybw-IOFGW2cy6B_NYwN9F7Rs8"},{n:"Beydavi 3",t:"dirayet",i:"14HbQkcBVbwpdhOb83r-fXnY-K7cC5vN4"},{n:"Beydavi 4",t:"dirayet",i:"1GmX34DmFd1B21UcUwbV6T7gRHxXoVUiw"},{n:"Beydavi 5",t:"dirayet",i:"1Vlf2-Hs852Wd5RW8XWDGjvvjkGPa2ccD"},{n:"Nesafi",t:"dirayet",i:"10fsPkFOn4Rux2VhYkNcNERAGHyEKvGLH"},{n:"Ibn Arabi",t:"isari",i:"1LWup6MOfzB8i8VGPOimoI32Yqjlm7_4H"},{n:"Ruhu'l Beyan",t:"isari",i:"1OVFR7WRY9-KBfqr4Wo1QTlztG4l49tCo"},{n:"Abdulkadir 1",t:"isari",i:"1HJI1n1KqMjFTvFBv7lre2KARC58dLXXu"},{n:"Abdulkadir 2",t:"isari",i:"1WPgqNBXrv5tyA5p3EKZF8T"},{n:"Abdulkadir 3",t:"isari",i:"1YfW5P6RqJ9LmN4VbDe8QaZxK2L3H0M1"},{n:"Abdulkadir 4",t:"isari",i:"1OpVn7K8SaM3Y9LrTu2C1DwQpF0E5J6G"},{n:"Abdulkadir 5",t:"isari",i:"1XyZ2A3BcDeFgHiJkLmNoPqRsTuVwXyZ"},{n:"Abdulkadir 6",t:"isari",i:"1abc2def3ghi4jkl5mno6pqr7stu8vwx"},{n:"Ibn Acibe",t:"isari",i:"1HJI1n1KqMjFTvFBv7lre2KARC58dLXXu"},{n:"Kuseyri",t:"isari",i:"1r8U5tX5zBTXkHi47evUciBIy292pEjSg"}];
-  
-function temaAyarla(){document.body.classList.toggle("dark");localStorage.setItem("tema",document.body.classList.contains("dark")?"dark":"light")}
-fonksiyon notlarAc(){document.getElementById("notesModal").style.display="flex";notlarYukle()}
-function notlarKapat(){document.getElementById("notesModal").style.display="none"}
-function notKaydetOto(){let k=sure+"_"+ayet;let n=document.getElementById("not").value;localStorage.setItem("not_"+k,n)}
-function notlarYukle(){let h="";for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k.startsWith("not_")){let p=k.replace("not_","").split("_");h+="<div class='notes-entry'><strong>Elbette "+p[0]+", Ayet "+p[1]+"</strong><p>"+localStorage.getItem(k)+"</p></div>"}}document.getElementById("notesList").innerHTML=h||"<p>Henuz not yok</p>"}
-async function yeniAyet(){sure=parseInt(document.getElementById("sure").value);ayet=parseInt(document.getElementById("ayet").value)||1;localStorage.setItem("sureSon",sure);localStorage.setItem("ayetSon",ayet);try{let r=await fetch("https://api.alquran.cloud/v1/ayah/"+sure+":"+ayet);let d=await r.json();if(d&&d.data)document.getElementById("arap").textContent=d.data.text}catch(e){}try{let r=await fetch("https://api.alquran.cloud/v1/ayah/"+sure+":"+ayet+"/editions/tr.diyanet");let d=await r.json();if(d&&d.data)document.getElementById("meal").textContent=d.data.text}catch(e){}let o=sureBilgileri[sure];if(o){document.getElementById("fihrist-baslik").textContent=sure+". Sure: "+o.ozet;let h="";if(o.konular){o.konular.forEach(k=>{h+="<div class='ayet-konu'><strong>Ayet "+k.ayet+":</strong> "+k.konu+"</div>"})}document.getElementById("fihrist-icerik").innerHTML=h}let notKey=sure+"_"+ayet;try{document.getElementById("not").value=localStorage.getItem("not_"+notKey)||""}catch(e){}}
-function geri(){if(ayet>1){ayet--;document.getElementById("ayet").value=ayet;yeniAyet()}}
-function ileri(){ayet++;document.getElementById("ayet").value=ayet;yeniAyet()}
-document.addEventListener("keydown",e=>{const a=document.activeElement;if(a&&(a.tagName==="INPUT"||a.tagName==="TEXTAREA"||a.tagName==="SELECT"))return;if(e.key==="ArrowLeft")geri();if(e.key==="ArrowRight")ileri()});
-async function sesOynat(){try{let r=await fetch("https://api.alquran.cloud/v1/ayah/"+sure+":"+ayet+"/editions/ar.alafasy");let d=await r.json();if(d&&d.data&&d.data.audio){const audio=new Audio(d.data.audio);audio.play().catch(e=>alert("Ses oynatılamıyor. Lütfen tarayıncanın ayarların kontrol edilebileceğini unutmayın."))}else{alert("Bu ayet iin ses kaydılmaz bulunur."))}catch(e){alert("Ses yükseltilirken hata oluŸtu.")}}
-async function araYap(){let k=document.getElementById("ara").value.trim();if(!k)return;try{let r=await fetch("https://api.alquran.cloud/v1/search/"+encodeURIComponent(k)+"/all/tr.diyanet");let d=await r.json();if(d&&d.matches&&d.matches[0]){let m=d.matches[0];document.getElementById("sure").value=m.surah.number;document.getElementById("ayet").value=m.numberInSurah;yeniAyet()}}catch(e){alert("Arama yapÄ±lamadÄ±")}}
-fonksiyon acPdf(a,i){currentPdf=a;document.getElementById("pdfFrame").src="https://drive.google.com/file/d/"+i+"/preview";document.getElementById("pdfContainer").style.display="flex";let p=localStorage.getItem("pdfPos_"+a);if(p)setTimeout(()=>{document.getElementById("pdfFrame").scrollTop=p},500)}
-function closePdfViewer(){savePdfPosition();document.getElementById("pdfContainer").style.display="none";document.getElementById("pdfFrame").src=""}
-function savePdfPosition(){if(currentPdf){localStorage.setItem("pdfPos_"+currentPdf,document.getElementById("pdfFrame").scrollTop||0)}}
-fonksiyon pdfGeri(){document.getElementById("pdfFrame").scrollTop-=200}
-fonksiyon pdfSonraki(){document.getElementById("pdfFrame").scrollTop+=200}
-sure=4,ayet=1,currentPdf=null;
-fonksiyon başlat(){["rivayet","dirayet","isari"].forEach(t=>{let g=document.getElementById(t);kitaplar.filter(k=>kt===t).forEach(k=>{let b=document.createElement("button");b.textContent=kn;b.onclick=()=>acPdf(kn,ki);g.appendChild(b)})});let tema=localStorage.getItem("tema");if(tema==="dark")document.body.classList.add("dark");let s=localStorage.getItem("sureSon");let a=localStorage.getItem("ayetSon");if(s){document.getElementById("sure").value=s;document.getElementById("ayet").value=a||1;sure=parseInt(s);ayet=parseInt(a)||1}yeniAyet()}
-başlat();
-</script>
-</body>
-</html>
-
-const sureBilgileri={1:{ozet:"Fatiha: Besmele ve Hamd",konular:[{ayet:"1-3",konu:"Allah'Ä±n RubÃ»biyeti, Rahmaniyeti ve Rahimiyeti"},{ayet:"4",konu:"Din ve hesap gÃ¼nÃ¼nÃ¼n mutlak hÃ¢kimiyeti"},{ayet:"5",konu:"Ubudiyyet ve istiane"}]},2:{ozet:"Bakara: MÃ¼'minler, MÃ¼nafÄ±klar",konular:[{ayet:"1-5",konu:"Kur'an'Ä±n niteliÄŸi ve mÃ¼'minler"},{ayet:"6-20",konu:"MÃ¼nafÄ±klarÄ±n nitelikleri"},{ayet:"21-29",konu:"MÃ¼'minlere yÃ¶nelik ilahÃ® ilkeler"}]},3:{ozet:"Ã‚l-i Ä°mrÃ¢n: Meryem ve Uhud",konular:[{ayet:"1-19",konu:"Meryem ve Ä°sa'nÄ±n doÄŸumu"},{ayet:"20-54",konu:"Ehl-i Kitab ile iliÅŸkiler"},{ayet:"121-175",konu:"Uhud SavaÅŸÄ±"}]},4:{ozet:"NisÃ¢: KadÄ±n haklarÄ± ve miras",konular:[{ayet:"1-42",konu:"Yetim ve kadÄ±n haklarÄ±"},{ayet:"11-12",konu:"Miras hÃ¼kÃ¼mleri"},{ayet:"34",konu:"KadÄ±n-erkek iliÅŸkileri"}]},5:{ozet:"MÃ¢ide: Helal-haram",konular:[{ayet:"1-5",konu:"Helal hayvanlar ve avlanma"},{ayet:"90-91",konu:"Haram ÅŸeyler (iÃ§ki, kumar)"}]},6:{ozet:"En'Ã¢m: Tevhid",konular:[{ayet:"1-21",konu:"Tevhid delilleri"},{ayet:"95-103",konu:"Allah'Ä±n hikmeti ve kudret"}]},7:{ozet:"A'rÃ¢f: Peygamberler",konular:[{ayet:"11-18",konu:"Ã‚dem ve Ä°blis kÄ±ssasÄ±"},{ayet:"103-171",konu:"Peygamberlerin davet etmesi"}]},8:{ozet:"EnfÃ¢l: Bedir SavaÅŸÄ±",konular:[{ayet:"1-48",konu:"Bedir SavaÅŸÄ± kurallarÄ±"},{ayet:"41-48",konu:"Ganimetler ve cihad"}]},9:{ozet:"Tevbe: AntlaÅŸmalarÄ±n Feshi",konular:[{ayet:"1-29",konu:"MÃ¼ÅŸriklerle antlaÅŸmalarÄ±n feshi"},{ayet:"28-29",konu:"Mushrikler ve napalcÄ±"}]},10:{ozet:"YÃ»nus: Peygamberlerin Hikayesi",konular:[{ayet:"1-10",konu:"Vahiy delilleri"},{ayet:"71-92",konu:"Hz. Nuh'un kÄ±ssasÄ±"}]},11:{ozet:"HÃ»d: Peygamberler KÄ±ssalarÄ±",konular:[{ayet:"25-49",konu:"Hz. Nuh ve Hz. HÃ»d"},{ayet:"50-95",konu:"Hz. SÃ¢lih, Ä°brÃ¢hÃ®m, LÃ»t, Åuayb"}]},12:{ozet:"YÃ»suf: YÃ»suf'un KÄ±ssasÄ±",konular:[{ayet:"4-15",konu:"RÃ¼ya ve kÄ±skanÃ§lÄ±k"},{ayet:"24-29",konu:"ZÃ¼leyha ve YÃ»suf"},{ayet:"50-101",konu:"MÄ±sÄ±r'da yÃ¼kseklik"}]},13:{ozet:"Ra'd: Muhkem ve MÃ¼teÅŸabih",konular:[{ayet:"1-15",konu:"Kur'an'Ä±n delilleri"},{ayet:"24-43",konu:"Allah'Ä±n kudret ve hikmeti"}]},14:{ozet:"Ä°brÃ¢hÃ®m: Ä°brÃ¢hÃ®m'in DuasÄ±",konular:[{ayet:"24-41",konu:"Ä°brÃ¢hÃ®m'in duasÄ±"},{ayet:"24-41",konu:"Ä°man-kÃ»fÃ¼r karÅŸÄ±laÅŸtÄ±rmasÄ±"}]},15:{ozet:"Hicr: Kur'an'Ä±n KorunmasÄ±",konular:[{ayet:"9",konu:"Kur'an'Ä±n korunmasÄ±"},{ayet:"22-
+const sureBilgileri={1:{ozet:"Fatiha: Besmele ve Hamd",konular:[{ayet:"1-3",konu:"Allah'Ä±n RubÃ»biyeti ve Rahmeti"},{ayet:"4",konu:"Din ve Hesap GÃ¼nÃ¼"},{ayet:"5",konu:"Ubudiyyet ve Ä°stiane"}]},2:{ozet:"Bakara: MÃ¼'minler ve MÃ¼nafÄ±klar",konular:[{ayet:"1-5",konu:"Kur'an niteliÄŸi ve mÃ¼'minler"},{ayet:"6-20",konu:"MÃ¼nafÄ±klarÄ±n Ã¶zellikleri"},{ayet:"21-29",konu:"Ä°man ve kafire daveti"}]},3:{ozet:"Ã‚l-i Ä°mrÃ¢n: Meryem ve Uhud",konular:[{ayet:"1-19",konu:"Meryem ve Ä°sa doÄŸumu"},{ayet:"20-54",konu:"Ehl-i Kitab iliÅŸkileri"},{ayet:"121-175",konu:"Uhud SavaÅŸÄ±"}]},4:{ozet:"NisÃ¢: KadÄ±n HaklarÄ±",konular:[{ayet:"1-42",konu:"Yetim ve kadÄ±n haklarÄ±"},{ayet:"11-12",konu:"Miras hÃ¼kÃ¼mleri"},{ayet:"34",konu:"Aile iliÅŸkileri"}]},5:{ozet:"MÃ¢ide: Helal-Haram",konular:[{ayet:"1-5",konu:"Helal hayvanlar"},{ayet:"90-91",konu:"Haram ÅŸeyler"}]},6:{ozet:"En'Ã¢m: Tevhid",konular:[{ayet:"1-21",konu:"Tevhid delilleri"},{ayet:"95-103",konu:"Allah'Ä±n kudret"}]},7:{ozet:"A'rÃ¢f: Peygamberler",konular:[{ayet:"11-18",konu:"Ã‚dem ve Ä°blis"},{ayet:"103-171",konu:"Peygamber davet"}]},8:{ozet:"EnfÃ¢l: Bedir SavaÅŸÄ±",konular:[{ayet:"1-48",konu:"Bedir kurallarÄ±"},{ayet:"41-48",konu:"Ganimetler"}]},9:{ozet:"Tevbe: TÃ¶vbe",konular:[{ayet:"1-29",konu:"AntlaÅŸmalarÄ±n feshi"}]},10:{ozet:"YÃ»nus: Peygamberlerin KÄ±ssasÄ±",konular:[{ayet:"1-10",konu:"Vahiy delilleri"},{ayet:"71-92",konu:"Hz. Nuh"}]},11:{ozet:"HÃ»d: Peygamber KÄ±ssalarÄ±",konular:[{ayet:"25-95",konu:"Ã‡eÅŸitli peygamberler"}]},12:{ozet:"YÃ»suf: YÃ»suf KÄ±ssasÄ±",konular:[{ayet:"4-101",konu:"YÃ»suf'un hikayesi"}]},13:{ozet:"Ra'd: Muhkem ve MÃ¼teÅŸabih",konular:[{ayet:"1-43",konu:"Kur'an ve kudret"}]},14:{ozet:"Ä°brÃ¢hÃ®m: DuasÄ±",konular:[{ayet:"24-41",konu:"Ä°brÃ¢hÃ®m'in duasÄ±"}]},15:{ozet:"Hicr: Koruma",konular:[{ayet:"9",konu:"Kur'an korunmasÄ±"}]},16:{ozet:"Nahl: Nimet",konular:[{ayet:"1-78",konu:"Allah'Ä±n nimetleri"}]},17:{ozet:"Ä°srÃ¢: MiraÃ§",konular:[{ayet:"1",konu:"MiraÃ§ mucizesi"}]},18:{ozet:"Kehf: GenÃ§lik",konular:[{ayet:"9-26",konu:"AshÃ¢b-Ä± Kehf"}]},19:{ozet:"Meryem: DoÄŸum",konular:[{ayet:"1-65",konu:"Peygamber doÄŸumlarÄ±"}]},20:{ozet:"TÃ¢hÃ¢: MÃ»sÃ¢",konular:[{ayet:"1-98",konu:"MÃ»sÃ¢'nÄ±n peygamberliÄŸi"}]},21:{ozet:"EnbiyÃ¢: Peygamberler",konular:[{ayet:"1-112",konu:"Peygamber kÄ±ssalarÄ±"}]},22:{ozet:"Hac: Ä°badet",konular:[{ayet:"1-78",konu:"Hac ibadetleri"}]},23:{ozet:"MÃ¼'minÃ»n: VasÄ±flar",konular:[{ayet:"1-118",konu:"MÃ¼'minlerin vasÄ±flarÄ±"}]},24:{ozet:"NÃ»r: IÅŸÄ±k",konular:[{ayet:"1-64",konu:"TesettÃ¼r ve ifk"}]},25:{ozet:"FurkÃ¢n: Furkan",konular:[{ayet:"1-77",konu:"Kur'an ve Furkan"}]},26:{ozet:"ÅuarÃ¢: Åairler",konular:[{ayet:"1-227",konu:"Peygamber kÄ±ssalarÄ±"}]},27:{ozet:"Neml: Kar
