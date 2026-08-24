@@ -1,412 +1,425 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DİJİTAL TEFSİR KÜTÜPHANESİ</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
---bg: #f4f6f4;
---surface: #ffffff;
---primary: #1b4d2e;
---primary-dark: #123520;
---accent: #c48c2b;
---text: #1f2421;
---border: #d0ded5;
-}
-.dark-mode {
---bg: #121413;
---surface: #1c201d;
---primary: #2d7a46;
---primary-dark: #153820;
---text: #e8ede9;
---border: #2c332e;
-}
-{ box-sizing: border-box; margin: 0; padding: 0; }body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 2rem; }
-header {
-background: linear-gradient(135deg, #0e2417, var(--primary));
-color: #fff;
-padding: 0.8rem 1rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 3px solid var(--accent);
-}
-.btn-top {
-background: rgba(255,255,255,0.15);
-border: 1px solid rgba(255,255,255,0.3);
-color: #fff;
-padding: 0.4rem 0.7rem;
-border-radius: 6px;
-cursor: pointer;
-font-size: 0.75rem;
-font-weight: 600;
-}
-.container {
-max-width: 1200px;
-margin: 0.8rem auto;
-padding: 0 0.8rem;
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
-.card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: 8px;
-padding: 0.9rem;
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-}
-.nav-grid {
-display: grid;
-grid-template-columns: 2fr 1fr;
-gap: 0.5rem;
-}
-label { font-size: 0.75rem; font-weight: 700; color: #666; }
-select, input, textarea {
-width: 100%;
-padding: 0.5rem;
-border-radius: 6px;
-border: 1px solid var(--border);
-background: var(--bg);
-color: var(--text);
-font-size: 0.9rem;
-}
-.search-bar {
-display: flex;
-gap: 0.4rem;
-}
-.btn-act {
-background: var(--primary);
-color: #fff;
-border: none;
-padding: 0.5rem 0.8rem;
-border-radius: 6px;
-cursor: pointer;
-font-weight: 700;
-font-size: 0.8rem;
-white-space: nowrap;
-}
-.arabic-text {
-font-family: 'Amiri', serif;
-font-size: 1.6rem;
-direction: rtl;
-text-align: right;
-line-height: 2;
-color: var(--primary-dark);
-background: rgba(27, 77, 46, 0.05);
-padding: 0.8rem;
-border-radius: 6px;
-border-right: 4px solid var(--primary);
-}
-.meal-text { font-size: 0.9rem; line-height: 1.6; }
-.fihrist-box {
-background: #fffdf5;
-border: 1px solid #f0e2be;
-padding: 0.8rem;
-border-radius: 8px;
-font-size: 0.85rem;
-color: #452b07;
-line-height: 1.6;
-}
-.fihrist-title {
-font-weight: 700;
-color: var(--primary);
-margin-bottom: 0.4rem;
-border-bottom: 1px solid #e2d1a3;
-padding-bottom: 0.3rem;
-}
-.kulliyat-section {
-background: #1c201d;
-border-radius: 8px;
-padding: 1rem;
-color: #fff;
-display: flex;
-flex-direction: column;
-gap: 0.8rem;
-}
-.kulliyat-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-gap: 0.5rem;
-max-height: 450px;
-overflow-y: auto;
-padding-right: 0.3rem;
-}
-.book-item {
-background: #2a302c;
-border: 1px solid #3d4540;
-padding: 0.7rem;
-border-radius: 6px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-text-decoration: none;
-color: #e8ede9;
-font-size: 0.82rem;
-font-weight: 600;
-cursor: pointer;
-transition: all 0.2s;
-}
-.book-item:hover {
-background: var(--primary);
-border-color: var(--primary);
-}
-.tag {
-font-size: 0.65rem;
-background: rgba(255,255,255,0.15);
-padding: 0.15rem 0.4rem;
-border-radius: 4px;
-color: #a4c9b3;
-}
-.ekol-baslik {
-font-weight: 700;
-font-size: 0.85rem;
-color: var(--accent);
-letter-spacing: 0.02em;
-margin-top: 0.6rem;
-padding-bottom: 0.3rem;
-border-bottom: 1px solid #3d4540;
-}
-.pdf-modal {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(0,0,0,0.75);
-z-index: 999;
-align-items: center;
-justify-content: center;
-padding: 1rem;
-}
-.pdf-modal-inner {
-background: var(--surface);
-width: 100%;
-max-width: 900px;
-height: 90vh;
-border-radius: 10px;
-display: flex;
-flex-direction: column;
-overflow: hidden;
-}
-.pdf-modal-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 0.5rem;
-padding: 0.6rem 0.9rem;
-background: var(--primary-dark);
-color: #fff;
-}
-.pdf-modal-header strong {
-font-size: 0.85rem;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-}
-.pdf-modal-header .sag {
-display: flex;
-gap: 0.4rem;
-flex-shrink: 0;
-}
-.pdf-modal-header a, .pdf-modal-header button {
-font-size: 0.75rem;
-padding: 0.3rem 0.6rem;
-border-radius: 6px;
-border: 1px solid rgba(255,255,255,0.3);
-background: rgba(255,255,255,0.15);
-color: #fff;
-text-decoration: none;
-cursor: pointer;
-font-weight: 600;
-}
-</style>
+<başlık>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DÜJİTAL TEFSİR KÜPHANESİ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :kök {
+            --bg: #f4f6f4;
+            --yüzey: #ffffff;
+            --birincil: #1b4d2e;
+            --primary-dark: #123520;
+            --vurgu: #c48c2b;
+            --metin: #1f2421;
+            --sınır: #d0ded5;
+        }
+
+        .karanlık-mod {
+            --bg: #121413;
+            --yüzey: #1c201d;
+            --birincil: #2d7a46;
+            --primary-dark: #153820;
+            --metin: #e8ede9;
+            --sınır: #2c332e;
+        }
+
+        * { kutu-boyutu: kenarlık-kutusu; kenar boşluğu: 0; dolgu: 0; }
+        gövde { yazı tipi ailesi: 'Inter', sans-serif; arka plan: var(--bg); renk: var(--text); alt dolgu: 2rem; }
+
+        başlık {
+            arka plan: doğrusal-eğim(135 derece, #0e2417, değişken(--birincil));
+            renk: #fff;
+            dolgu: 0.8rem 1rem;
+            ekran: esnek;
+            içeriği hizala: aralarında boşluk bırak;
+            Öğeleri ortala;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .btn-top {
+            arka plan: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            renk: #fff;
+            dolgu: 0.4rem 0.7rem;
+            border-radius: 6px;
+            imleç: işaretçi;
+            yazı tipi boyutu: 0,75rem;
+            yazı tipi kalınlığı: 600;
+        }
+
+        .konteyner {
+            maksimum genişlik: 1200 piksel;
+            margin: 0.8rem auto;
+            dolgu: 0 0.8rem;
+            ekran: esnek;
+            esneme yönü: sütun;
+            boşluk: 1rem;
+        }
+
+        .kart {
+            arka plan: var(--yüzey);
+            kenarlık: 1px katı var(--border);
+            border-radius: 8px;
+            dolgu: 0.9rem;
+            ekran: esnek;
+            esneme yönü: sütun;
+            boşluk: 0,5rem;
+        }
+
+        .nav-grid {
+            görüntüleme: ızgara;
+            ızgara-şablonu-sütunları: 2fr 1fr;
+            boşluk: 0,5rem;
+        }
+
+        etiket { yazı tipi boyutu: 0,75rem; yazı tipi kalınlığı: 700; renk: #666; }
+        seç, giriş, metin alanı {
+            genişlik: %100;
+            dolgu: 0.5rem;
+            border-radius: 6px;
+            kenarlık: 1px katı var(--border);
+            arka plan: var(--bg);
+            renk: var(--metin);
+            yazı tipi boyutu: 0,9rem;
+        }
+
+        .arama-çubuğu {
+            ekran: esnek;
+            boşluk: 0,4rem;
+        }
+
+        .btn-act {
+            arka plan: var(--birincil);
+            renk: #fff;
+            kenarlık: yok;
+            Dolgu: 0.5rem 0.8rem;
+            border-radius: 6px;
+            imleç: işaretçi;
+            yazı tipi kalınlığı: 700;
+            yazı tipi boyutu: 0,8rem;
+            boşluk: satır sonu yok;
+        }
+
+        .btn-act:hover { arka plan: var(--primary-dark); }
+
+        .arapça-metin {
+            yazı tipi ailesi: 'Amiri', serif;
+            yazı tipi boyutu: 1.6rem;
+            yön: rtl;
+            metin hizalaması: sağa;
+            satır yüksekliği: 2;
+            renk: var(--primary-dark);
+            arka plan: rgba(27, 77, 46, 0.05);
+            dolgu: 0.8rem;
+            border-radius: 6px;
+            border-right: 4px solid var(--primary);
+        }
+
+        .meal-text { font-size: 0.9rem; line-height: 1.6; }
+
+        .fihrist-box {
+            arka plan: #fffdf5;
+            border: 1px solid #f0e2be;
+            dolgu: 0.8rem;
+            border-radius: 8px;
+            yazı tipi boyutu: 0,85rem;
+            renk: #452b07;
+            satır yüksekliği: 1.6;
+        }
+
+        .karanlık-mod .first-kutusu {
+            arka plan: #2a2620;
+            kenar rengi: #4a4035;
+            renk: #e8ede9;
+        }
+
+        .fihrist-başlığı {
+            yazı tipi kalınlığı: 700;
+            renk: değişken(--birincil);
+            margin-bottom: 0.4rem;
+            border-bottom: 1px solid #e2d1a3;
+            alt dolgu: 0.3rem;
+        }
+
+        .kulliyat-bölümü {
+            arka plan: #1c201d;
+            border-radius: 8px;
+            dolgu: 1rem;
+            renk: #fff;
+        }
+
+        .kulliyat-ızgarası {
+            görüntüleme: ızgara;
+            ızgara-şablonu-sütunları: tekrarla(otomatik doldurma, minmax(240px, 1fr));
+            boşluk: 0,5rem;
+            maksimum yükseklik: 500 piksel;
+            taşma-y: otomatik;
+        }
+
+        .kitap-öğesi {
+            arka plan: #2a302c;
+            kenarlık: 1px düz #3d4540;
+            dolgu: 0.7rem;
+            border-radius: 6px;
+            ekran: esnek;
+            içeriği hizala: aralarında boşluk bırak;
+            Öğeleri ortala;
+            renk: #e8ede9;
+            yazı tipi boyutu: 0,82rem;
+            yazı tipi kalınlığı: 600;
+            imleç: işaretçi;
+            geçiş: tümü 0,2 saniye;
+        }
+
+        .kitap-öğesi:üzerine-gezinti {
+            arka plan: var(--birincil);
+            kenar rengi: var(--primary);
+        }
+
+        .etiket {
+            yazı tipi boyutu: 0,65rem;
+            arka plan: rgba(255,255,255,0.15);
+            Dolgu: 0.15rem 0.4rem;
+            border-radius: 4px;
+            renk: #a4c9b3;
+        }
+
+        .ekol-baslik {
+            yazı tipi kalınlığı: 700;
+            yazı tipi boyutu: 0,85rem;
+            renk: var(--vurgu);
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+            alt dolgu: 0.3rem;
+            border-bottom: 1px solid #3d4540;
+        }
+
+        .pdf-modal {
+            görüntüleme: yok;
+            konum: sabit;
+            ek: 0;
+            arka plan: rgba(0,0,0,0.75);
+            z-indeksi: 999;
+            Öğeleri ortala;
+            İçeriği ortala;
+            dolgu: 1rem;
+        }
+
+        .pdf-modal-içeriği {
+            arka plan: var(--yüzey);
+            genişlik: %100;
+            maksimum genişlik: 95vw;
+            yükseklik: 95vh;
+            border-radius: 10px;
+            ekran: esnek;
+            esneme yönü: sütun;
+            taşma: gizli;
+        }
+
+        .pdf-modal-başlığı {
+            ekran: esnek;
+            içeriği hizala: aralarında boşluk bırak;
+            Öğeleri ortala;
+            boşluk: 0,5rem;
+            dolgu: 0.6rem 0.9rem;
+            arka plan: var(--birincil-karanlık);
+            renk: #fff;
+        }
+
+        .pdf-modal-başlığı güçlü {
+            yazı tipi boyutu: 0,85rem;
+            esneklik: 1;
+            taşma: gizli;
+            metin taşması: üç nokta;
+            boşluk: satır sonu yok;
+        }
+
+        .pdf-modal-başlığı .sag {
+            ekran: esnek;
+            boşluk: 0,4rem;
+            flex-shrink: 0;
+        }
+
+        .pdf-modal-başlık düğmesi {
+            yazı tipi boyutu: 0,75rem;
+            dolgu: 0.3rem 0.6rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.3);
+            arka plan: rgba(255,255,255,0.15);
+            renk: #fff;
+            metin-süslemesi: yok;
+            imleç: işaretçi;
+            yazı tipi kalınlığı: 600;
+        }
+
+        .pdf-modal-header button:hover {
+            arka plan: rgba(255,255,255,0.25);
+        }
+
+        #pdf-iframe {
+            esneklik: 1;
+            kenarlık: yok;
+        }
+
+        ::-webkit-kaydırma çubuğu {
+            genişlik: 8px;
+        }
+
+        ::-webkit-kaydırma çubuğu-başparmak {
+            arka plan: var(--birincil);
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-<header>
-<div>
-<h1 style="font-size:1.1rem;">DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
-<p style="font-size:0.7rem; color:#a4c9b3;">114 Sure &Tefsir Portalı</p>
-</div>
-<div style="display: flex; gap: 0.4rem;">
-<button class="btn-top" onclick="notIndir()">💾 Notları İndir</button>
-<button class="btn-top" onclick="document.body.classList.toggle('dark-mode')">🌙 Tema</button>
-</div>
+
+<başlık>
+    <div>
+        <h1 style="font-size:1.1rem;">ğŸ“– DÄ°JÄ°TAL TEFSÄ°R KÃœTÃœPHANESÄ°</h1>
+        <p style="font-size:0.7rem; color:#a4c9b3;">114 Sure ve 48 Tefsir Eseri</p>
+    </div>
+    <div style="display: flex; gap: 0.4rem;">
+        <button class="btn-top" onclick="notIndir()">ğŸ'¾ NotlarÄ± Ä°ndir</button>
+        <button class="btn-top" onclick="document.body.classList.toggle('dark-mode')">ğŸŒ™ Tema</button>
+    </div>
 </header>
+
 <div class="container">
-<div class="card">
-<div class="nav-grid">
-<div>
-<label>Sure Seçin</label>
-<select id="sure-sec" onchange="sureDegisti()">
-<option value="1">1. Fâtiha</option><option value="2">2. Bakara</option><option value="3">3. Âl-i İmrân</option>
-<option value="4">4. Nisâ</option><option value="5">5. Mâide</option><option value="6">6. En'âm</option>
-<option value="7">7. A'râf</option><option value="8">8. Enfâl</option><option value="9">9. Tevbe</option>
-<option value="10">10. Yûnus</option><option value="11">11. Hûd</option><option value="12">12. Yûsuf</option>
-<option value="13">13. Ra'd</option><option value="14">14. İbrâhîm</option><option value="15">15. Hicr</option>
-<option value="16">16. Nahl</option><option value="17">17. İsrâ</option><option value="18">18. Kehf</option>
-<option value="19">19. Meryem</option><option value="20">20. Tâhâ</option><option value="21">21. Enbiyâ</option>
-<option value="22">22. Hac</option><option value="23">23. Mü'minûn</option><option value="24">24. Nûr</option>
-<option value="25">25. Furkân</option><option value="26">26. Şuarâ</option><option value="27">27. Neml</option>
-<option value="28">28. Kasas</option><option value="29">29. Ankebût</option><option value="30">30. Rûm</option>
-<option value="31">31. Lokmân</option><option value="32">32. Secde</option><option value="33">33. Ahzâb</option>
-<option value="34">34. Sebe'</option><option value="35">35. Fâtır</option><option value="36">36. Yâsîn</option>
-<option value="37">37. Sâffât</option><option value="38">38. Sâd</option><option value="39">39. Zümer</option>
-<option value="40">40. Mü'min</option><option value="41">41. Fussilet</option><option value="42">42. Şûrâ</option>
-<option value="43">43. Zuhrûf</option><option value="44">44. Duhân</option><option value="45">45. Câsiye</option>
-<option value="46">46. Ahkâf</option><option value="47">47. Muhammed</option><option value="48">48. Fetih</option>
-<option value="49">49. Hucurât</option><option value="50">50. Kâf</option><option value="51">51. Zâriyât</option>
-<option value="52">52. Tûr</option><option value="53">53. Necm</option><option value="54">54. Kamer</option>
-<option value="55">55. Rahmân</option><option value="56">56. Vâkıa</option><option value="57">57. Hadîd</option>
-<option value="58">58. Mücâdele</option><option value="59">59. Haşr</option><option value="60">60. Mümtehine</option>
-<option value="61">61. Saf</option><option value="62">62. Cuma</option><option value="63">63. Münâfikûn</option>
-<option value="64">64. Tegâbün</option><option value="65">65. Talâk</option><option value="66">66. Tahrîm</option>
-<option value="67">67. Mülk</option><option value="68">68. Kalem</option><option value="69">69. Hâkka</option>
-<option value="70">70. Meâric</option><option value="71">71. Nûh</option><option value="72">72. Cin</option>
-<option value="73">73. Müzzemmil</option><option value="74">74. Müddessir</option><option value="75">75. Kıyâme</option>
-<option value="76">76. İnsân</option><option value="77">77. Mürselât</option><option value="78">78. Nebe'</option>
-<option value="79">79. Nâziât</option><option value="80">80. Abese</option><option value="81">81. Tekvîr</option>
-<option value="82">82. İnfitâh</option><option value="83">83. Mutaffifîn</option><option value="84">84. İnşikâk</option>
-<option value="85">85. Bürûc</option><option value="86">86. Târık</option><option value="87">87. A'lâ</option>
-<option value="88">88. Gâşiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
-<option value="91">91. Şems</option><option value="92">92. Leyl</option><option value="93">93. Duhâ</option>
-<option value="94">94. İnşirâh</option><option value="95">95. Tîn</option><option value="96">96. Alak</option>
-<option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzâl</option>
-<option value="100">100. Âdiyât</option><option value="101">101. Kâria</option><option value="102">102. Tekâsür</option>
-<option value="103">103. Asr</option><option value="104">104. Hümeze</option><option value="105">105. Fîl</option>
-<option value="106">106. Kureyş</option><option value="107">107. Mâûn</option><option value="108">108. Kevser</option>
-<option value="109">109. Kâfirûn</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
-<option value="112">112. İhlâs</option><option value="113">113. Felak</option><option value="114">114. Nâs</option>
-</select>
+    <div class="card">
+        <div class="nav-grid">
+            <div>
+                <label>Sure SeÃ§in</label>
+                <select id="sure-sec" onchange="sureDegisti()">
+                    <option value = "1">1. Fâtiha</option><option value="2">2. Bakara</option><option value="3">3. Ümran</seçenek>
+                    <option value="4">4. NisÃ¢</option><option value="5">5. Daha sonra</option><option value="6">6. En'Ã¢m</option>
+                    <option value="7">7. A'rÃ¢f</option><option value="8">8. EnfÃ¢l</option><option value="9">9. Tevbe</option>
+                    <option value="10">10. Yunus</option><option value="11">11. HÃ»d</option><option value="12">12. Yûsuf</option>
+                    <option value="13">13. Ra'd</option><option value="14">14. Ä°brÃ¢hÃ®m</option><option value="15">15. Hicr</option>
+                    <option value="16">16. Hayır</option><option value="17">17. Ä°srÃ¢</option><option value="18">18. Kehf</option>
+                    <option value="19">19. Meryem</option><option value="20">20. TÃ¢hÃ¢</option><option value="21">21. EnbiyÃ¢</option>
+                    <option value="22">22. Hac</option><option value="23">23. Mü'minón</option><option value="24">24. Nör</option>
+                    <option value="25">25. Furkán</option><option value="26">26. žuará</option><option value="27">27. Neml</option>
+                    <option value="28">28. Kasas</option><option value="29">29. AnkebÃ»t</option><option value="30">30. RÃ»m</option>
+                    <option value="31">31. Lokmán</option><option value="32">32. Secde</option><option value="33">33. Ahzâb</option>
+                    <option value="34">34. Sebe'</option><option value="35">35. FÃ¢tÄ±r</option><option value="36">36. Yasin</seçenek>
+                    <option value="37">37. SÃ¢ffÃ¢t</option><option value="38">38. SÃ¢d</option><option value="39">39. Zümer</option>
+                    <option value="40">40. MÃ¼'min</option><option value="41">41. Fussilet</option><option value="42">42. ÅžÃ»rÃ¢</seçenek>
+                    <option value="43">43. ZuhrÃ»f</option><option value="44">44. DuhÃ¢n</option><option value="45">45. CÃ¢ye</option>
+                    <option value="46">46. Ahkâf</option><option value="47">47. Muhammed</option><option value="48">48. Fetih</option>
+                    <option value="49">49. Hucurât</option><option value="50">50. KÃ¢f</option><option value="51">51. ZÃ¢riyÃ¢t</option>
+                    <option value="52">52. TÃ»r</option><option value="53">53. Necm</option><option value="54">54. Kamer</option>
+                    <option value="55">55. Rahmân</option><option value="56">56. Vâkâ</option><option value="57">57. Hadîd</option>
+                    <option value="58">58. Mücâdele</option><option value="59">59. HaŸr</option><option value="60">60. Mümtehine</option>
+                    <option value="61">61. Saf</option><option value="62">62. Cuma</option><option value="63">63. Münfikón</option>
+                    <option value="64">64. Tegâbûn</option><option value="65">65. Talâk</option><option value="66">66. Tahrâm</option>
+                    <option value="67">67. Süt</option><option value="68">68. Kalem</option><option value="69">69. Hıkka</option>
+                    <option value="70">70. Meă¢ric</option><option value="71">71. NÃ»h</option><option value="72">72. Cin</option>
+                    <option value="73">73. Müzzemmil</option><option value="74">74. Müddessir</option><option value="75">75. Kâyâme</option>
+                    <option value="76">76. Ä°nsÃ¢n</option><option value="77">77. MÃ¼rselÃ¢t</option><option value="78">78. Nebe'</option>
+                    <option value="79">79. Nîziît</option><option value="80">80. Abese</option><option value="81">81. Tekvîr</option>
+                    <option value="82">82. Ä°nfitÃ¢h</option><option value="83">83. MutaffifÃ®n</option><option value="84">84. Ä°nŸikÃ¢k</option>
+                    <option value="85">85. Bürč</option><option value="86">86. Târk</option><option value="87">87. A'lč</option>
+                    <option value="88">88. GÃ¢ÅŸiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
+                    <option value="91">91. žems</option><option value="92">92. Leyl</option><option value="93">93. Duhá</option>
+                    <option value="94">94. Ä°nŸirÃ¢h</option><option value="95">95. TÃ®n</option><option value="96">96. Alak</option>
+                    <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzal</seçenek>
+                    <option value="100">100. Ã‚diyÃ¢t</option><option value="101">101. KÃ¢ria</option><option value="102">102. TekÜ¢sÜr</option>
+                    <option value="103">103. Asr</option><option value="104">104. Hümeze</option><option value="105">105. Fül</option>
+                    <option value="106">106. Kureyş</option><option value="107">107. MÃ¢Ã»n</option><option value="108">108. Kevser</option>
+                    <option value="109">109. Kâfirón</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
+                    <option value="112">112. Ä°hlÃ¢s</option><option value="113">113. Felak</option><option value="114">114. Hayır</seçenek>
+                </select>
+            </div>
+            <div>
+                <label>Ayet No</label>
+                <input type="number" id="ayet-sec" value="1" min="1" onchange="ayetYukle()">
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="ara-inp" placeholder="Elbette adÄ± veya kelime ara..." onkeydown="if(event.key==='Enter') kuranAra()">
+            <button class="btn-act" onclick="kuranAra()">ğŸ” Ara</button>
+            <button class="btn-act" id="btn-ses" style="background:#0284c7;" onclick="sesCalDurdur()">ğŸ”Š Dinle</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong style="font-size:0.85rem; color:var(--primary);">ğŸ“– DÄ°YANETÄ°ÅžLERÄ° MEALÄ°</strong>
+        <div class = "arabic-text" id = "ar-metin"> Ø¨Ù Ø³Ù'Ù…Ù Ø§Ù†ÙŽÙ'Ù‡Ù Ø§Ù Ø±ÙŽÙ'ØÙ'Ù…ÙŽÙ°Ù†Ù Ø§ÙØ±ÙŽÙ'ØÙ ÙŠÙ…Ù </div>
+        <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem;">
+            <button class="btn-act" onclick="oncekiAyet()">☐Geri</button>
+            <span id="konum-etiket" style="font-size:0.75rem; color:#666; font-weight:700;"></span>
+            <button class="btn-act" onclick="sonrakiAyet()">Ä°leri â–¶</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <label>ğŸ“ Notunuz:</label>
+        <textarea id="not-alani" style="height:80px;" oninput="notKaydet()"></textarea>
+    </div>
+
+    <div class="kulliyat-section">
+        <div style="font-weight:700; font-size:1rem; border-bottom:1px solid #3d4540; padding-bottom:0.5rem;">
+            ğŸ“š 48 Eserlik Tefsir Külliyatı
+        </div>
+        <div class = "kulliyat-grid" id = "kulliyat-listesi"></div>
+    </div>
 </div>
-<div>
-<label>Ayet No</label>
-<input type="number" id="ayet-sec" value="1" min="1" onchange="ayetYukle()">
-</div>
-</div>
-<div class="search-bar">
-<input type="text" id="ara-inp" placeholder="Sure adı veya kelime ara..." onkeydown="if(event.key==='Enter') kuranAra()">
-<button class="btn-act" onclick="kuranAra()">🔍 Ara</button>
-<button class="btn-act" id="btn-ses" style="background:#0284c7;" onclick="sesCalDurdur()">🔊 Dinle</button>
-</div>
-<div id="arama-sonuclari"></div>
-</div>
-<div class="card">
-<strong style="font-size:0.85rem; color:var(--primary);">DİYANET İŞLERİ MEALİ</strong>
-<div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-<div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
-<div id="yukleniyor" style="font-size:0.75rem; color:#888;"></div>
-<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem;">
-<button class="btn-act" id="btn-geri" onclick="oncekiAyet()">◀ Geri</button>
-<span id="konum-etiket" style="font-size:0.75rem; color:#666; font-weight:700;"></span>
-<button class="btn-act" id="btn-ileri" onclick="sonrakiAyet()">İleri ▶</button>
-</div>
-</div>
-<div class="card">
-<strong style="font-size:0.85rem; color:var(--accent);">📖 SURE HAKKINDA</strong>
-<div class="fihrist-box" id="fihrist-metin">
-<div class="fihrist-title" id="f-baslik">1. Fâtiha Sûresi</div>
-<div id="f-icerik">Sure hakkında bilgiler...</div>
-</div>
-</div>
-<div class="card">
-<label>📝 Notunuz:</label>
-<textarea id="not-alani" style="height:80px;" placeholder="Notunuzu yazın..." oninput="notKaydet()"></textarea>
-</div>
-<div class="kulliyat-section">
-<div style="font-weight:700; font-size:1rem; border-bottom:1px solid #3d4540; padding-bottom:0.5rem;">
-📚 Tefsir Külliyatı
-</div>
-<div class="kulliyat-grid" id="kulliyat-listesi"></div>
-</div>
-</div>
+
 <div class="pdf-modal" id="pdf-modal">
-<div class="pdf-modal-inner">
-<div class="pdf-modal-header">
-<strong id="pdf-modal-baslik">Tefsir</strong>
-<div class="sag">
-<a id="pdf-modal-yenisekme" href="#" target="_blank" rel="noopener">↗ Drive'da Aç</a>
-<button onclick="pdfKapat()">✕ Kapat</button>
+    <div class="pdf-modal-inner">
+        <div class="pdf-modal-header">
+            <strong id="pdf-modal-baslik">PDF Yükleniyor...</strong>
+            <div class="sag">
+                <button onclick="pdfKapat()">âœ• Kapat</button>
+            </div>
+        </div>
+        <iframe id="pdf-iframe"></iframe>
+    </div>
 </div>
-</div>
-<iframe id="pdf-iframe" style="width:100%; height:100%; border:none;"></iframe>
-</div>
-</div>
+
 <script>
-const kitaplar = [
-{ ad: "Taberi Tefsiri Cilt 1", ekol: "Rivâyet", driveId: "17AuQcJQCdqfLTgHooqKAWvwxRu2IPaen" },
-{ ad: "İbn Kesir Tefsiri Cilt 1", ekol: "Rivâyet", driveId: "1OFWy7WO7MIe5QkoEPyQJa5iKlhVjKsNX" },
-{ ad: "İbn Kesir Cilt 2", ekol: "Rivâyet", driveId: "1Qx6dveHuhl2L3ruCQ-V_TNUnWvHwzVVG" },
-{ ad: "İbn Kesir Cilt 3", ekol: "Rivâyet", driveId: "1fa6dws7_aAZwVIXuJLJHjU6hfB1WAlot" },
-{ ad: "İbn Kesir Cilt 4", ekol: "Rivâyet", driveId: "1DjAxWGf_edywexJK3Hbbl6RhvClaDrNu" },
-{ ad: "İbn Kesir Cilt 5", ekol: "Rivâyet", driveId: "1SRHcPJ5AkT4S_qK0LsW6jIGa0xcv04e6" },
-{ ad: "İbn Kesir Cilt 6", ekol: "Rivâyet", driveId: "1liex53XmmgdCe2hbwOARsItcwinFts1O" },
-{ ad: "İbn Kesir Cilt 7", ekol: "Rivâyet", driveId: "1-kWWVom9GiZfQb6juu7T4qR2aTly_3R0" },
-{ ad: "İbn Kesir Cilt 8", ekol: "Rivâyet", driveId: "1YmZ_U-H0nK_5Zs6nchZWbQnYSY8lh26s" },
-{ ad: "İbn Kesir Cilt 9", ekol: "Rivâyet", driveId: "1lw4VzWejP4X8l81P4KdUjJYCkgLZ3-Yh" },
-{ ad: "İbn Kesir Cilt 10", ekol: "Rivâyet", driveId: "12t9KglZpLyYzHNpp93XEvKHt0MuAbQOd" },
-{ ad: "İbn Kesir Cilt 11", ekol: "Rivâyet", driveId: "1F4Kyv-Xj1M0TQr7M9hp_dS_fW_89HaP4" },
-{ ad: "İbn Kesir Cilt 12", ekol: "Rivâyet", driveId: "17lsjsZ1P_W4ksgXDaA5HyX-PVGbX199H" },
-{ ad: "İbn Kesir Cilt 13", ekol: "Rivâyet", driveId: "1BgDwelDbrhRnB3eGoAFu5KA24bbqvKSn" },
-{ ad: "İbn Kesir Cilt 14", ekol: "Rivâyet", driveId: "1bNAqlFRX0e3v8TOe9MwlCe5IxVU50sx8" },
-{ ad: "İbn Kesir Cilt 15", ekol: "Rivâyet", driveId: "11l9QnyOpFbYGdfEGIYL_gMWAkuwGG_hK" },
-{ ad: "İbn Kesir Cilt 16", ekol: "Rivâyet", driveId: "1GOxp69rrbLQe1dbUunfQl7Z1dktWGJR6" },
-{ ad: "Zemahşerî Keşşâf Cilt 1", ekol: "Dirâyet", driveId: "14-5anuSZ2jTgD5gUxofRzBk_r6UvufYW" },
-{ ad: "Zemahşerî Keşşâf Cilt 2", ekol: "Dirâyet", driveId: "1ic_iENC4ZcrdXyr4CLlcmRQTei3_fGiZ" },
-{ ad: "Zemahşerî Keşşâf Cilt 3", ekol: "Dirâyet", driveId: "1CrI_4WfblWiFuhKLDnGkokuQzc5GebpH" },
-{ ad: "Zemahşerî Keşşâf Cilt 4", ekol: "Dirâyet", driveId: "10n5Vb_BGKDLvoNZwgmp607N10S5_Bd8Z" },
-{ ad: "Zemahşerî Keşşâf Cilt 5", ekol: "Dirâyet", driveId: "1kIdcSP0fu0N8vjBQqmx85fCeAIPuOgg0" },
-{ ad: "Zemahşerî Keşşâf Cilt 6", ekol: "Dirâyet", driveId: "1dBRsVyT4ARWk7HuHrrQTheg2rSj8xU5a" },
-{ ad: "Fahreddin er-Râzî Mefâtîhu'l-Gayb", ekol: "Dirâyet", driveId: "1yQrjP-4HCur2hMKyHbPFXrsXsxNM9SBy" },
-{ ad: "Beydâvî Cilt 2", ekol: "Dirâyet", driveId: "1G30UFysybw-IOFGW2cy6B_NYwN9F7Rs8" },
-{ ad: "Beydâvî Cilt 3", ekol: "Dirâyet", driveId: "14HbQkcBVbwpdhOb83r-fXnY-K7cC5vN4" },
-{ ad: "Beydâvî Cilt 4", ekol: "Dirâyet", driveId: "1GmX34DmFd1B21UcUwbV6T7gRHxXoVUiw" },
-{ ad: "Beydâvî Cilt 5", ekol: "Dirâyet", driveId: "1Vlf2-Hs852Wd5RW8XWDGjvvjkGPa2ccD" },
-{ ad: "Abdülkâdir Geylânî Cilt 1", ekol: "İşârî", driveId: "1LWup6MOfzB8i8VGPOimoI32Yqjlm7_4H" },
-{ ad: "Abdülkâdir Geylânî Cilt 2", ekol: "İşârî", driveId: "1OVFR7WRY9-KBfqr4Wo1QTlztG4l49tCo" },
-{ ad: "Abdülkâdir Geylânî Cilt 3", ekol: "İşârî", driveId: "1HJI1n1KqMjFTvFBv7lre2KARC58dLXXu" },
-{ ad: "Abdülkâdir Geylânî Cilt 4", ekol: "İşârî", driveId: "1WPgqNBXrv5tyA5p3EKZF8T" },
-{ ad: "Abdülkâdir Geylânî Cilt 5", ekol: "İşârî", driveId: "1YfW5P6RqJ9LmN4VbDe8QaZxK2L3H0M1" },
-{ ad: "Abdülkâdir Geylânî Cilt 6", ekol: "İşârî", driveId: "1OpVn7K8SaM3Y9LrTu2C1DwQpF0E5J6G" }
-];
-const sureSelect = document.getElementById('sure-sec');
-const sureAdlari = Array.from(sureSelect.options).map(o =>o.textContent.replace(/^\d+\.\s*/, ''));
-let sureMeta = [];
-let mevcutSure = 1;
-let mevcutAyet = 1;
-let sesNesnesi = null;
-let sesCaliniyor = false;
-async function sureMetaYukle() {
-try {
-const res = await fetch('https://api.alquran.cloud/v1/surah').then(r =>r.json());
-sureMeta = res.data.map(s =>({ ayetSayisi: s.numberOfAyahs }));
-} catch (e) {
-console.log('Meta yüklenemedi');
-}
-}
-async function ayetYukle() {
-const sureNo = parseInt(sureSelect.value);
-let ayetNo = parseInt(document.getElementById('ayet-sec').value) || 1;
-const meta = sureMeta[sureNo - 1];
-if (meta &&ayetNo >meta.ayetSayisi) ayetNo = meta.ayetSayisi;
-if (ayetNo <1) ayetNo = 1;
-document.getElementById('ayet-sec').value = ayetNo;
-mevcutSure = sureNo;
-mevcutAyet = ayetNo;
-document.getElementById('yukleniyor').textContent = 'Yükleniyor...';
-try {
-const ref = ${sureNo}:${ayetNo};
-const [arRes, mealRes] = await Promise.all([
-fetch(https://api.alquran.cloud/v1/ayah/${ref}/quran-uthmani).then(r =>r.json()),
-fetch(https://api.alquran.cloud/v1/ayah/${ref}/tr.diyanet).then(r =>r.json())
-]);
-document.getElementById('ar-metin').textContent = arRes?.data?.text || 'Metin alınamadı';
-document.getElementById('tr-metin').textContent = mealRes?.data?.text || 'Meal alınamadı';
-document.getElementById('yukleniyor').textContent = '';
-} catch (e) {
-document.getElementById('yukleniyor').textContent = 'Hata oluştu';
-}
-const ayetSayisi = meta?.ayetSayisi || '?';
-document.
+    sabit kitaplar = [
+        { ad: "Taberi Tefsiri Cilt 1", ekol: "RivÃ¢yet", DriveId: "17AuQcJQCdqfLTgHooqKAWvwxRu2IPaen" },
+        { ad: "İbn Kesir Tefsiri Cilt 1", ekol: "RivÃ¢yet", DriveId: "1OFWy7WO7MIe5QkoEPyQJa5iKlhVjKsNX" },
+        { ad: "İbn Kesir Tefsiri Cilt 2", ekol: "RivÃ¢yet", DriveId: "1Qx6dveHuhl2L3ruCQ-V_TNUnWvHwzVVG" },
+        { ad: "İbn Kesir Tefsiri Cilt 3", ekol: "RivÃ¢yet", DriveId: "1fa6dws7_aAZwVIXuJLJHjU6hfB1WAlot" },
+        { ad: "İbn Kesir Tefsiri Cilt 4", ekol: "RivÃ¢yet", DriveId: "1DjAxWGf_edywexJK3Hbbl6RhvClaDrNu" },
+        { ad: "İbn Kesir Tefsiri Cilt 5", ekol: "RivÃ¢yet", DriveId: "1SRHcPJ5AkT4S_qK0LsW6jIGa0xcv04e6" },
+        { ad: "İbn Kesir Tefsiri Cilt 6", ekol: "RivÃ¢yet", DriveId: "1liex53XmmgdCe2hbwOARsItcwinFts1O" },
+        { ad: "İbn Kesir Tefsiri Cilt 7", ekol: "RivÃ¢yet", DriveId: "1-kWWVom9GiZfQb6juu7T4qR2aTly_3R0" },
+        { ad: "İbn Kesir Tefsiri Cilt 8", ekol: "RivÃ¢yet", DriveId: "1YmZ_U-H0nK_5Zs6nchZWbQnYSY8lh26s" },
+        { ad: "İbn Kesir Tefsiri Cilt 9", ekol: "RivÃ¢yet", DriveId: "1lw4VzWejP4X8l81P4KdUjJYCkgLZ3-Yh" },
+        { ad: "İbn Kesir Tefsiri Cilt 10", ekol: "RivÃ¢yet", DriveId: "12t9KglZpLyYzHNpp93XEvKHt0MuAbQOd" },
+        { ad: "İbn Kesir Tefsiri Cilt 11", ekol: "RivÃ¢yet", DriveId: "1F4Kyv-Xj1M0TQr7M9hp_dS_fW_89HaP4" },
+        { ad: "İbn Kesir Tefsiri Cilt 12", ekol: "RivÃ¢yet", DriveId: "17lsjsZ1P_W4ksgXDaA5HyX-PVGbX199H" },
+        { ad: "İbn Kesir Tefsiri Cilt 13", ekol: "RivÃ¢yet", DriveId: "1BgDwelDbrhRnB3eGoAFu5KA24bbqvKSn" },
+        { ad: "İbn Kesir Tefsiri Cilt 14", ekol: "RivÃ¢yet", DriveId: "1bNAqlFRX0e3v8TOe9MwlCe5IxVU50sx8" },
+        { ad: "Ä°bn Kesir Tefsiri Cilt 15", ekol: "RivÃ¢yet", DriveId: "11l9QnyOpFbYGdfEGIYL_gMWAkuwGG_hK" },
+        { ad: "İbn Kesir Tefsiri Cilt 16", ekol: "RivÃ¢yet", DriveId: "1GOxp69rrbLQe1dbUunfQl7Z1dktWGJR6" },
+        { ad: "TenvÃ®rÃ¼'l-MikbÃ¢s Cilt 1", ekol: "RivÃ¢yet", DriveId: "1whLtZC2U2m3PY1jm8NSW_RIvYbKVePAV" },
+        { ad: "TenvÃ®rÃ¼'l-MikbÃ¢s Cilt 2", ekol: "RivÃ¢yet", DriveId: "1YhoN8rjp-sYpU8Esj5mLAUXEycXIgdCb" },
+        { ad: "TenvÃ®rÃ¼'l-MikbÃ¢s Cilt 3", ekol: "RivÃ¢yet", DriveId: "1umfwiyLC5S6tOz67qiUfdHA0fxB6I7fH" },
+        { ad: "TenvÃ®rÃ¼'l-MikbÃ¢s Cilt 4", ekol: "RivÃ¢yet", DriveId: "1tE466Fh0x0Qy6wTHDUVVFxA8nFghYwTj" },
+        { ad: "TenvÃ®rÃ¼'l-MikbÃ¢s Cilt 5", ekol: "RivÃ¢yet", DriveId: "14cxwaKogr8MSWdXl2kHm5CNWt9sc9LyV" },
+        { ad: "Mukûtil b. Süleyman Tefsiri", ekol: "RivÜ¢yet", DriveId: "1SivtbfcJI1-iEEiUC8dcokFKiNaLBlrQ" },
+        { ad: "SüyÃ»tÃ® Tefsiri", ekol: "RivÃ¢yet", DriveId: "1u2hUvPJu3oyd2oSdFzUXjDeFs6j_i809" },
+        { ad: "ZemahÅŸerÃ® KeÅŸÅŸÃ¢f Cilt 1", ekol: "DirÃ¢yet", DriveId: "14-5anuSZ2jTgD5gUxofRzBk_r6UvufYW" },
+        { ad: "ZemahÅŸerÃ® KeÅŸÅŸÃ¢f Cilt 2", ekol: "DirÃ¢yet", DriveId: "1ic_iENC4ZcrdXyr4CLlcmRQTei3_fGiZ" },
+        { ad: "ZemahÅŸerÃ® KeÅŸÅŸÃ¢f Cilt 3", ekol: "DirÃ¢yet", DriveId: "1CrI_4WfblWiFuhKLDnGkokuQzc5GebpH" },
+        { ad: "ZemahÅŸerÃ® KeÅŸÅŸÃ¢f Cilt 4", ekol: "DirÃ¢yet", DriveId: "10n5Vb_BGKDLvoNZwgmp607N10S5_Bd8Z" },
+        { ad: "ZemahÅŸerÃ® KeÅŸÅŸÃ¢f Cilt 5", ekol: "DirÃ¢yet", DriveId: "1kIdcSP0fu0N8vjBQqmx85fCeAIPuOgg0" },
+        { ad: "ZemahÅŸerÃ® KeÅŸÅŸÃ¢f Cilt 6", ekol: "DirÃ¢yet", DriveId: "1dBRsVyT4ARWk7HuHrrQTheg2rSj8xU5a" },
+        { ad: "Fahreddin er-RÃ¢zÃ® Cilt 1", ekol: "DirÃ¢yet", DriveId: "1yQrjP-4HCur2hMKyHbPFXrsXsxNM9SBy" },
+        { ad: "Fahreddin er-RÃ¢zÃ® (23 Cilt)", ekol: "DirÃ¢yet", DriveId: "1w75ogY59sqAplZjs0NNVfmZFiCJdkf8f" },
+        { ad: "BeydÃ¢vÃ® Cilt 2", ekol: "DirÃ¢yet", DriveId: "1G30UFysybw-IOFGW2cy6B_NYwN9F7Rs8" },
+        { ad: "BeydÃ¢vÃ® Cilt 3", ekol: "DirÃ¢yet", DriveId: "14HbQkcBVbwpdhOb83r-fXnY-K7cC5vN4" },
+        { ad: "BeydÃ¢vÃ® Cilt 4", ekol: "DirÃ¢yet", DriveId: "1GmX34DmFd1B21UcUwbV6T7gRHxXoVUiw" },
+        { ad: "BeydÃ¢vÃ® Cilt 5", ekol: "DirÃ¢yet", DriveId: "1Vlf2-Hs852Wd5RW8XWDGjvvjkGPa2ccD" },
+        { ad: "NesefÃ® Tefsiri", ekol: "DirÃ¢yet", DriveId: "10fsPkFOn4Rux2VhYkNcNERAGHyEKvGLH" },
+        { ad: "İbn Arabi Tefsiri", ekol: "Ä°ÅŸÃ¢rÃ®", DriveId: "1LWup6MOfzB8i8VGPOimoI32Yqjlm7_4H" },
+        { ad: "Ruhu'l Beyan Tefsiri", ekol: "Ä°ÅŸÃ¢rÃ®", DriveId: "1OVFR7WRY9-KBfqr4Wo1QTlztG4l49tCo" },
+        { ad: "AbdÃ¼lkÃ¢dir GeylÃ¢nÃ® Cilt 1", ekol: "Ä°ÅŸÃ¢rÃ®", DriveId: "1HJI1n1K
