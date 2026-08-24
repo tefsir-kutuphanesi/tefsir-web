@@ -20,8 +20,8 @@ header p {font-size:11px; opacity:0.85;}
 .container {max-width:850px; margin:0 auto;}
 
 /* Sağ Panel (PDF) */
-.right-panel {width:50%; border-left:3px solid #1a472f; background:#e5e7eb; display:flex; flex-direction:column; height:100%; z-index:10;}
-.right-panel.hidden {display:none;}
+.right-panel {width:50%; border-left:3px solid #1a472f; background:#e5e7eb; display:none; flex-direction:column; height:100%; z-index:10;}
+.right-panel.active {display:flex;}
 
 .section {background:white; margin-bottom:12px; padding:14px; border-radius:8px; border:1px solid #e1e4e8;}
 .section-title {font-size:14px; font-weight:bold; color:#1a472f; margin-bottom:10px; border-bottom:2px solid #1a472f; padding-bottom:5px; display:flex; justify-content:space-between; align-items:center;}
@@ -90,7 +90,46 @@ button.recording {background:#dc2626 !important; animation: pulse 1.2s infinite;
         <div class="row" style="margin-bottom:8px;">
           <div style="flex:2;">
             <label>Sure</label>
-            <select id="sure" onchange="sureDegisti()"></select>
+            <select id="sure" onchange="sureDegisti()">
+              <option value="1">1. Fatiha</option><option value="2">2. Bakara</option><option value="3">3. Al-i Imran</option>
+              <option value="4" selected>4. Nisa</option><option value="5">5. Maide</option><option value="6">6. Enam</option>
+              <option value="7">7. Araf</option><option value="8">8. Enfal</option><option value="9">9. Tevbe</option>
+              <option value="10">10. Yunus</option><option value="11">11. Hud</option><option value="12">12. Yusuf</option>
+              <option value="13">13. Rad</option><option value="14">14. Ibrahim</option><option value="15">15. Hicr</option>
+              <option value="16">16. Nahl</option><option value="17">17. Isra</option><option value="18">18. Kehf</option>
+              <option value="19">19. Meryem</option><option value="20">20. Taha</option><option value="21">21. Enbiya</option>
+              <option value="22">22. Hac</option><option value="23">23. Muminun</option><option value="24">24. Nur</option>
+              <option value="25">25. Furkan</option><option value="26">26. Suara</option><option value="27">27. Neml</option>
+              <option value="28">28. Kasas</option><option value="29">29. Ankebut</option><option value="30">30. Rum</option>
+              <option value="31">31. Lokman</option><option value="32">32. Secde</option><option value="33">33. Ahzab</option>
+              <option value="34">34. Sebe</option><option value="35">35. Fatir</option><option value="36">36. Yasin</option>
+              <option value="37">37. Saffat</option><option value="38">38. Sad</option><option value="39">39. Zumer</option>
+              <option value="40">40. Mumin</option><option value="41">41. Fussilet</option><option value="42">42. Sura</option>
+              <option value="43">43. Zuhruf</option><option value="44">44. Duhan</option><option value="45">45. Casiye</option>
+              <option value="46">46. Ahkaf</option><option value="47">47. Muhammed</option><option value="48">48. Fetih</option>
+              <option value="49">49. Hucurat</option><option value="50">50. Kaf</option><option value="51">51. Zariyat</option>
+              <option value="52">52. Tur</option><option value="53">53. Necm</option><option value="54">54. Kamer</option>
+              <option value="55">55. Rahman</option><option value="56">56. Vakia</option><option value="57">57. Hadid</option>
+              <option value="58">58. Mucadele</option><option value="59">59. Hasr</option><option value="60">60. Mumtehine</option>
+              <option value="61">61. Saf</option><option value="62">62. Cuma</option><option value="63">63. Munafikun</option>
+              <option value="64">64. Tegabun</option><option value="65">65. Talak</option><option value="66">66. Tahrim</option>
+              <option value="67">67. Mulk</option><option value="68">68. Kalem</option><option value="69">69. Hakka</option>
+              <option value="70">70. Mearic</option><option value="71">71. Nuh</option><option value="72">72. Cin</option>
+              <option value="73">73. Muzzemmil</option><option value="74">74. Muddessir</option><option value="75">75. Kiyame</option>
+              <option value="76">76. Insan</option><option value="77">77. Mursalat</option><option value="78">78. Nebe</option>
+              <option value="79">79. Naziat</option><option value="80">80. Abese</option><option value="81">81. Tekvir</option>
+              <option value="82">82. Infitah</option><option value="83">83. Mutaffifin</option><option value="84">84. Insikak</option>
+              <option value="85">85. Buruc</option><option value="86">86. Tarik</option><option value="87">87. Ala</option>
+              <option value="88">88. Gasiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
+              <option value="91">91. Sems</option><option value="92">92. Leyl</option><option value="93">93. Duha</option>
+              <option value="94">94. Insirah</option><option value="95">95. Tin</option><option value="96">96. Alak</option>
+              <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzal</option>
+              <option value="100">100. Adiyat</option><option value="101">101. Karia</option><option value="102">102. Tekasur</option>
+              <option value="103">103. Asr</option><option value="104">104. Humeze</option><option value="105">105. Fil</option>
+              <option value="106">106. Kureys</option><option value="107">107. Maun</option><option value="108">108. Kevser</option>
+              <option value="109">109. Kafirun</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
+              <option value="112">112. Ihlas</option><option value="113">113. Felak</option><option value="114">114. Nas</option>
+            </select>
           </div>
           <div style="flex:1;">
             <label>Ayet No</label>
@@ -98,7 +137,7 @@ button.recording {background:#dc2626 !important; animation: pulse 1.2s infinite;
           </div>
         </div>
 
-        <div class="sure-ozet" id="sureKonusu">Yükleniyor...</div>
+        <div class="sure-ozet" id="sureKonusu"><b>Sure Özeti:</b> Aile hukuku, kadın hakları, yetim malları, adalet ve miras hükümleri.</div>
 
         <!-- Arama Alanı -->
         <div class="row">
@@ -118,10 +157,10 @@ button.recording {background:#dc2626 !important; animation: pulse 1.2s infinite;
       <div class="section">
         <div class="section-title">
           <span>Arapça Metin ve Diyanet Meali</span>
-          <span id="ayetKodu" style="font-size:11px; color:#666;"></span>
+          <span id="ayetKodu" style="font-size:11px; color:#666;">4. Sure, 1. Ayet</span>
         </div>
-        <div class="arabic" id="arap">Yükleniyor...</div>
-        <div class="meal" id="meal">Meal yükleniyor...</div>
+        <div class="arabic" id="arap">يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ...</div>
+        <div class="meal" id="meal">Ey insanlar! Sizi bir tek nefisten yaratan ve ondan da eşini yaratan... Rabbinizden korkun.</div>
         <div class="row" style="margin-top:10px;">
           <button onclick="geri()">◀ Önceki Ayet</button>
           <button onclick="ileri()">Sonraki Ayet ▶</button>
@@ -155,7 +194,7 @@ button.recording {background:#dc2626 !important; animation: pulse 1.2s infinite;
   </div>
 
   <!-- Sağ Panel: PDF & Kaldığın Sayfa -->
-  <div class="right-panel hidden" id="rightPanel">
+  <div class="right-panel" id="rightPanel">
     <div class="pdf-header">
       <h3 id="pdfTitle">📄 Tefsir Görüntüleyici</h3>
       <div class="pdf-controls">
@@ -171,26 +210,11 @@ button.recording {background:#dc2626 !important; animation: pulse 1.2s infinite;
 </div>
 
 <script>
-const sureListesi = [
-"1. Fatiha","2. Bakara","3. Al-i Imran","4. Nisa","5. Maide","6. Enam","7. Araf","8. Enfal","9. Tevbe","10. Yunus",
-"11. Hud","12. Yusuf","13. Rad","14. Ibrahim","15. Hicr","16. Nahl","17. Isra","18. Kehf","19. Meryem","20. Taha",
-"21. Enbiya","22. Hac","23. Muminun","24. Nur","25. Furkan","26. Suara","27. Neml","28. Kasas","29. Ankebut","30. Rum",
-"31. Lokman","32. Secde","33. Ahzab","34. Sebe","35. Fatir","36. Yasin","37. Saffat","38. Sad","39. Zumer","40. Mumin",
-"41. Fussilet","42. Sura","43. Zuhruf","44. Duhan","45. Casiye","46. Ahkaf","47. Muhammed","48. Fetih","49. Hucurat","50. Kaf",
-"51. Zariyat","52. Tur","53. Necm","54. Kamer","55. Rahman","56. Vakia","57. Hadid","58. Mucadele","59. Hasr","60. Mumtehine",
-"61. Saf","62. Cuma","63. Munafikun","64. Tegabun","65. Talak","66. Tahrim","67. Mulk","68. Kalem","69. Hakka","70. Mearic",
-"71. Nuh","72. Cin","73. Muzzemmil","74. Muddessir","75. Kiyame","76. Insan","77. Mursalat","78. Nebe","79. Naziat","80. Abese",
-"81. Tekvir","82. Infitah","83. Mutaffifin","84. Insikak","85. Buruc","86. Tarik","87. Ala","88. Gasiye","89. Fecr","90. Beled",
-"91. Sems","92. Leyl","93. Duha","94. Insirah","95. Tin","96. Alak","97. Kadir","98. Beyyine","99. Zilzal","100. Adiyat",
-"101. Karia","102. Tekasur","103. Asr","104. Humeze","105. Fil","106. Kureys","107. Maun","108. Kevser","109. Kafirun","110. Nasr",
-"111. Tebbet","112. Ihlas","113. Felak","114. Nas"
-];
-
 const sureKonulari = {
 1: "Kur'an'ın mukaddimesi; tevhid, ibadet ve hidayet duası.",
 2: "İman esasları, ahkâm (ibadet, hukuk, aile, faiz) ve Hz. Adem ile İsrailoğulları kıssaları.",
 3: "Tevhid mücadelesi, Uhud Savaşı tahlili ve Ehl-i Kitap ile diyalog.",
-4: "Aile hukuku, kadın hakları, yetimler, miras ve adalet ilkeleri.",
+4: "Aile hukuku, kadın hakları, yetim malları, adalet ve miras hükümleri.",
 5: "Ahitler, helal-haram gıdalar, abdest ve Ehl-i Kitap ile münasebetler.",
 6: "İnanç esasları, şirkle mücadele ve kainattaki ilahi kudret delilleri.",
 7: "Geçmiş kavimlerin helaki, peygamber kıssaları ve A'raf ehli.",
@@ -270,16 +294,14 @@ const kitaplar = [
 {n:"Donduren",t:"cagdas",i:"19dN0CFIFWdPlTwg-ahG8tQ60B0VFB5jf"}
 ];
 
-let sure = 1, ayet = 1;
+let sure = 4, ayet = 1;
 let recognition = null, isRecording = false;
 let aktifKitapId = "";
 
-function init() {
-  const sureSelect = document.getElementById("sure");
-  sureSelect.innerHTML = sureListesi.map((s, idx) => `<option value="${idx + 1}">${s}</option>`).join('');
-
+function butonlariOlustur() {
   ["isari", "dirayet", "rivayet", "cagdas"].forEach(t => {
     let container = document.getElementById("tab-" + t);
+    container.innerHTML = "";
     kitaplar.filter(k => k.t === t).forEach(k => {
       let btn = document.createElement("button");
       btn.textContent = k.n;
@@ -287,8 +309,6 @@ function init() {
       container.appendChild(btn);
     });
   });
-
-  yeniAyet();
 }
 
 function sureDegisti() {
@@ -309,107 +329,4 @@ async function yeniAyet() {
   document.getElementById("ayetKodu").textContent = `${sure}. Sure, ${ayet}. Ayet`;
 
   // Konu Özeti
-  document.getElementById("sureKonusu").innerHTML = `<b>Sure Özeti:</b> ` + (sureKonulari[sure] || "Tevhid, ibadet, ahlak ve ahiret esasları.");
-
-  // API'den Hem Arapça Hem Türkçe Meali Tek İstekte Alma (Garantili Çalışır)
-  try {
-    let res = await fetch(`https://api.alquran.cloud/v1/ayah/${sure}:${ayet}/editions/quran-uthmani,tr.diyanet`);
-    let data = await res.json();
-    if(data && data.data && data.data.length >= 2) {
-      document.getElementById("arap").textContent = data.data[0].text;
-      document.getElementById("meal").textContent = data.data[1].text;
-    } else {
-      document.getElementById("arap").textContent = "Metin bulunamadı.";
-      document.getElementById("meal").textContent = "Meal bulunamadı.";
-    }
-  } catch(e) {
-    document.getElementById("arap").textContent = "İnternet bağlantısı hatası.";
-    document.getElementById("meal").textContent = "Meal alınamadı.";
-  }
-
-  // Not
-  document.getElementById("not").value = localStorage.getItem(`tefsir_not_${sure}_${ayet}`) || "";
-}
-
-function geri() {
-  if (ayet > 1) {
-    ayet--;
-    document.getElementById("ayet").value = ayet;
-    yeniAyet();
-  }
-}
-
-function ileri() {
-  ayet++;
-  document.getElementById("ayet").value = ayet;
-  yeniAyet();
-}
-
-// İstatistik ve Kelime Arama
-async function araYap() {
-  let kelime = document.getElementById("ara").value.trim();
-  if(!kelime) return;
-
-  const istatistikAlani = document.getElementById("aramaIstatistik");
-  const ozet = document.getElementById("istatistikOzet");
-  const liste = document.getElementById("aramaListe");
-  
-  ozet.textContent = "Kur'an taranıyor...";
-  liste.innerHTML = "";
-  istatistikAlani.style.display = "block";
-
-  try {
-    let res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(kelime)}/all/tr.diyanet`);
-    let data = await res.json();
-
-    if(data && data.data && data.data.matches && data.data.matches.length > 0) {
-      let matches = data.data.matches;
-      let totalCount = data.data.count;
-      
-      let sureFrekans = {};
-      matches.forEach(m => {
-        let sNo = m.surah.number;
-        let sName = sureListesi[sNo-1] || m.surah.name;
-        if(!sureFrekans[sNo]) {
-          sureFrekans[sNo] = { name: sName, count: 0, ayetler: [] };
-        }
-        sureFrekans[sNo].count++;
-        sureFrekans[sNo].ayetler.push(m.numberInSurah);
-      });
-
-      let sureSayisi = Object.keys(sureFrekans).length;
-      ozet.innerHTML = `"${kelime}" kelimesi Kur'an'da <b>${sureSayisi} farklı surede</b> toplam <b>${totalCount} kez</b> geçmektedir:`;
-
-      Object.keys(sureFrekans).forEach(sNo => {
-        let item = sureFrekans[sNo];
-        let li = document.createElement("li");
-        li.innerHTML = `<b>${item.name}</b> (${item.count} kez) - Ayetler: ${item.ayetler.join(', ')}`;
-        li.onclick = () => {
-          document.getElementById("sure").value = sNo;
-          document.getElementById("ayet").value = item.ayetler[0];
-          yeniAyet();
-        };
-        liste.appendChild(li);
-      });
-
-      document.getElementById("sure").value = matches[0].surah.number;
-      document.getElementById("ayet").value = matches[0].numberInSurah;
-      yeniAyet();
-
-    } else {
-      ozet.textContent = `"${kelime}" kelimesi meallerde bulunamadı.`;
-    }
-  } catch(e) {
-    ozet.textContent = "Arama sırasında bağlantı hatası oluştu.";
-  }
-}
-
-// Sesli Not
-function sesleYaz() {
-  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRec) {
-    alert("Tarayıcınız sesle yazmayı desteklemiyor. Lütfen Chrome/Edge kullanın.");
-    return;
-  }
-
-  const btn = document.
+  document.getElementById("sureKonusu").innerHTML = `<b>Sure Özeti:</b> ` + (sureKonulari[sure]
