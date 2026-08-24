@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DİJİTAL TEFSİR KÜTÜPHANESİ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f6f4;
+            --surface: #ffffff;
+            --primary: #1b4d2e;
+            --primary-dark: #123520;
+            --accent: #c48c2b;
+            --text: #1f2421;
+            --border: #d0ded5;
+        }
+
+        .dark-mode {
+            --bg: #121413;
+            --surface: #1c201d;
+            --primary: #2d7a46;
+            --primary-dark: #153820;
+            --text: #e8ede9;
+            --border: #2c332e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 2rem; }
+
+        header {
+            background: linear-gradient(135deg, #0e2417, var(--primary));
+            color: #fff;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .btn-top {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 0.4rem 0.7rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0.8rem auto;
+            padding: 0 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0.5rem;
+        }
+
+        label { font-size: 0.75rem; font-weight: 700; color: #666; }
+        select, input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .btn-act {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            direction: rtl;
+            text-align: right;
+            line-height: 2;
+            color: var(--primary-dark);
+            background: rgba(27, 77, 46, 0.05);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border-right: 4px solid var(--primary);
+        }
+
+        .meal-text { font-size: 0.9rem; line-height: 1.6; }
+
+        .fihrist-box {
+            background: #fffdf5;
+            border: 1px solid #f0e2be;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #452b07;
+            line-height: 1.6;
+        }
+
+        .fihrist-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            border-bottom: 1px solid #e2d1a3;
+            padding-bottom: 0.3rem;
+        }
+
+        .kulliyat-section {
+            background: #1c201d;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .kulliyat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.5rem;
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 0.3rem;
+        }
+
+        .book-item {
+            background: #2a302c;
+            border: 1px solid #3d4540;
+            padding: 0.7rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #e8ede9;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .book-item:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: #a4c9b3;
+        }
+
+        .ekol-baslik {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+            margin-top: 0.6rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #3d4540;
+        }
+
+        .kulliyat-grid { margin-bottom: 0.4rem; }
+
+        button.book-item {
+            font-family: inherit;
+            border: 1px solid #3d4540;
+            width: 100%;
+        }
+
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .pdf-modal-inner {
+            background: var(--surface);
+            width: 100%;
+            max-width: 900px;
+            height: 90vh;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .pdf-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.9rem;
+            background: var(--primary-dark);
+            color: #fff;
+        }
+
+        .pdf-modal-header strong {
+            font-size: 0.85rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .pdf-modal-header .sag {
+            display: flex;
+            gap: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        .pdf-modal-header a, .pdf-modal-header button {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .pdf-modal-inner iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1 style="font-size:1.1rem;">DİJİTAL TEFSİR KÜTÜPHANESİ</h1>
+        <p style="font-size:0.7rem; color:#a4c9b3;">114 Sure Tahlili ve 48 Eserlik Tefsir Portalı</p>
+    </div>
+    <div style="display: flex; gap: 0.4rem;">
+        <button class="btn-top" onclick="notIndir()">💾 Notları İndir</button>
+        <button class="btn-top" onclick="document.body.classList.toggle('dark-mode')">🌙 Tema</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <div class="nav-grid">
+            <div>
+                <label>Sure Seçin</label>
+                <select id="sure-sec" onchange="sureDegisti()">
+                    <option value="1">1. Fâtiha</option><option value="2">2. Bakara</option><option value="3">3. Âl-i İmrân</option>
+                    <option value="4">4. Nisâ</option><option value="5">5. Mâide</option><option value="6">6. En'âm</option>
+                    <option value="7">7. A'râf</option><option value="8">8. Enfâl</option><option value="9">9. Tevbe</option>
+                    <option value="10">10. Yûnus</option><option value="11">11. Hûd</option><option value="12">12. Yûsuf</option>
+                    <option value="13">13. Ra'd</option><option value="14">14. İbrâhîm</option><option value="15">15. Hicr</option>
+                    <option value="16">16. Nahl</option><option value="17">17. İsrâ</option><option value="18">18. Kehf</option>
+                    <option value="19">19. Meryem</option><option value="20">20. Tâhâ</option><option value="21">21. Enbiyâ</option>
+                    <option value="22">22. Hac</option><option value="23">23. Mü'minûn</option><option value="24">24. Nûr</option>
+                    <option value="25">25. Furkân</option><option value="26">26. Şuarâ</option><option value="27">27. Neml</option>
+                    <option value="28">28. Kasas</option><option value="29">29. Ankebût</option><option value="30">30. Rûm</option>
+                    <option value="31">31. Lokmân</option><option value="32">32. Secde</option><option value="33">33. Ahzâb</option>
+                    <option value="34">34. Sebe'</option><option value="35">35. Fâtır</option><option value="36">36. Yâsîn</option>
+                    <option value="37">37. Sâffât</option><option value="38">38. Sâd</option><option value="39">39. Zümer</option>
+                    <option value="40">40. Mü'min</option><option value="41">41. Fussilet</option><option value="42">42. Şûrâ</option>
+                    <option value="43">43. Zuhrûf</option><option value="44">44. Duhân</option><option value="45">45. Câsiye</option>
+                    <option value="46">46. Ahkâf</option><option value="47">47. Muhammed</option><option value="48">48. Fetih</option>
+                    <option value="49">49. Hucurât</option><option value="50">50. Kâf</option><option value="51">51. Zâriyât</option>
+                    <option value="52">52. Tûr</option><option value="53">53. Necm</option><option value="54">54. Kamer</option>
+                    <option value="55">55. Rahmân</option><option value="56">56. Vâkıa</option><option value="57">57. Hadîd</option>
+                    <option value="58">58. Mücâdele</option><option value="59">59. Haşr</option><option value="60">60. Mümtehine</option>
+                    <option value="61">61. Saf</option><option value="62">62. Cuma</option><option value="63">63. Münâfikûn</option>
+                    <option value="64">64. Tegâbün</option><option value="65">65. Talâk</option><option value="66">66. Tahrîm</option>
+                    <option value="67">67. Mülk</option><option value="68">68. Kalem</option><option value="69">69. Hâkka</option>
+                    <option value="70">70. Meâric</option><option value="71">71. Nûh</option><option value="72">72. Cin</option>
+                    <option value="73">73. Müzzemmil</option><option value="74">74. Müddessir</option><option value="75">75. Kıyâme</option>
+                    <option value="76">76. İnsân</option><option value="77">77. Mürselât</option><option value="78">78. Nebe'</option>
+                    <option value="79">79. Nâziât</option><option value="80">80. Abese</option><option value="81">81. Tekvîr</option>
+                    <option value="82">82. İnfitâr</option><option value="83">83. Mutaffifîn</option><option value="84">84. İnşikâk</option>
+                    <option value="85">85. Bürûc</option><option value="86">86. Târık</option><option value="87">87. A'lâ</option>
+                    <option value="88">88. Gâşiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
+                    <option value="91">91. Şems</option><option value="92">92. Leyl</option><option value="93">93. Duhâ</option>
+                    <option value="94">94. İnşirâh</option><option value="95">95. Tîn</option><option value="96">96. Alak</option>
+                    <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzâl</option>
+                    <option value="100">100. Âdiyât</option><option value="101">101. Kâria</option><option value="102">102. Tekâsür</option>
+                    <option value="103">103. Asr</option><option value="104">104. Hümeze</option><option value="105">105. Fîl</option>
+                    <option value="106">106. Kureyş</option><option value="107">107. Mâûn</option><option value="108">108. Kevser</option>
+                    <option value="109">109. Kâfirûn</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
+                    <option value="112">112. İhlâs</option><option value="113">113. Felak</option><option value="114">114. Nâs</option>
+                </select>
+            </div>
+            <div>
+                <label>Ayet No</label>
+                <input type="number" id="ayet-sec" value="1" min="1" onchange="ayetYukle()">
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="ara-inp" placeholder="Sure adı veya kelime ara..." onkeydown="if(event.key==='Enter') kuranAra()">
+            <button class="btn-act" onclick="kuranAra()">🔍 Ara</button>
+            <button class="btn-act" id="btn-ses" style="background:#0284c7;" onclick="sesCalDurdur()">🔊 Dinle</button>
+        </div>
+        <div id="arama-sonuclari"></div>
+    </div>
+
+    <div class="card">
+        <strong style="font-size:0.85rem; color:var(--primary);">DİYANET İŞLERİ MEALİ</strong>
+        <div class="arabic-text" id="ar-metin">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="meal-text" id="tr-metin">Rahmân ve Rahîm olan Allah'ın adıyla.</div>
+        <div id="yukleniyor" style="font-size:0.75rem; color:#888;"></div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem;">
+            <button class="btn-act" id="btn-geri" onclick="oncekiAyet()">◀ Geri</button>
+            <span id="konum-etiket" style="font-size:0.75rem; color:#666; font-weight:700;"></span>
+            <button class="btn-act" id="btn-ileri" onclick="sonrakiAyet()">İleri ▶</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong style="font-size:0.85rem; color:var(--accent);">📖 SURE VE DETAYLI AYET KONU DAĞILIMI</strong>
+        <div class="fihrist-box" id="fihrist-metin">
+            <div class="fihrist-title" id="f-baslik">1. Fâtiha Sûresi (Mekke Dönemi • 7 Âyet)</div>
+            <div id="f-icerik">
+                • <strong>Âyet 1-4:</strong> Allah'ın rububiyeti, Rahman ve Rahim sıfatları, Din gününün mutlak hakimiyeti.<br>
+                • <strong>Âyet 5:</strong> Tevhid ve kulluk ilkesi: 'Yalnız sana kulluk eder, yalnız senden yardım dileriz.'<br>
+                • <strong>Âyet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası ve sapmışların yolundan sığınma.
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <label>📝 Bu Ayet Hakkında Kişisel Notunuz:</label>
+            <button class="btn-act" id="btn-mikrofon" style="padding:0.25rem 0.5rem;" onclick="sesleYaz()">🎙️ Sesle Yaz</button>
+        </div>
+        <textarea id="not-alani" style="height:80px;" placeholder="Notunuzu buraya yazın..." oninput="notKaydet()"></textarea>
+    </div>
+
+    <div class="kulliyat-section">
+        <div style="font-weight:700; font-size:1rem; border-bottom:1px solid #3d4540; padding-bottom:0.5rem;">
+            📚 48 Eserlik Tefsir Külliyatı (Doğrudan Aç / Oku)
+        </div>
+        <div id="kulliyat-listesi"></div>
+    </div>
+</div>
+
+<div class="pdf-modal" id="pdf-modal">
+    <div class="pdf-modal-inner">
+        <div class="pdf-modal-header">
+            <strong id="pdf-modal-baslik">Tefsir</strong>
+            <div class="sag">
+                <a id="pdf-modal-yenisekme" href="#" target="_blank" rel="noopener">↗ Yeni Sekmede Aç</a>
+                <button onclick="pdfKapat()">✕ Kapat</button>
+            </div>
+        </div>
+        <iframe id="pdf-modal-iframe" src="about:blank"></iframe>
+    </div>
+</div>
+
+<script>
+    const BASE_RELEASE_URL = "https://github.com/tefsir-kutuphanesi/tefsir-web/releases/download/v1.0/";
+
+    const sureBilgileri = {
+        "1": { ad: "1. Fâtiha Sûresi", tur: "Mekke Dönemi • 7 Âyet", icerik: "• <strong>Âyet 1-4:</strong> Allah'ın sıfatları, hamd ve din günü hakimiyeti.<br>• <strong>Âyet 5:</strong> Tevhid ve kulluk ilkesi.<br>• <strong>Âyet 6-7:</strong> Sırat-ı Müstakim (Doğru Yol) duası." },
+        "2": { ad: "2. Bakara Sûresi", tur: "Medine Dönemi • 286 Âyet", icerik: "• <strong>Âyet 1-5:</strong> Muttakilerin özellikleri.<br>• <strong>Âyet 30-39:</strong> Hz. Âdem ve melekler.<br>• <strong>Âyet 183-187:</strong> Oruç hükümleri.<br>• <strong>Âyet 255:</strong> Âyetü'l-Kürsî.<br>• <strong>Âyet 285-286:</strong> Âmenerrasulü." },
+        "3": { ad: "3. Âl-i İmrân Sûresi", tur: "Medine Dönemi • 200 Âyet", icerik: "• <strong>Âyet 1-9:</strong> Muhkem ve müteşabih âyetler.<br>• <strong>Âyet 33-63:</strong> Hz. Meryem ve Hz. İsa kıssası.<br>• <strong>Âyet 121-180:</strong> Uhud Savaşı tahlili ve şehitlik." },
+        "4": { ad: "4. Nisâ Sûresi", tur: "Medine Dönemi • 176 Âyet", icerik: "• <strong>Âyet 1-14:</strong> Yetim hakları ve miras hükümleri.<br>• <strong>Âyet 58-59:</strong> Emanet ve adalet emri.<br>• <strong>Âyet 153-159:</strong> Ehl-i Kitap ve Hz. İsa." },
+        "5": { ad: "5. Mâide Sûresi", tur: "Medine Dönemi • 120 Âyet", icerik: "• <strong>Âyet 1-5:</strong> Ahitler ve helal-haram hükümleri.<br>• <strong>Âyet 6:</strong> Abdest ve teyemmüm hükümleri.<br>• <strong>Âyet 27-32:</strong> Habil ile Kabil kıssası." },
+        "6": { ad: "6. En'âm Sûresi", tur: "Mekke Dönemi • 165 Âyet", icerik: "• <strong>Âyet 1-12:</strong> Tevhidin kâinattaki delilleri.<br>• <strong>Âyet 74-83:</strong> Hz. İbrahim'in tevhid arayışı.<br>• <strong>Âyet 151-153:</strong> On temel ahlaki emir." },
+        "7": { ad: "7. A'râf Sûresi", tur: "Mekke Dönemi • 206 Âyet", icerik: "• <strong>Âyet 11-25:</strong> Âdem ile İblis kıssası.<br>• <strong>Âyet 46-49:</strong> A'râf ehlinin halleri.<br>• <strong>Âyet 103-171:</strong> Hz. Musa ve Firavun kıssası." },
+        "8": { ad: "8. Enfâl Sûresi", tur: "Medine Dönemi • 75 Âyet", icerik: "• <strong>Âyet 1-19:</strong> Bedir Savaşı ve zaferin dinamikleri.<br>• <strong>Âyet 41:</strong> Ganimet taksim esasları.<br>• <strong>Âyet 60:</strong> Savunma ve hazırlık emri." },
+        "9": { ad: "9. Tevbe Sûresi", tur: "Medine Dönemi • 129 Âyet", icerik: "• <strong>Âyet 1-28:</strong> Müşriklerle ilişkiler ve antlaşmalar.<br>• <strong>Âyet 60:</strong> Zekâtın verileceği 8 sınıf.<br>• <strong>Âyet 117-119:</strong> Samimi tevbelerin kabulü." },
+        "10": { ad: "10. Yûnus Sûresi", tur: "Mekke Dönemi • 109 Âyet", icerik: "• <strong>Âyet 1-10:</strong> Vahyin hakikati ve nizam.<br>• <strong>Âyet 71-93:</strong> Hz. Nuh ve Hz. Musa kıssaları.<br>• <strong>Âyet 98:</strong> Hz. Yunus'un kavminin kurtuluşu." },
+        "11": { ad: "11. Hûd Sûresi", tur: "Mekke Dönemi • 123 Âyet", icerik: "• Nûh, Hûd, Sâlih, İbrâhîm, Lût ve Şuayb kıssaları; istikamet üzere olma ve sabır emri." },
+        "12": { ad: "12. Yûsuf Sûresi", tur: "Mekke Dönemi • 111 Âyet", icerik: "• Hz. Yûsuf'un kıssası baştan sona; kıskançlık, sabır, ilâhî takdir ve güzel âkıbet." },
+        "13": { ad: "13. Ra'd Sûresi", tur: "Medine Dönemi • 43 Âyet", icerik: "• Allah'ın kudret delilleri (gök gürlemesi, yağmur, bitkiler); mü'min ile kâfirin hâllerinin karşılaştırılması." },
+        "14": { ad: "14. İbrâhîm Sûresi", tur: "Mekke Dönemi • 52 Âyet", icerik: "• Nimetlere şükrün önemi; Hz. İbrâhîm'in duâsı; iman-küfür mücadelesi ve peygamberlerin sabrı." },
+        "15": { ad: "15. Hicr Sûresi", tur: "Mekke Dönemi • 99 Âyet", icerik: "• Kur'an'ın Allah tarafından korunacağı vaadi; İblis'in secde etmemesi; Hicr halkının (Semûd) âkıbeti." },
+        "16": { ad: "16. Nahl Sûresi", tur: "Mekke Dönemi • 128 Âyet", icerik: "• Allah'ın sayısız nimeti (bal arısı, hayvanlar, bitkiler); tevhid delilleri; adalet ve ihsan emri." },
+        "17": { ad: "17. İsrâ Sûresi", tur: "Mekke Dönemi • 111 Âyet", icerik: "• Miraç mucizesi; İsrâiloğulları'nın kıssası; ana-baba hakları ve temel ahlâkî emirler." },
+        "18": { ad: "18. Kehf Sûresi", tur: "Mekke Dönemi • 110 Âyet", icerik: "• Ashâb-ı Kehf, Hz. Mûsâ-Hızır ve Zülkarneyn kıssaları; dünya hayatına aldanmama uyarısı." },
+        "19": { ad: "19. Meryem Sûresi", tur: "Mekke Dönemi • 98 Âyet", icerik: "• Hz. Meryem ve Hz. İsâ'nın doğumu; Zekeriyyâ, Yahyâ, İbrâhîm ve diğer peygamberlerin kıssaları." },
+        "20": { ad: "20. Tâhâ Sûresi", tur: "Mekke Dönemi • 135 Âyet", icerik: "• Hz. Mûsâ'nın peygamberliği, Firavun ile mücadelesi ve Sâmirî'nin buzağı fitnesi." },
+        "21": { ad: "21. Enbiyâ Sûresi", tur: "Mekke Dönemi • 112 Âyet", icerik: "• Birçok peygamberin kıssaları özet hâlinde; tevhid çağrısı ve kıyamet uyarıları." },
+        "22": { ad: "22. Hac Sûresi", tur: "Medine Dönemi • 78 Âyet", icerik: "• Hac ibadetinin hükümleri, kurban, zulme uğrayana cihad izni ve kıyamet sahneleri." },
+        "23": { ad: "23. Mü'minûn Sûresi", tur: "Mekke Dönemi • 118 Âyet", icerik: "• Kurtuluşa eren mü'minlerin nitelikleri; insanın yaratılış aşamaları; peygamberlerin mücadelesi." },
+        "24": { ad: "24. Nûr Sûresi", tur: "Medine Dönemi • 64 Âyet", icerik: "• İffet ve zina haddi; ifk (iftira) hâdisesi; göz, tesettür ve aile mahremiyeti hükümleri." },
+        "25": { ad: "25. Furkân Sûresi", tur: "Mekke Dönemi • 77 Âyet", icerik: "• Kur'an'ın hak oluşu; müşriklerin peygambere itirazları; Rahmân'ın has kullarının vasıfları." },
+        "26": { ad: "26. Şuarâ Sûresi", tur: "Mekke Dönemi • 227 Âyet", icerik: "• Mûsâ, İbrâhîm, Nûh, Hûd, Sâlih, Lût ve Şuayb kıssaları; vahyin şiirden farkı." },
+        "27": { ad: "27. Neml Sûresi", tur: "Mekke Dönemi • 93 Âyet", icerik: "• Hz. Süleymân, karınca vadisi, Hüdhüd kuşu ve Sebe' melikesi Belkıs kıssası." },
+        "28": { ad: "28. Kasas Sûresi", tur: "Mekke Dönemi • 88 Âyet", icerik: "• Hz. Mûsâ'nın doğumu, Mısır'dan çıkışı ve Karun'un helâki." },
+        "29": { ad: "29. Ankebût Sûresi", tur: "Mekke Dönemi • 69 Âyet", icerik: "• İmtihan sünneti; örümcek ağı meseli; geçmiş ümmetlerin kıssalarından ibretler." },
+        "30": { ad: "30. Rûm Sûresi", tur: "Mekke Dönemi • 60 Âyet", icerik: "• Bizans-Sâsânî savaşı hakkında gaybî haber; Allah'ın kâinattaki kudret delilleri." },
+        "31": { ad: "31. Lokmân Sûresi", tur: "Mekke Dönemi • 34 Âyet", icerik: "• Lokmân Hakîm'in oğluna tevhid, namaz ve ahlâk üzerine öğütleri." },
+        "32": { ad: "32. Secde Sûresi", tur: "Mekke Dönemi • 30 Âyet", icerik: "• Kur'an'ın vahiy oluşu; yaratılış aşamaları; mü'min ile fâsıkın âkıbet farkı." },
+        "33": { ad: "33. Ahzâb Sûresi", tur: "Medine Dönemi • 73 Âyet", icerik: "• Hendek Savaşı; evlilik ve boşanma hükümleri; Peygamber eşleri ve örtünme âyetleri." },
+        "34": { ad: "34. Sebe' Sûresi", tur: "Mekke Dönemi • 54 Âyet", icerik: "• Sebe' kavmi, Hz. Süleymân ve cinlerin hizmeti; şükür ile nankörlüğün âkıbeti." },
+        "35": { ad: "35. Fâtır Sûresi", tur: "Mekke Dönemi • 45 Âyet", icerik: "• Allah'ın gökleri ve yeri yoktan var edişi; melekler; iyi ile kötü amelin karşılaştırılması." },
+        "36": { ad: "36. Yâsîn Sûresi", tur: "Mekke Dönemi • 83 Âyet", icerik: "• Kur'an'ın özü sayılan sûre; elçilerin gönderildiği şehir kıssası; öldükten sonra dirilişin delilleri." },
+        "37": { ad: "37. Sâffât Sûresi", tur: "Mekke Dönemi • 182 Âyet", icerik: "• Saf tutan melekler; Hz. İbrâhîm'in oğlunu kurban etme denemesi; cennet-cehennem tasviri." },
+        "38": { ad: "38. Sâd Sûresi", tur: "Mekke Dönemi • 88 Âyet", icerik: "• Hz. Dâvûd, Süleymân ve Eyyûb kıssaları; İblis'in Âdem'e secde etmeyi reddi." },
+        "39": { ad: "39. Zümer Sûresi", tur: "Mekke Dönemi • 75 Âyet", icerik: "• İhlâs ve hâlis dinin önemi; Allah'ın sonsuz rahmeti; günahların affı müjdesi." },
+        "40": { ad: "40. Mü'min (Gâfir) Sûresi", tur: "Mekke Dönemi • 85 Âyet", icerik: "• Firavun ailesinden mü'min bir adamın kıssası; tevhid mücadelesi ve duânın gücü." },
+        "41": { ad: "41. Fussilet Sûresi", tur: "Mekke Dönemi • 54 Âyet", icerik: "• Kur'an'ın açık beyanı; göklerin ve yerin yaratılış aşamaları; azgınların âkıbeti." },
+        "42": { ad: "42. Şûrâ Sûresi", tur: "Mekke Dönemi • 53 Âyet", icerik: "• Vahyin birliği; istişâre (şûrâ) ilkesi; adalet ve bağışlama." },
+        "43": { ad: "43. Zuhrûf Sûresi", tur: "Mekke Dönemi • 89 Âyet", icerik: "• Dünya malının Allah katında değersizliği; Hz. İbrâhîm, Mûsâ ve İsâ kıssaları." },
+        "44": { ad: "44. Duhân Sûresi", tur: "Mekke Dönemi • 59 Âyet", icerik: "• Kıyamet öncesi duman alâmeti; Firavun ve ordusunun sulara gark edilişi." },
+        "45": { ad: "45. Câsiye Sûresi", tur: "Mekke Dönemi • 37 Âyet", icerik: "• Kâinattaki tevhid delilleri; kıyamette amel defterlerinin ortaya konması." },
+        "46": { ad: "46. Ahkâf Sûresi", tur: "Mekke Dönemi • 35 Âyet", icerik: "• Âd kavminin (Ahkâf halkı) âkıbeti; ana-babaya iyilik emri; cinlerin Kur'an dinlemesi." },
+        "47": { ad: "47. Muhammed Sûresi", tur: "Medine Dönemi • 38 Âyet", icerik: "• Cihad ve savaş hükümleri; kâfir ve münafıkların iç yüzünün ortaya konması." },
+        "48": { ad: "48. Fetih Sûresi", tur: "Medine Dönemi • 29 Âyet", icerik: "• Hudeybiye Antlaşması ve 'apaçık fetih' müjdesi; mü'minlere rıza ve mağfiret vaadi." },
+        "49": { ad: "49. Hucurât Sûresi", tur: "Medine Dönemi • 18 Âyet", icerik: "• Toplumsal ahlâk; gıybet, alay ve su-i zan yasağı; haberin doğrulanması (tebeyyün) emri." },
+        "50": { ad: "50. Kâf Sûresi", tur: "Mekke Dönemi • 45 Âyet", icerik: "• Öldükten sonra diriliş; insanın yaratılışı ve Allah'a olan yakınlığı; kıyamet sahneleri." },
+        "51": { ad: "51. Zâriyât Sûresi", tur: "Mekke Dönemi • 60 Âyet", icerik: "• Rızkın yalnız Allah'tan olduğu gerçeği; geçmiş kavimlerin kıssalarından ibretler." },
+        "52": { ad: "52. Tûr Sûresi", tur: "Mekke Dönemi • 49 Âyet", icerik: "• Kıyamet ve cennet-cehennem tasviri; peygamberliğin ispatı için yeminler." },
+        "53": { ad: "53. Necm Sûresi", tur: "Mekke Dönemi • 62 Âyet", icerik: "• Miraç mucizesi; vahyin gerçekliği; insanın kendi çabasının karşılığını alacağı ilkesi." },
+        "54": { ad: "54. Kamer Sûresi", tur: "Mekke Dönemi • 55 Âyet", icerik: "• Ayın yarılması mucizesi; Nûh, Âd, Semûd, Lût ve Firavun kavimlerinin helâki." },
+        "55": { ad: "55. Rahmân Sûresi", tur: "Mekke Dönemi • 78 Âyet", icerik: "• Allah'ın sayısız nimeti; 'Rabbinizin hangi nimetlerini yalanlarsınız' nakaratıyla şükre çağrı." },
+        "56": { ad: "56. Vâkıa Sûresi", tur: "Mekke Dönemi • 96 Âyet", icerik: "• Kıyamet ve haşir; öncüler, sağcılar ve solcular olmak üzere üç insan sınıfı." },
+        "57": { ad: "57. Hadîd Sûresi", tur: "Medine Dönemi • 29 Âyet", icerik: "• İnfakın (Allah yolunda harcamanın) fazileti; dünya hayatının geçiciliği; demirin faydası." },
+        "58": { ad: "58. Mücâdele Sûresi", tur: "Medine Dönemi • 22 Âyet", icerik: "• Zıhâr meselesi; gizli meclislerin âdâbı; Allah'a ve Resûlü'ne itaatin önemi." },
+        "59": { ad: "59. Haşr Sûresi", tur: "Medine Dönemi • 24 Âyet", icerik: "• Nadîroğulları'nın Medine'den sürgünü; Allah'ın güzel isimleri (Esmâ-i Hüsnâ) ile sûrenin bitişi." },
+        "60": { ad: "60. Mümtehine Sûresi", tur: "Medine Dönemi • 13 Âyet", icerik: "• Düşmanlarla dostluk kurma meselesi; hicret eden kadınların imtihan edilmesi hükmü." },
+        "61": { ad: "61. Saf Sûresi", tur: "Medine Dönemi • 14 Âyet", icerik: "• Allah yolunda kenetlenmiş bir yapı gibi saf tutma; Hz. İsâ'nın Ahmed'i (s.a.v.) müjdelemesi." },
+        "62": { ad: "62. Cum'a Sûresi", tur: "Medine Dönemi • 11 Âyet", icerik: "• Cuma namazının farziyeti ve namaz vaktinde ticaretin bırakılması emri." },
+        "63": { ad: "63. Münâfikûn Sûresi", tur: "Medine Dönemi • 11 Âyet", icerik: "• Münafıkların söz ile öz arasındaki çelişkisi ve toplum için tehlikesi." },
+        "64": { ad: "64. Tegâbün Sûresi", tur: "Medine Dönemi • 18 Âyet", icerik: "• Aldanış (tegâbün) günü olan kıyamet; mal ve evlatların bir imtihan vesilesi oluşu." },
+        "65": { ad: "65. Talâk Sûresi", tur: "Medine Dönemi • 12 Âyet", icerik: "• Boşanma (talâk) hükümleri; iddet süresi ve nafaka esasları." },
+        "66": { ad: "66. Tahrîm Sûresi", tur: "Medine Dönemi • 12 Âyet", icerik: "• Peygamber ailesiyle ilgili bir hâdise; Hz. Nûh ve Hz. Lût'un eşleri örnek verilerek uyarı." },
+        "67": { ad: "67. Mülk Sûresi", tur: "Mekke Dönemi • 30 Âyet", icerik: "• Mutlak mülkün ve kudretin Allah'a ait oluşu; ölüm ve hayatın bir imtihan olarak yaratılışı." },
+        "68": { ad: "68. Kalem Sûresi", tur: "Mekke Dönemi • 52 Âyet", icerik: "• Kalem ve yazıya yemin; bahçe sahiplerinin kıssası; Peygamberin ahlâkının övülmesi." },
+        "69": { ad: "69. Hâkka Sûresi", tur: "Mekke Dönemi • 52 Âyet", icerik: "• Kıyametin kesin gerçekliği (Hâkka); geçmiş kavimlerin (Âd, Semûd, Firavun) helâki." },
+        "70": { ad: "70. Meâric Sûresi", tur: "Mekke Dönemi • 44 Âyet", icerik: "• Azabın yakınlığı; namazın ve emanete riayetin önemi; insan tabiatının açgözlülüğü." },
+        "71": { ad: "71. Nûh Sûresi", tur: "Mekke Dönemi • 28 Âyet", icerik: "• Hz. Nûh'un kavmini uzun yıllar tevhide daveti ve sonunda tufan ile helâk olmaları." },
+        "72": { ad: "72. Cin Sûresi", tur: "Mekke Dönemi • 28 Âyet", icerik: "• Cinlerin Kur'an'ı dinleyip iman etmesi ve bunu kendi kavimlerine haber vermeleri." },
+        "73": { ad: "73. Müzzemmil Sûresi", tur: "Mekke Dönemi • 20 Âyet", icerik: "• Gece ibadeti (teheccüd) emri; Kur'an'ı ağır ağır okuma ve sabır tavsiyesi." },
+        "74": { ad: "74. Müddessir Sûresi", tur: "Mekke Dönemi • 56 Âyet", icerik: "• Peygamberliğin ilk emirlerinden biri; tebliğ görevinin başlangıcı ve inkârcılara uyarı." },
+        "75": { ad: "75. Kıyâme Sûresi", tur: "Mekke Dönemi • 40 Âyet", icerik: "• Öldükten sonra dirilişin ispatı; kıyamet sahneleri; insanın kendi aleyhine şahitliği." },
+        "76": { ad: "76. İnsân (Dehr) Sûresi", tur: "Medine Dönemi • 31 Âyet", icerik: "• İnsanın yaratılış süreci; cennet ehlinin nimetleri; iyilik yapma ve infak fazileti." },
+        "77": { ad: "77. Mürselât Sûresi", tur: "Mekke Dönemi • 50 Âyet", icerik: "• Kıyamet uyarıları; 'yalanlayanların o gün vay hâline' nakaratıyla ibret verici sahneler." },
+        "78": { ad: "78. Nebe' Sûresi", tur: "Mekke Dönemi • 40 Âyet", icerik: "• İnsanların ihtilaf ettiği 'büyük haber' olan kıyamet; yaratılış delilleri; cennet-cehennem." },
+        "79": { ad: "79. Nâziât Sûresi", tur: "Mekke Dönemi • 46 Âyet", icerik: "• Can alan melekler; Hz. Mûsâ-Firavun kıssası; kıyametin ansızın kopuşu." },
+        "80": { ad: "80. Abese Sûresi", tur: "Mekke Dönemi • 42 Âyet", icerik: "• Peygamberimizin âmâ bir sahâbîye yönelik bir tavrının düzeltilmesi; insanın yaratılışına dair deliller." },
+        "81": { ad: "81. Tekvîr Sûresi", tur: "Mekke Dönemi • 29 Âyet", icerik: "• Kıyamet alâmetleri (güneşin dürülmesi vb.); vahyin Cebrâil (a.s.) aracılığıyla gelişi." },
+        "82": { ad: "82. İnfitâr Sûresi", tur: "Mekke Dönemi • 19 Âyet", icerik: "• Göğün yarılması ve yıldızların dağılması; amel defterlerini yazan kirâmen kâtibîn melekleri." },
+        "83": { ad: "83. Mutaffifîn Sûresi", tur: "Mekke Dönemi • 36 Âyet", icerik: "• Ölçü ve tartıda hile yapanlara (mutaffifîn) şiddetli uyarı; ebrâr ve fâcirlerin âkıbeti." },
+        "84": { ad: "84. İnşikâk Sûresi", tur: "Mekke Dönemi • 25 Âyet", icerik: "• Göğün yarılması; amel defterinin sağdan veya arkadan/soldan verilmesi hâlleri." },
+        "85": { ad: "85. Bürûc Sûresi", tur: "Mekke Dönemi • 22 Âyet", icerik: "• Hendek sahipleri (Ashâb-ı Uhdûd) kıssası; mü'minlere inançları yüzünden işkence edenlerin âkıbeti." },
+        "86": { ad: "86. Târık Sûresi", tur: "Mekke Dönemi • 17 Âyet", icerik: "• Geceleyin görünen yıldıza (Târık) yemin; insanın yaratılışı ve amellerini kaydeden hâfaza melekleri." },
+        "87": { ad: "87. A'lâ Sûresi", tur: "Mekke Dönemi • 19 Âyet", icerik: "• Yüce Rabbi tesbih etme; Kur'an'ın kolaylaştırılması; önceki ilâhî suhufla bağlantı." },
+        "88": { ad: "88. Gâşiye Sûresi", tur: "Mekke Dönemi • 26 Âyet", icerik: "• Kıyameti kuşatan dehşet (Gâşiye); cennet-cehennem tasviri; deveye ve göğe ibretle bakış." },
+        "89": { ad: "89. Fecr Sûresi", tur: "Mekke Dönemi • 30 Âyet", icerik: "• Geçmiş azgın kavimlere (Âd, Semûd, Firavun) yemin; insanın mal sevgisi ve mutmain nefis müjdesi." },
+        "90": { ad: "90. Beled Sûresi", tur: "Mekke Dönemi • 20 Âyet", icerik: "• İnsanın zorluklarla iç içe yaratılışı; köle azat etme, yoksulu doyurma ve merhamet." },
+        "91": { ad: "91. Şems Sûresi", tur: "Mekke Dönemi • 15 Âyet", icerik: "• Nefsin arındırılması ve kirletilmesi karşılaştırması; Semûd kavmi ve dişi deve kıssası." },
+        "92": { ad: "92. Leyl Sûresi", tur: "Mekke Dönemi • 21 Âyet", icerik: "• Cömertlik ile cimriliğin karşılaştırılması; kolay yol ile zor yolun ayrımı." },
+        "93": { ad: "93. Duhâ Sûresi", tur: "Mekke Dönemi • 11 Âyet", icerik: "• Peygamberimizin yetimlik ve yoksulluk döneminin hatırlatılması; teselli ve şükür emri." },
+        "94": { ad: "94. İnşirâh Sûresi", tur: "Mekke Dönemi • 8 Âyet", icerik: "• Göğsün açılıp ferahlatılması; her zorlukla beraber bir kolaylığın bulunduğu müjdesi." },
+        "95": { ad: "95. Tîn Sûresi", tur: "Mekke Dönemi • 8 Âyet", icerik: "• İnsanın en güzel biçimde yaratılışı; iman ve sâlih amelin insanı bu değerde tutması." },
+        "96": { ad: "96. Alak Sûresi", tur: "Mekke Dönemi • 19 Âyet", icerik: "• Kur'an'ın ilk inen âyetleri; 'Oku' emri ve insanın yaratılışına vurgu." },
+        "97": { ad: "97. Kadr Sûresi", tur: "Mekke Dönemi • 5 Âyet", icerik: "• Kadir gecesinin bin aydan hayırlı oluşu ve fazileti." },
+        "98": { ad: "98. Beyyine Sûresi", tur: "Medine Dönemi • 8 Âyet", icerik: "• Ehl-i Kitap ve müşriklere gönderilen apaçık delil; hâlis dinin (dini Allah'a has kılmanın) tarifi." },
+        "99": { ad: "99. Zilzâl Sûresi", tur: "Medine Dönemi • 8 Âyet", icerik: "• Kıyamette yerin şiddetle sarsılması; zerre miktarı hayır ve şerrin dahi karşılığını göreceği ilkesi." },
+        "100": { ad: "100. Âdiyât Sûresi", tur: "Mekke Dönemi • 11 Âyet", icerik: "• Savaş atlarına yemin edilerek insanın Rabbine karşı nankörlüğüne dikkat çekilmesi." },
+        "101": { ad: "101. Kâria Sûresi", tur: "Mekke Dönemi • 11 Âyet", icerik: "• Kıyametin dehşeti (Kâria); amellerin tartıldığı mizan sahnesi." },
+        "102": { ad: "102. Tekâsür Sûresi", tur: "Mekke Dönemi • 8 Âyet", icerik: "• Mal, evlat ve dünyalıklarla çoklukla övünmenin insanı gaflete sürüklemesi." },
+        "103": { ad: "103. Asr Sûresi", tur: "Mekke Dönemi • 3 Âyet", icerik: "• Zamana yemin; hüsrandan kurtuluşun iman, sâlih amel, hakkı ve sabrı tavsiyeleşmede olduğu." },
+        "104": { ad: "104. Hümeze Sûresi", tur: "Mekke Dönemi • 9 Âyet", icerik: "• Diline ve malına güvenip insanları çekiştiren, alay eden kimseye şiddetli uyarı." },
+        "105": { ad: "105. Fîl Sûresi", tur: "Mekke Dönemi • 5 Âyet", icerik: "• Ebrehe'nin fil ordusuyla Kâbe'ye saldırısı ve Allah'ın onları Ebâbil kuşlarıyla helâk etmesi." },
+        "106": { ad: "106. Kureyş Sûresi", tur: "Mekke Dönemi • 4 Âyet", icerik: "• Kureyş'in kış ve yaz ticaret seferlerindeki güvenliği; bu nimete karşı şükür çağrısı." },
+        "107": { ad: "107. Mâûn Sûresi", tur: "Mekke Dönemi • 7 Âyet", icerik: "• Yetime kötü davranan, namazında gafil olan ve gösteriş yapıp yardımı esirgeyenin kınanması." },
+        "108": { ad: "108. Kevser Sûresi", tur: "Mekke Dönemi • 3 Âyet", icerik: "• Peygamberimize Kevser'in verilmesi müjdesi; buna karşılık namaz kılıp kurban kesme emri." },
+        "109": { ad: "109. Kâfirûn Sûresi", tur: "Mekke Dönemi • 6 Âyet", icerik: "• İnanç konusunda kesin ayrım: 'Sizin dininiz size, benim dinim banadır.'" },
+        "110": { ad: "110. Nasr Sûresi", tur: "Medine Dönemi • 3 Âyet", icerik: "• Allah'ın yardımı ve fetihten sonra Allah'ı tesbih edip O'ndan bağışlanma dileme emri." },
+        "111": { ad: "111. Tebbet (Mesed) Sûresi", tur: "Mekke Dönemi • 5 Âyet", icerik: "• Ebû Leheb ve karısının Peygamberimize düşmanlığının âkıbeti." },
+        "112": { ad: "112. İhlâs Sûresi", tur: "Mekke Dönemi • 4 Âyet", icerik: "• Allah'ın birliği, benzersizliği ve doğurmamış-doğurulmamış oluşunun ifadesi (tevhidin özeti)." },
+        "113": { ad: "113. Felak Sûresi", tur: "Mekke Dönemi • 5 Âyet", icerik: "• Karanlığın, sihrin ve hasetçinin şerrinden Allah'a sığınma." },
+        "114": { ad: "114. Nâs Sûresi", tur: "Mekke Dönemi • 6 Âyet", icerik: "• İnsanların kalbine vesvese veren gizli düşmandan Allah'a sığınma." }
+    };
+
+    const kitaplar = [
+        { ad: "Taberi Tefsiri Cilt 1", dosya: "taberi_1.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 1", dosya: "ibn_kesir_1.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 2", dosya: "ibn_kesir_2.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 3", dosya: "ibn_kesir_3.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 4", dosya: "ibn_kesir_4.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 5", dosya: "ibn_kesir_5.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 6", dosya: "ibn_kesir_6.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 7", dosya: "ibn_kesir_7.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 8", dosya: "ibn_kesir_8.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 9", dosya: "ibn_kesir_9.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 10", dosya: "ibn_kesir_10.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 11", dosya: "ibn_kesir_11.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 12", dosya: "ibn_kesir_12.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 13", dosya: "ibn_kesir_13.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 14", dosya: "ibn_kesir_14.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 15", dosya: "ibn_kesir_15.pdf", ekol: "Rivâyet" },
+        { ad: "İbn Kesir Tefsiri Cilt 16", dosya: "ibn_kesir_16.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 1", dosya: "Tefsir._.n.i_Abbas_01.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 2", dosya: "Tefsir._.n.i_Abbas_02.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 3", dosya: "Tefsir._.n.i_Abbas_03.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 4", dosya: "Tefsir._.n.i_Abbas_04.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Tefsiru İbn Abbas Cilt 5", dosya: "Tefsir._.n.i_Abbas_05.Cilt.pdf", ekol: "Rivâyet" },
+        { ad: "Mukatil b. Süleyman Tefsiri", dosya: "mukatil_1.pdf", ekol: "Rivâyet" },
+        { ad: "Suyuti Tefsiri", dosya: "suyuti_1.pdf", ekol: "Rivâyet" },
+        { ad: "Fahruddin Razi Cilt 1", dosya: "razi_1.pdf", ekol: "Dirâyet" },
+        { ad: "Fahruddin Razi Cilt 23", dosya: "Fahrudd._Er_R.Tefs._Keb._Mef.u.l_Gayb_Orjinal_23_Cilt_.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 2", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.2.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 3", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.3.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 4", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.4.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Beydavi Tefsiri Cilt 5", dosya: "Beydavi.Tefsiri.E.razi.el.Beydavi.5.Cild.pdf", ekol: "Dirâyet" },
+        { ad: "Nesefi Tefsiri", dosya: "Nesefi_Tefsiri.pdf", ekol: "Dirâyet" },
+        { ad: "Zemahşeri - Keşşaf", dosya: "Zemah.r.-.Ke.Tefsiri.1.pdf", ekol: "Dirâyet" },
+        { ad: "İbn Arabi Tefsiri", dosya: "ibn_arabi_1.pdf", ekol: "İşârî" },
+        { ad: "Ruhu'l Beyan Tefsiri", dosya: "ruhul_beyan_1.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 1", dosya: "Abd.k.ir.Geyl.Tefsiri.1.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 2", dosya: "Abd.k.ir.Geyl.Tefsiri.2.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 3", dosya: "Abd.k.ir.Geyl.Tefsiri.3.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 4", dosya: "Abd.k.ir.Geyl.Tefsiri.4.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 5", dosya: "Abd.k.ir.Geyl.Tefsiri.5.2012.pdf", ekol: "İşârî" },
+        { ad: "Abdulkadir Geylani Cilt 6", dosya: "Abd.k.ir.Geyl.Tefsiri.6.2012.pdf", ekol: "İşârî" },
+        { ad: "İbn Acîbe - Bahru'l Medîd Tefsiri", dosya: "n_Ac.e_el_Haseni_Bahr.l_Med._t.Tefs.l.Kur_anli_Mec._Orjinal_.pdf", ekol: "İşârî" },
+        { ad: "Zemahşeri - Keşşaf Tefsiri Cilt 2", dosya: "Ke.Tefsiri.Cilt.2.pdf", ekol: "Dirâyet" },
+        { ad: "Zemahşeri - Keşşaf Tefsiri Cilt 3", dosya: "Ke.Tefsiri.Cilt.3.pdf", ekol: "Dirâyet" },
+        { ad: "Zemahşeri - Keşşaf Tefsiri Cilt 4", dosya: "Ke.Tefsiri.Cilt.4.pdf", ekol: "Dirâyet" },
+        { ad: "Zemahşeri - Keşşaf Tefsiri Cilt 5", dosya: "Ke.Tefsiri.Cilt.5.pdf", ekol: "Dirâyet" },
+        { ad: "Zemahşeri - Keşşaf Tefsiri Cilt 6", dosya: "Ke.Tefsiri.Cilt.6.pdf", ekol: "Dirâyet" },
+        { ad: "Döndüren Tefsiri Cilt 1", dosya: "donduren_1.pdf", ekol: "Çağdaş" },
+        { ad: "Kur'an Yolu Tefsiri (Diyanet)", dosya: "Ku.yrl.pdf.pdf", ekol: "Çağdaş" }
+    ];
+
+    // ---- Sure adlari ve genel state ----
+    const sureSelect = document.getElementById('sure-sec');
+    const sureAdlari = Array.from(sureSelect.options).map(o => o.textContent.replace(/^\d+\.\s*/, ''));
+    let sureMeta = []; // API'den gelen her sure icin {ayetSayisi, tur}
+    let mevcutSure = 1;
+    let mevcutAyet = 1;
+    let sesNesnesi = null;
+    let sesCaliniyor = false;
+
+    async function sureMetaYukle() {
+        try {
+            const res = await fetch('https://api.alquran.cloud/v1/surah').then(r => r.json());
+            sureMeta = res.data.map(s => ({
+                ayetSayisi: s.numberOfAyahs,
+                tur: s.revelationType === 'Meccan' ? 'Mekke Dönemi' : 'Medine Dönemi'
+            }));
+        } catch (e) {
+            sureMeta = [];
+        }
+    }
+
+    function fihristGoster(sureNo) {
+        const bilgi = sureBilgileri[String(sureNo)];
+        const adi = sureAdlari[sureNo - 1];
+        const meta = sureMeta[sureNo - 1];
+        const turMetni = meta ? `${meta.tur} • ${meta.ayetSayisi} Âyet` : (bilgi ? bilgi.tur : '');
+        document.getElementById('f-baslik').textContent = `${sureNo}. ${adi} Sûresi (${turMetni})`;
+        document.getElementById('f-icerik').innerHTML = bilgi
+            ? bilgi.icerik
+            : `Bu sure için ayrıntılı âyet âyet konu dağılımı henüz eklenmedi. Üstteki Arapça metin ve Diyanet Meali canlı olarak API'den yükleniyor.`;
+    }
+
+    async function ayetYukle() {
+        const sureNo = parseInt(sureSelect.value);
+        let ayetNo = parseInt(document.getElementById('ayet-sec').value) || 1;
+        const meta = sureMeta[sureNo - 1];
+        if (meta && ayetNo > meta.ayetSayisi) ayetNo = meta.ayetSayisi;
+        if (ayetNo < 1) ayetNo = 1;
+        document.getElementById('ayet-sec').value = ayetNo;
+        mevcutSure = sureNo;
+        mevcutAyet = ayetNo;
+
+        document.getElementById('yukleniyor').textContent = 'Yükleniyor...';
+        sesDurdur();
+
+        try {
+            const ref = `${sureNo}:${ayetNo}`;
+            const [arRes, mealRes] = await Promise.all([
+                fetch(`https://api.alquran.cloud/v1/ayah/${ref}/quran-uthmani`).then(r => r.json()),
+                fetch(`https://api.alquran.cloud/v1/ayah/${ref}/tr.diyanet`).then(r => r.json())
+            ]);
+            document.getElementById('ar-metin').textContent = arRes?.data?.text || '(Arapça metin alınamadı)';
+            document.getElementById('tr-metin').textContent = mealRes?.data?.text || '(Meal alınamadı)';
+            document.getElementById('yukleniyor').textContent = '';
+        } catch (e) {
+            document.getElementById('yukleniyor').textContent = 'Metin alınamadı, internet bağlantınızı kontrol edin.';
+        }
+
+        const ayetSayisi = meta ? meta.ayetSayisi : '?';
+        document.getElementById('konum-etiket').textContent = `${sureAdlari[sureNo - 1]} — ${ayetNo} / ${ayetSayisi}`;
+        document.getElementById('btn-geri').disabled = (sureNo === 1 && ayetNo === 1);
+        document.getElementById('btn-ileri').disabled = (sureNo === 114 && meta && ayetNo === meta.ayetSayisi);
+
+        fihristGoster(sureNo);
+        notYukle();
+    }
+
+    function sureDegisti() {
+        document.getElementById('ayet-sec').value = 1;
+        ayetYukle();
+    }
+
+    function oncekiAyet() {
+        let s = mevcutSure, a = mevcutAyet - 1;
+        if (a < 1) {
+            if (s > 1) { s -= 1; a = sureMeta[s - 1] ? sureMeta[s - 1].ayetSayisi : 1; }
+            else { a = 1; }
+        }
+        sureSelect.value = s;
+        document.getElementById('ayet-sec').value = a;
+        ayetYukle();
+    }
+
+    function sonrakiAyet() {
+        let s = mevcutSure, a = mevcutAyet + 1;
+        const meta = sureMeta[s - 1];
+        if (meta && a > meta.ayetSayisi) {
+            if (s < 114) { s += 1; a = 1; }
+            else { a = meta.ayetSayisi; }
+        }
+        sureSelect.value = s;
+        document.getElementById('ayet-sec').value = a;
+        ayetYukle();
+    }
+
+    async function kuranAra() {
+        const kelime = document.getElementById('ara-inp').value.trim();
+        const kutu = document.getElementById('arama-sonuclari');
+        if (!kelime) { kutu.innerHTML = ''; return; }
+
+        const sureIndex = sureAdlari.findIndex(ad => ad.toLocaleLowerCase('tr').includes(kelime.toLocaleLowerCase('tr')));
+        if (sureIndex !== -1) {
+            sureSelect.value = sureIndex + 1;
+            sureDegisti();
+            kutu.innerHTML = '';
+            return;
+        }
+
+        kutu.innerHTML = '<div style="font-size:0.8rem; color:#888; margin-top:0.4rem;">Aranıyor...</div>';
+        try {
+            const res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(kelime)}/all/tr.diyanet`).then(r => r.json());
+            const eslesenler = res?.data?.matches || [];
+            if (eslesenler.length === 0) {
+                kutu.innerHTML = '<div style="font-size:0.8rem; color:#888; margin-top:0.4rem;">Sonuç bulunamadı.</div>';
+                return;
+            }
+            kutu.innerHTML = '';
+            const liste = document.createElement('div');
+            liste.style.cssText = 'display:flex; flex-direction:column; gap:0.4rem; margin-top:0.5rem; max-height:280px; overflow-y:auto;';
+            eslesenler.slice(0, 25).forEach(m => {
+                const item = document.createElement('div');
+                item.style.cssText = 'border:1px solid var(--border); border-radius:6px; padding:0.5rem; cursor:pointer; font-size:0.8rem;';
+                item.innerHTML = `<strong style="color:var(--primary);">${m.surah.number}. ${sureAdlari[m.surah.number - 1]} — Âyet ${m.numberInSurah}</strong><br>${m.text}`;
+                item.onclick = () => {
+                    sureSelect.value = m.surah.number;
+                    document.getElementById('ayet-sec').value = m.numberInSurah;
+                    ayetYukle();
+                    kutu.innerHTML = '';
+                };
+                liste.appendChild(item);
+            });
+            kutu.appendChild(liste);
+        } catch (e) {
+            kutu.innerHTML = '<div style="font-size:0.8rem; color:#b23b3b; margin-top:0.4rem;">Arama yapılamadı.</div>';
+        }
+    }
+
+    function sesDurdur() {
+        if (sesNesnesi) { sesNesnesi.pause(); sesNesnesi = null; }
+        sesCaliniyor = false;
+        const btn = document.getElementById('btn-ses');
+        if (btn) btn.textContent = '🔊 Dinle';
+    }
+
+    async function sesCalDurdur() {
+        const btn = document.getElementById('btn-ses');
+        if (sesCaliniyor) { sesDurdur(); return; }
+        btn.textContent = '⏳ Yükleniyor...';
+        try {
+            const res = await fetch(`https://api.alquran.cloud/v1/ayah/${mevcutSure}:${mevcutAyet}/ar.alafasy`).then(r => r.json());
+            const url = res?.data?.audio;
+            if (!url) { btn.textContent = '🔊 Dinle'; return; }
+            sesNesnesi = new Audio(url);
+            sesNesnesi.play();
+            sesCaliniyor = true;
+            btn.textContent = '⏸ Durdur';
+            sesNesnesi.onended = sesDurdur;
+        } catch (e) {
+            btn.textContent = '🔊 Dinle';
+        }
+    }
+
+    function notAnahtari(s, a) { return `tefsir_not_${s}_${a}`; }
+    let notZamanlayici = null;
+
+    function notYukle() {
+        const alan = document.getElementById('not-alani');
+        alan.value = localStorage.getItem(notAnahtari(mevcutSure, mevcutAyet)) || '';
+    }
+
+    function notKaydet() {
+        clearTimeout(notZamanlayici);
+        notZamanlayici = setTimeout(() => {
+            const alan = document.getElementById('not-alani');
+            const anahtar = notAnahtari(mevcutSure, mevcutAyet);
+            if (alan.value.trim() === '') localStorage.removeItem(anahtar);
+            else localStorage.setItem(anahtar, alan.value);
+        }, 400);
+    }
+
+    function notIndir() {
+        let cikti = 'DİJİTAL TEFSİR KÜTÜPHANESİ - KİŞİSEL NOTLARIM\n\n';
+        let sayac = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            const anahtar = localStorage.key(i);
+            if (anahtar && anahtar.startsWith('tefsir_not_')) {
+                const parts = anahtar.split('_');
+                const s = parts[2], a = parts[3];
+                cikti += `${sureAdlari[s - 1]} Sûresi, Âyet ${a}:\n${localStorage.getItem(anahtar)}\n\n`;
+                sayac++;
+            }
+        }
+        if (sayac === 0) { alert('Henüz kaydedilmiş bir notunuz yok.'); return; }
+        // Başına UTF-8 BOM ekleniyor: Not Defteri gibi programlar bu olmadan
+        // Türkçe karakterleri (ç, ğ, ı, ö, ş, ü) bozuk gösterebiliyor.
+        const bom = '\uFEFF';
+        const blob = new Blob([bom + cikti], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'tefsir-notlarim.txt';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(link.href), 2000);
+    }
+
+    function sesleYaz() {
+        const Tanima = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!Tanima) { alert('Tarayıcınız sesle yazmayı desteklemiyor.'); return; }
+        const tanima = new Tanima();
+        tanima.lang = 'tr-TR';
+        tanima.interimResults = false;
+        const btn = document.getElementById('btn-mikrofon');
+        btn.textContent = '🎙️ Dinliyor...';
+        tanima.onresult = (e) => {
+            const metin = e.results[0][0].transcript;
+            const alan = document.getElementById('not-alani');
+            alan.value = (alan.value ? alan.value + ' ' : '') + metin;
+            notKaydet();
+        };
+        tanima.onerror = () => { btn.textContent = '🎙️ Sesle Yaz'; };
+        tanima.onend = () => { btn.textContent = '🎙️ Sesle Yaz'; };
+        tanima.start();
+    }
+
+    // ---- Ekole göre gruplanmış kitap listesi ----
+    const EKOL_SIRASI = ["Rivâyet", "Dirâyet", "İşârî", "Çağdaş"];
+
+    function kulliyatOlustur() {
+        const kutu = document.getElementById('kulliyat-listesi');
+        kutu.innerHTML = '';
+        EKOL_SIRASI.forEach(ekol => {
+            const grup = kitaplar.filter(k => k.ekol === ekol);
+            if (grup.length === 0) return;
+
+            const baslik = document.createElement('div');
+            baslik.className = 'ekol-baslik';
+            baslik.textContent = `✅ ${ekol.toUpperCase()} TEFSİRLERİ`;
+            kutu.appendChild(baslik);
+
+            const grid = document.createElement('div');
+            grid.className = 'kulliyat-grid';
+            grup.forEach(k => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'book-item';
+                btn.innerHTML = `<span>${k.ad}</span><span class="tag">${k.ekol}</span>`;
+                btn.onclick = () => pdfAc(k);
+                grid.appendChild(btn);
+            });
+            kutu.appendChild(grid);
+        });
+    }
+
+    // ---- PDF'i indirmeden, sayfa içinde bir görüntüleyicide açma ----
+    function pdfAc(kitap) {
+        const dosyaUrl = BASE_RELEASE_URL + encodeURIComponent(kitap.dosya);
+        const goruntuleyiciUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(dosyaUrl)}`;
+        document.getElementById('pdf-modal-baslik').textContent = kitap.ad;
+        document.getElementById('pdf-modal-iframe').src = goruntuleyiciUrl;
+        document.getElementById('pdf-modal-yenisekme').href = dosyaUrl;
+        document.getElementById('pdf-modal').style.display = 'flex';
+    }
+
+    function pdfKapat() {
+        document.getElementById('pdf-modal').style.display = 'none';
+        document.getElementById('pdf-modal-iframe').src = 'about:blank';
+    }
+
+    (async function baslat() {
+        kulliyatOlustur();
+        await sureMetaYukle();
+        ayetYukle();
+    })();
+</script>
+</body>
+</html>
