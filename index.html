@@ -2,255 +2,180 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dijital Tefsir Kütüphanesi</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:'Roboto',sans-serif; background:#f4f6f8; color:#333; min-height:100vh;}
-
-header {background:#1a472f; color:white; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100;}
-header h1 {font-size:16px; font-weight:700;}
-header p {font-size:11px; opacity:0.85;}
-
-.container {max-width:850px; margin:15px auto; padding:0 12px;}
-
-.box {background:white; border-radius:8px; border:1px solid #e2e8f0; padding:14px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.04);}
-.box-title {font-size:14px; font-weight:700; color:#1a472f; margin-bottom:8px; border-bottom:2px solid #1a472f; padding-bottom:4px; display:flex; justify-content:space-between; align-items:center;}
-
-label {display:block; font-size:11px; font-weight:700; color:#4a5568; margin-bottom:3px;}
-input, select, textarea {width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; font-family:inherit;}
-input:focus, select:focus, textarea:focus {outline:none; border-color:#1a472f;}
-
-.btn-row {display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
-button {background:#1a472f; color:white; border:none; padding:8px 12px; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer;}
-button:hover {background:#123221;}
+body {font-family:'Roboto',sans-serif; background:#f5f5f5; color:#333; line-height:1.6; padding-bottom:60px;}
+header {background:#1a472f; color:white; padding:15px; text-align:center;}
+header h1 {font-size:22px; margin-bottom:4px;}
+header p {font-size:12px; opacity:0.85;}
+.container {max-width:1000px; margin:15px auto; padding:0 12px;}
+.section {background:white; margin:12px 0; padding:16px; border-radius:8px; border:1px solid #eee;}
+.section-title {font-size:15px; font-weight:bold; color:#1a472f; margin-bottom:12px; border-bottom:2px solid #1a472f; padding-bottom:8px;}
+label {display:block; font-size:12px; font-weight:bold; margin:6px 0 4px 0; color:#555;}
+input, select, textarea {width:100%; padding:9px; margin:4px 0; border:1px solid #ddd; border-radius:5px; font-family:inherit; font-size:13px;}
+button {background:#1a472f; color:white; border:none; padding:9px 15px; border-radius:5px; cursor:pointer; font-weight:bold; margin:4px 4px 4px 0; font-size:12px;}
+button:hover {background:#0f2818;}
 button.blue {background:#0284c7;}
-button.blue:hover {background:#0369a1;}
-button.recording {background:#e11d48 !important;}
-
-.arabic-box {font-family:'Amiri',serif; font-size:24px; direction:rtl; text-align:right; line-height:2.2; background:#fafafa; border-right:4px solid #1a472f; padding:12px; border-radius:6px; min-height:50px;}
-.meal-box {font-size:14px; line-height:1.6; color:#1e293b; margin:10px 0;}
-.summary-box {background:#fef3c7; border:1px solid #fde68a; border-radius:6px; padding:8px 12px; font-size:12px; color:#78350f; margin-bottom:10px;}
-
-.search-results {background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:10px; margin-top:10px; font-size:12px; color:#1e40af; display:none;}
-.search-results ul {max-height:140px; overflow-y:auto; margin-top:6px; padding-left:18px;}
-.search-results li {margin-bottom:4px; cursor:pointer; text-decoration:underline;}
+button.blue:hover {background:#0170a0;}
+.row {display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+.arabic {font-family:'Amiri',serif; font-size:24px; direction:rtl; text-align:right; line-height:2.3; background:#f9f9f9; padding:15px; border-radius:5px; border-right:5px solid #1a472f; margin:10px 0; min-height:60px;}
+.meal {font-size:14px; line-height:1.7; margin:10px 0; color:#333;}
+.sure-ozet {background:#fef3c7; border:1px solid #fde68a; border-radius:6px; padding:10px; font-size:12px; color:#78350f; margin-bottom:10px; line-height:1.5;}
 
 /* Sekmeler */
-.tabs {display:flex; border-bottom:2px solid #cbd5e1; margin-bottom:10px; overflow-x:auto;}
-.tab-btn {background:none; color:#64748b; border:none; border-radius:0; padding:8px 12px; font-weight:700; cursor:pointer; font-size:12px; white-space:nowrap;}
-.tab-btn.active {color:#1a472f; border-bottom:3px solid #1a472f; background:#f1f5f9;}
+.tabs {display:flex; border-bottom:2px solid #1a472f; margin-bottom:12px; gap:4px; overflow-x:auto;}
+.tab-btn {background:#e8f0ec; color:#1a472f; border:none; padding:8px 14px; cursor:pointer; font-weight:bold; border-radius:5px 5px 0 0;}
+.tab-btn.active {background:#1a472f; color:white;}
+.tab-content {display:none; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:6px;}
+.tab-content.active {display:grid;}
+.tab-content button {margin:0; width:100%; padding:10px 6px; text-align:center; font-size:11px; background:#fff; color:#1a472f; border:1px solid #1a472f;}
+.tab-content button:hover {background:#1a472f; color:white;}
 
-.tab-grid {display:none; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:8px;}
-.tab-grid.active {display:grid;}
-.tab-grid button {background:white; color:#1a472f; border:1px solid #1a472f; font-weight:600; padding:10px 6px; text-align:center;}
-.tab-grid button:hover, .tab-grid button.aktif-kitap {background:#1a472f; color:white;}
+/* Arama Sonuç Kutusu */
+#aramaIstatistik {display:none; background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:10px; margin-top:10px; font-size:12px; color:#1e40af;}
+#aramaListe {max-height:140px; overflow-y:auto; margin-top:6px; padding-left:18px;}
+#aramaListe li {margin-bottom:4px; cursor:pointer; text-decoration:underline;}
 
-/* PDF Yan Panel / Modal - En Üst Katmanda */
-#pdfPanel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 55%;
-  height: 100vh;
-  background: #ffffff;
-  border-left: 4px solid #1a472f;
-  z-index: 99999;
-  display: none;
-  flex-direction: column;
-  box-shadow: -8px 0 25px rgba(0,0,0,0.3);
-}
-
-#pdfPanel.show {
-  display: flex !important;
-}
-
-@media (max-width: 850px) {
-  #pdfPanel {
-    width: 100% !important;
-    height: 100vh !important;
-  }
-}
-
-.pdf-header {background:#1a472f; color:white; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;}
-.pdf-controls {display:flex; align-items:center; gap:6px;}
-.pdf-controls input {width:60px; padding:4px 6px; font-size:12px; height:28px;}
-.pdf-controls button {padding:5px 9px; font-size:11px;}
-.pdf-frame {flex:1; border:none; width:100%; height:100%; background:#fff;}
+/* PDF Alt/Yan Pencere */
+.pdf-container {position:fixed; bottom:0; left:0; width:100%; height:60%; background:white; border-top:4px solid #1a472f; box-shadow:0 -5px 20px rgba(0,0,0,0.3); z-index:9999; display:none; flex-direction:column;}
+.pdf-header {background:#1a472f; color:white; padding:10px 15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;}
+.pdf-header h3 {font-size:13px; flex:1;}
+.pdf-header .pdf-controls {display:flex; align-items:center; gap:6px;}
+.pdf-header input {width:60px; padding:4px 6px; margin:0; font-size:12px; height:28px;}
+.pdf-header button {margin:0; padding:6px 10px; font-size:11px;}
+.pdf-iframe {flex:1; border:none; width:100%; height:100%;}
 </style>
 </head>
 <body>
 
 <header>
-  <div>
-    <h1>📖 Dijital Tefsir Kütüphanesi</h1>
-    <p>114 Sure, Sure Konuları, Frekans Arama ve 48 Tefsir Eseri</p>
-  </div>
-  <button id="btnTogglePdf" onclick="togglePdfPanel()" style="background:#0284c7; display:none;">📄 Açık Kitaba Dön</button>
+  <h1>📖 Dijital Tefsir Kütüphanesi</h1>
+  <p>114 Sure, Sure Konuları, Frekans Arama ve 48 Tefsir Eseri</p>
 </header>
 
 <div class="container">
-  
-  <!-- Sure & Ayet Seçimi -->
-  <div class="box">
-    <div class="box-title">Sure ve Ayet Seçimi</div>
-    <div style="display:flex; gap:8px; margin-bottom:8px;">
+
+  <div class="section">
+    <div class="section-title">Sure ve Ayet Seçimi</div>
+    <div class="row">
       <div style="flex:2;">
-        <label>Sure</label>
-        <select id="selSure" onchange="degistirSure()"></select>
+        <label>Sure Seçin</label>
+        <select id="sure" onchange="sureSecildi()">
+          <!-- 114 Sure Doğrudan Listelenir -->
+          <option value="1">1. Fatiha</option><option value="2">2. Bakara</option><option value="3">3. Al-i Imran</option>
+          <option value="4" selected>4. Nisa</option><option value="5">5. Maide</option><option value="6">6. Enam</option>
+          <option value="7">7. Araf</option><option value="8">8. Enfal</option><option value="9">9. Tevbe</option>
+          <option value="10">10. Yunus</option><option value="11">11. Hud</option><option value="12">12. Yusuf</option>
+          <option value="13">13. Rad</option><option value="14">14. Ibrahim</option><option value="15">15. Hicr</option>
+          <option value="16">16. Nahl</option><option value="17">17. Isra</option><option value="18">18. Kehf</option>
+          <option value="19">19. Meryem</option><option value="20">20. Taha</option><option value="21">21. Enbiya</option>
+          <option value="22">22. Hac</option><option value="23">23. Muminun</option><option value="24">24. Nur</option>
+          <option value="25">25. Furkan</option><option value="26">26. Suara</option><option value="27">27. Neml</option>
+          <option value="28">28. Kasas</option><option value="29">29. Ankebut</option><option value="30">30. Rum</option>
+          <option value="31">31. Lokman</option><option value="32">32. Secde</option><option value="33">33. Ahzab</option>
+          <option value="34">34. Sebe</option><option value="35">35. Fatir</option><option value="36">36. Yasin</option>
+          <option value="37">37. Saffat</option><option value="38">38. Sad</option><option value="39">39. Zumer</option>
+          <option value="40">40. Mumin</option><option value="41">41. Fussilet</option><option value="42">42. Sura</option>
+          <option value="43">43. Zuhruf</option><option value="44">44. Duhan</option><option value="45">45. Casiye</option>
+          <option value="46">46. Ahkaf</option><option value="47">47. Muhammed</option><option value="48">48. Fetih</option>
+          <option value="49">49. Hucurat</option><option value="50">50. Kaf</option><option value="51">51. Zariyat</option>
+          <option value="52">52. Tur</option><option value="53">53. Necm</option><option value="54">54. Kamer</option>
+          <option value="55">55. Rahman</option><option value="56">56. Vakia</option><option value="57">57. Hadid</option>
+          <option value="58">58. Mucadele</option><option value="59">59. Hasr</option><option value="60">60. Mumtehine</option>
+          <option value="61">61. Saf</option><option value="62">62. Cuma</option><option value="63">63. Munafikun</option>
+          <option value="64">64. Tegabun</option><option value="65">65. Talak</option><option value="66">66. Tahrim</option>
+          <option value="67">67. Mulk</option><option value="68">68. Kalem</option><option value="69">69. Hakka</option>
+          <option value="70">70. Mearic</option><option value="71">71. Nuh</option><option value="72">72. Cin</option>
+          <option value="73">73. Muzzemmil</option><option value="74">74. Muddessir</option><option value="75">75. Kiyame</option>
+          <option value="76">76. Insan</option><option value="77">77. Mursalat</option><option value="78">78. Nebe</option>
+          <option value="79">79. Naziat</option><option value="80">80. Abese</option><option value="81">81. Tekvir</option>
+          <option value="82">82. Infitah</option><option value="83">83. Mutaffifin</option><option value="84">84. Insikak</option>
+          <option value="85">85. Buruc</option><option value="86">86. Tarik</option><option value="87">87. Ala</option>
+          <option value="88">88. Gasiye</option><option value="89">89. Fecr</option><option value="90">90. Beled</option>
+          <option value="91">91. Sems</option><option value="92">92. Leyl</option><option value="93">93. Duha</option>
+          <option value="94">94. Insirah</option><option value="95">95. Tin</option><option value="96">96. Alak</option>
+          <option value="97">97. Kadir</option><option value="98">98. Beyyine</option><option value="99">99. Zilzal</option>
+          <option value="100">100. Adiyat</option><option value="101">101. Karia</option><option value="102">102. Tekasur</option>
+          <option value="103">103. Asr</option><option value="104">104. Humeze</option><option value="105">105. Fil</option>
+          <option value="106">106. Kureys</option><option value="107">107. Maun</option><option value="108">108. Kevser</option>
+          <option value="109">109. Kafirun</option><option value="110">110. Nasr</option><option value="111">111. Tebbet</option>
+          <option value="112">112. Ihlas</option><option value="113">113. Felak</option><option value="114">114. Nas</option>
+        </select>
       </div>
       <div style="flex:1;">
         <label>Ayet No</label>
-        <input type="number" id="inpAyet" value="1" min="1" onchange="yukleAyet()">
+        <input type="number" id="ayet" value="1" min="1" onchange="yeniAyet()">
       </div>
     </div>
 
-    <div class="summary-box" id="lblKonu"><b>Sure Özeti:</b> Yükleniyor...</div>
+    <div class="sure-ozet" id="sureKonusu"><b>Sure Özeti:</b> Aile hukuku, kadın hakları, yetim malları, adalet ve miras hükümleri.</div>
 
-    <div style="display:flex; gap:6px;">
-      <input type="text" id="inpAra" placeholder="Kur'an'da ara (Örn: Sabır, Adalet)..." onkeydown="if(event.key==='Enter') araFrekans()">
-      <button onclick="araFrekans()">🔍 Ara</button>
-      <button class="blue" onclick="sesCal()">🔊 Dinle</button>
-      <button id="btnSesYaz" class="blue" onclick="sesKayitBaslat()" style="background:#16a34a;">🎙️ Sesle Yaz</button>
+    <div class="row">
+      <input type="text" id="ara" placeholder="Kur'an'da kelime ara (Örn: Sabır, Namaz, Adalet)..." style="flex:1;" onkeydown="if(event.key==='Enter') araYap()">
+      <button onclick="araYap()">🔍 Ara & Say</button>
+      <button class="blue" onclick="sesOynat()">🔊 Dinle</button>
+      <button id="sesBtn" class="blue" onclick="sesleYaz()" style="background:#16a34a;">🎙️ Sesle Yaz</button>
     </div>
 
-    <div id="boxSonuc" class="search-results">
-      <div id="lblIstatistik" style="font-weight:700;"></div>
-      <ul id="listSonuclar"></ul>
-    </div>
-  </div>
-
-  <!-- Ayet ve Meal -->
-  <div class="box">
-    <div class="box-title">
-      <span>Arapça Metin ve Meal</span>
-      <span id="lblAyetKodu" style="font-size:11px; color:#64748b;">4. Sure, 1. Ayet</span>
-    </div>
-    <div class="arabic-box" id="lblArapca">يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ...</div>
-    <div class="meal-box" id="lblMeal">Ey insanlar! Sizi bir tek nefisten yaratan ve ondan da eşini yaratan... Rabbinizden sakının.</div>
-    <div class="btn-row">
-      <button onclick="adimAyet(-1)">◀ Önceki Ayet</button>
-      <button onclick="adimAyet(1)">Sonraki Ayet ▶</button>
+    <div id="aramaIstatistik">
+      <div id="istatistikOzet" style="font-weight:bold;"></div>
+      <ul id="aramaListe"></ul>
     </div>
   </div>
 
-  <!-- Ayet Notu -->
-  <div class="box">
-    <div class="box-title">Ayet Notu</div>
-    <textarea id="txtNot" rows="2" placeholder="Notunuzu buraya yazın veya sesli olarak ekleyin..."></textarea>
-    <button onclick="kaydetNot()" style="margin-top:6px;">💾 Notu Kaydet</button>
+  <div class="section">
+    <div class="section-title">Kuran Metni ve Diyanet Meali</div>
+    <div class="arabic" id="arap">يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ...</div>
+    <div class="meal" id="meal">Ey insanlar! Sizi bir tek nefisten yaratan ve ondan da eşini yaratan... Rabbinizden sakının.</div>
+    <div class="row">
+      <button onclick="geri()">◀ Geri</button>
+      <button onclick="ileri()">İleri ▶</button>
+    </div>
   </div>
 
-  <!-- Tefsir Kütüphanesi -->
-  <div class="box">
-    <div class="box-title">Tefsir Kütüphanesi (48 Eser)</div>
+  <div class="section">
+    <label>📝 Notunuz:</label>
+    <textarea id="not" rows="3" placeholder="Notunuzu yazın..."></textarea>
+    <button onclick="notKaydet()" style="margin-top:6px;">💾 Notu Kaydet</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Tefsir Kütüphanesi (48 Eser)</div>
     
     <div class="tabs">
-      <button class="tab-btn active" onclick="acSekme('isari', this)">✨ İşârî Tefsirler</button>
-      <button class="tab-btn" onclick="acSekme('dirayet', this)">🔍 Dirâyet</button>
-      <button class="tab-btn" onclick="acSekme('rivayet', this)">✅ Rivâyet</button>
-      <button class="tab-btn" onclick="acSekme('cagdas', this)">🕰️ Çağdaş</button>
+      <button class="tab-btn active" onclick="tabSec('isari', this)">✨ İşârî Tefsirler</button>
+      <button class="tab-btn" onclick="tabSec('dirayet', this)">🔍 Dirâyet</button>
+      <button class="tab-btn" onclick="tabSec('rivayet', this)">✅ Rivâyet</button>
+      <button class="tab-btn" onclick="tabSec('cagdas', this)">🕰️ Çağdaş</button>
     </div>
 
-    <!-- 1. İŞÂRÎ TEFSİRLER -->
-    <div id="grid-isari" class="tab-grid active">
-      <button onclick="acTefsirModal('Abdulkadir 1', '1LWup6MOfzB8i8VGPOimoI32Yqjlm7_4H', this)">Abdulkadir 1</button>
-      <button onclick="acTefsirModal('Abdulkadir 2', '1OVFR7WRY9-KBfqr4Wo1QTlztG4l49tCo', this)">Abdulkadir 2</button>
-      <button onclick="acTefsirModal('Abdulkadir 3', '1HJI1n1KqMjFTvFBv7lre2KARC58dLXXu', this)">Abdulkadir 3</button>
-      <button onclick="acTefsirModal('Abdulkadir 4', '1WPgqNBXrv5tyA5p3EKZF8TAX_6ZZuN2V', this)">Abdulkadir 4</button>
-      <button onclick="acTefsirModal('Abdulkadir 5', '1CGU0eap3ogCjuwru2lgakC4NMoAIot1r', this)">Abdulkadir 5</button>
-      <button onclick="acTefsirModal('Abdulkadir 6', '1go1zY2Tj-lr95XgFUqhD6alAghLkdmv1', this)">Abdulkadir 6</button>
-      <button onclick="acTefsirModal('Ibn Arabi', '1R8P1yQJbPlIdcwk8ZJzbn9iNzsvzqpP3', this)">Ibn Arabi</button>
-      <button onclick="acTefsirModal('Ruhu\'l Beyan', '18RZY0jCBMLKGMT2dMeE8UxGSlxydj8uX', this)">Ruhu'l Beyan</button>
-      <button onclick="acTefsirModal('Ibn Acibe', '1yM6ACABzoCHUhzBYiWmxhTrUgL4YSXm4', this)">Ibn Acibe</button>
-      <button onclick="acTefsirModal('Kuseyri', '1r8U5tX5zBTXkHi47evUciBIy292pEjSg', this)">Kuseyri</button>
-    </div>
-
-    <!-- 2. DİRÂYET TEFSİRLERİ -->
-    <div id="grid-dirayet" class="tab-grid">
-      <button onclick="acTefsirModal('Zemahseri 1', '14-5anuSZ2jTgD5gUxofRzBk_r6UvufYW', this)">Zemahseri 1</button>
-      <button onclick="acTefsirModal('Zemahseri 2', '1ic_iENC4ZcrdXyr4CLlcmRQTei3_fGiZ', this)">Zemahseri 2</button>
-      <button onclick="acTefsirModal('Zemahseri 3', '1CrI_4WfblWiFuhKLDnGkokuQzc5GebpH', this)">Zemahseri 3</button>
-      <button onclick="acTefsirModal('Zemahseri 4', '10n5Vb_BGKDLvoNZwgmp607N10S5_Bd8Z', this)">Zemahseri 4</button>
-      <button onclick="acTefsirModal('Zemahseri 5', '1kIdcSP0fu0N8vjBQqmx85fCeAIPuOgg0', this)">Zemahseri 5</button>
-      <button onclick="acTefsirModal('Zemahseri 6', '1dBRsVyT4ARWk7HuHrrQTheg2rSj8xU5a', this)">Zemahseri 6</button>
-      <button onclick="acTefsirModal('Fahreddin Râzî', '1yQrjP-4HCur2hMKyHbPFXrsXsxNM9SBy', this)">Fahreddin Râzî</button>
-      <button onclick="acTefsirModal('Fahreddin 23', '1w75ogY59sqAplZjs0NNVfmZFiCJdkf8f', this)">Fahreddin 23</button>
-      <button onclick="acTefsirModal('Beydavi 2', '1G30UFysybw-IOFGW2cy6B_NYwN9F7Rs8', this)">Beydavi 2</button>
-      <button onclick="acTefsirModal('Beydavi 3', '14HbQkcBVbwpdhOb83r-fXnY-K7cC5vN4', this)">Beydavi 3</button>
-      <button onclick="acTefsirModal('Beydavi 4', '1GmX34DmFd1B21UcUwbV6T7gRHxXoVUiw', this)">Beydavi 4</button>
-      <button onclick="acTefsirModal('Beydavi 5', '1Vlf2-Hs852Wd5RW8XWDGjvvjkGPa2ccD', this)">Beydavi 5</button>
-      <button onclick="acTefsirModal('Nesafi', '10fsPkFOn4Rux2VhYkNcNERAGHyEKvGLH', this)">Nesafi</button>
-    </div>
-
-    <!-- 3. RİVÂYET TEFSİRLERİ -->
-    <div id="grid-rivayet" class="tab-grid">
-      <button onclick="acTefsirModal('Taberi 1', '17AuQcJQCdqfLTgHooqKAWvwxRu2IPaen', this)">Taberi 1</button>
-      <button onclick="acTefsirModal('Tenvir Mikbas 1', '1whLtZC2U2m3PY1jm8NSW_RIvYbKVePAV', this)">Tenvir Mikbas 1</button>
-      <button onclick="acTefsirModal('Tenvir Mikbas 2', '1YhoN8rjp-sYpU8Esj5mLAUXEycXIgdCb', this)">Tenvir Mikbas 2</button>
-      <button onclick="acTefsirModal('Tenvir Mikbas 3', '1umfwiyLC5S6tOz67qiUfdHA0fxB6I7fH', this)">Tenvir Mikbas 3</button>
-      <button onclick="acTefsirModal('Tenvir Mikbas 4', '1tE466Fh0x0Qy6wTHDUVVFxA8nFghYwTj', this)">Tenvir Mikbas 4</button>
-      <button onclick="acTefsirModal('Tenvir Mikbas 5', '14cxwaKogr8MSWdXl2kHm5CNWt9sc9LyV', this)">Tenvir Mikbas 5</button>
-      <button onclick="acTefsirModal('Mukâtil Suleyman', '1SivtbfcJI1-iEEiUC8dcokFKiNaLBlrQ', this)">Mukâtil Suleyman</button>
-      <button onclick="acTefsirModal('Suyuti', '1u2hUvPJu3oyd2oSdFzUXjDeFs6j_i809', this)">Suyuti</button>
-      <button onclick="acTefsirModal('Ibn Kesir 1', '1OFWy7WO7MIe5QkoEPyQJa5iKlhVjKsNX', this)">Ibn Kesir 1</button>
-      <button onclick="acTefsirModal('Ibn Kesir 2', '1Qx6dveHuhl2L3ruCQ-V_TNUnWvHwzVVG', this)">Ibn Kesir 2</button>
-      <button onclick="acTefsirModal('Ibn Kesir 3', '1fa6dws7_aAZwVIXuJLJHjU6hfB1WAlot', this)">Ibn Kesir 3</button>
-      <button onclick="acTefsirModal('Ibn Kesir 4', '1DjAxWGf_edywexJK3Hbbl6RhvClaDrNu', this)">Ibn Kesir 4</button>
-      <button onclick="acTefsirModal('Ibn Kesir 5', '1SRHcPJ5AkT4S_qK0LsW6jIGa0xcv04e6', this)">Ibn Kesir 5</button>
-      <button onclick="acTefsirModal('Ibn Kesir 6', '1liex53XmmgdCe2hbwOARsItcwinFts1O', this)">Ibn Kesir 6</button>
-      <button onclick="acTefsirModal('Ibn Kesir 7', '1-kWWVom9GiZfQb6juu7T4qR2aTly_3R0', this)">Ibn Kesir 7</button>
-      <button onclick="acTefsirModal('Ibn Kesir 8', '1YmZ_U-H0nK_5Zs6nchZWbQnYSY8lh26s', this)">Ibn Kesir 8</button>
-      <button onclick="acTefsirModal('Ibn Kesir 9', '1lw4VzWejP4X8l81P4KdUjJYCkgLZ3-Yh', this)">Ibn Kesir 9</button>
-      <button onclick="acTefsirModal('Ibn Kesir 10', '12t9KglZpLyYzHNpp93XEvKHt0MuAbQOd', this)">Ibn Kesir 10</button>
-      <button onclick="acTefsirModal('Ibn Kesir 11', '1F4Kyv-Xj1M0TQr7M9hp_dS_fW_89HaP4', this)">Ibn Kesir 11</button>
-      <button onclick="acTefsirModal('Ibn Kesir 12', '17lsjsZ1P_W4ksgXDaA5HyX-PVGbX199H', this)">Ibn Kesir 12</button>
-      <button onclick="acTefsirModal('Ibn Kesir 13', '1BgDwelDbrhRnB3eGoAFu5KA24bbqvKSn', this)">Ibn Kesir 13</button>
-      <button onclick="acTefsirModal('Ibn Kesir 14', '1bNAqlFRX0e3v8TOe9MwlCe5IxVU50sx8', this)">Ibn Kesir 14</button>
-      <button onclick="acTefsirModal('Ibn Kesir 15', '11l9QnyOpFbYGdfEGIYL_gMWAkuwGG_hK', this)">Ibn Kesir 15</button>
-      <button onclick="acTefsirModal('Ibn Kesir 16', '1GOxp69rrbLQe1dbUunfQl7Z1dktWGJR6', this)">Ibn Kesir 16</button>
-    </div>
-
-    <!-- 4. ÇAĞDAŞ TEFSİRLER -->
-    <div id="grid-cagdas" class="tab-grid">
-      <button onclick="acTefsirModal('Döndüren', '19dN0CFIFWdPlTwg-ahG8tQ60B0VFB5jf', this)">Döndüren</button>
-    </div>
+    <div class="tab-content active" id="tab-isari"></div>
+    <div class="tab-content" id="tab-dirayet"></div>
+    <div class="tab-content" id="tab-rivayet"></div>
+    <div class="tab-content" id="tab-cagdas"></div>
   </div>
 
 </div>
 
-<!-- Doğrudan Body Seviyesinde PDF Görüntüleyici -->
-<div id="pdfPanel">
+<!-- PDF Gösterim Alanı (Garantili Çalışır) -->
+<div class="pdf-container" id="pdfContainer">
   <div class="pdf-header">
-    <h3 id="lblPdfBaslik" style="font-size:13px; font-weight:700;">📄 Tefsir</h3>
+    <h3 id="pdfTitle">📄 PDF Görüntüleyici</h3>
     <div class="pdf-controls">
       <span style="font-size:11px;">Sayfa:</span>
-      <input type="number" id="inpPdfSayfa" min="1" value="1">
-      <button class="blue" onclick="gitSayfaya()">Git</button>
-      <button onclick="kapatTefsir()" style="background:#dc2626;">✕ Kapat</button>
+      <input type="number" id="pdfSayfaInput" min="1" value="1">
+      <button class="blue" onclick="sayfayaGit()">Git</button>
+      <button onclick="closePdfViewer()" style="background:#dc2626;">✕ Kapat</button>
     </div>
   </div>
-  <iframe class="pdf-frame" id="pdfViewer" src="about:blank"></iframe>
+  <iframe class="pdf-iframe" id="pdfFrame" src="about:blank"></iframe>
 </div>
 
 <script>
-const sureler = [
-"1. Fatiha","2. Bakara","3. Al-i Imran","4. Nisa","5. Maide","6. Enam","7. Araf","8. Enfal","9. Tevbe","10. Yunus",
-"11. Hud","12. Yusuf","13. Rad","14. Ibrahim","15. Hicr","16. Nahl","17. Isra","18. Kehf","19. Meryem","20. Taha",
-"21. Enbiya","22. Hac","23. Muminun","24. Nur","25. Furkan","26. Suara","27. Neml","28. Kasas","29. Ankebut","30. Rum",
-"31. Lokman","32. Secde","33. Ahzab","34. Sebe","35. Fatir","36. Yasin","37. Saffat","38. Sad","39. Zumer","40. Mumin",
-"41. Fussilet","42. Sura","43. Zuhruf","44. Duhan","45. Casiye","46. Ahkaf","47. Muhammed","48. Fetih","49. Hucurat","50. Kaf",
-"51. Zariyat","52. Tur","53. Necm","54. Kamer","55. Rahman","56. Vakia","57. Hadid","58. Mucadele","59. Hasr","60. Mumtehine",
-"61. Saf","62. Cuma","63. Munafikun","64. Tegabun","65. Talak","66. Tahrim","67. Mulk","68. Kalem","69. Hakka","70. Mearic",
-"71. Nuh","72. Cin","73. Muzzemmil","74. Muddessir","75. Kiyame","76. Insan","77. Mursalat","78. Nebe","79. Naziat","80. Abese",
-"81. Tekvir","82. Infitah","83. Mutaffifin","84. Insikak","85. Buruc","86. Tarik","87. Ala","88. Gasiye","89. Fecr","90. Beled",
-"91. Sems","92. Leyl","93. Duha","94. Insirah","95. Tin","96. Alak","97. Kadir","98. Beyyine","99. Zilzal","100. Adiyat",
-"101. Karia","102. Tekasur","103. Asr","104. Humeze","105. Fil","106. Kureys","107. Maun","108. Kevser","109. Kafirun","110. Nasr",
-"111. Tebbet","112. Ihlas","113. Felak","114. Nas"
-];
-
-const ozetler = {
+const sureKonulari = {
 1: "Kur'an'ın mukaddimesi; tevhid, ibadet ve hidayet duası.",
 2: "İman esasları, ahkâm (ibadet, hukuk, aile, faiz) ve Hz. Adem ile İsrailoğulları kıssaları.",
 3: "Tevhid mücadelesi, Uhud Savaşı tahlili ve Ehl-i Kitap ile diyalog.",
@@ -269,7 +194,7 @@ const ozetler = {
 16: "Allah'ın nimetleri, şükür ve bal arısındaki ilahi nizam.",
 17: "İsra hadisesi, temel ahlak kuralları ve ana-babaya hürmet.",
 18: "Ashab-ı Kehf, Hz. Musa-Hızır ve Zülkarneyn kıssaları; fitnelere karşı tedbir.",
-19: "Hz. Meryem, Hz. İsa'nın doğumu, Zekeriya ve İbrahim peygamberlerin duaları.",
+19: "Hz. Meryem, Hz. İsa'nın mucizevi doğumu, Zekeriya ve İbrahim peygamberlerin duaları.",
 20: "Hz. Musa'nın Firavun ile mücadelesi ve Taha hitabı.",
 21: "Hesap gününün yakınlığı ve peygamberlerin ortak tevhid davası.",
 22: "Hac ibadeti, kurban hükümleri ve cihat izni.",
@@ -283,63 +208,132 @@ const ozetler = {
 114: "İnsanların ve cinlerin vesvesesinden insanların Rabbine sığınma."
 };
 
-let aktifSure = 4, aktifAyet = 1;
+const kitaplar = [
+{n:"Taberi 1",t:"rivayet",i:"17AuQcJQCdqfLTgHooqKAWvwxRu2IPaen"},
+{n:"Tenvir Mikbas 1",t:"rivayet",i:"1whLtZC2U2m3PY1jm8NSW_RIvYbKVePAV"},
+{n:"Tenvir Mikbas 2",t:"rivayet",i:"1YhoN8rjp-sYpU8Esj5mLAUXEycXIgdCb"},
+{n:"Tenvir Mikbas 3",t:"rivayet",i:"1umfwiyLC5S6tOz67qiUfdHA0fxB6I7fH"},
+{n:"Tenvir Mikbas 4",t:"rivayet",i:"1tE466Fh0x0Qy6wTHDUVVFxA8nFghYwTj"},
+{n:"Tenvir Mikbas 5",t:"rivayet",i:"14cxwaKogr8MSWdXl2kHm5CNWt9sc9LyV"},
+{n:"Mukâtil Suleyman",t:"rivayet",i:"1SivtbfcJI1-iEEiUC8dcokFKiNaLBlrQ"},
+{n:"Suyuti",t:"rivayet",i:"1u2hUvPJu3oyd2oSdFzUXjDeFs6j_i809"},
+{n:"Ibn Kesir 1",t:"rivayet",i:"1OFWy7WO7MIe5QkoEPyQJa5iKlhVjKsNX"},
+{n:"Ibn Kesir 2",t:"rivayet",i:"1Qx6dveHuhl2L3ruCQ-V_TNUnWvHwzVVG"},
+{n:"Ibn Kesir 3",t:"rivayet",i:"1fa6dws7_aAZwVIXuJLJHjU6hfB1WAlot"},
+{n:"Ibn Kesir 4",t:"rivayet",i:"1DjAxWGf_edywexJK3Hbbl6RhvClaDrNu"},
+{n:"Ibn Kesir 5",t:"rivayet",i:"1SRHcPJ5AkT4S_qK0LsW6jIGa0xcv04e6"},
+{n:"Ibn Kesir 6",t:"rivayet",i:"1liex53XmmgdCe2hbwOARsItcwinFts1O"},
+{n:"Ibn Kesir 7",t:"rivayet",i:"1-kWWVom9GiZfQb6juu7T4qR2aTly_3R0"},
+{n:"Ibn Kesir 8",t:"rivayet",i:"1YmZ_U-H0nK_5Zs6nchZWbQnYSY8lh26s"},
+{n:"Ibn Kesir 9",t:"rivayet",i:"1lw4VzWejP4X8l81P4KdUjJYCkgLZ3-Yh"},
+{n:"Ibn Kesir 10",t:"rivayet",i:"12t9KglZpLyYzHNpp93XEvKHt0MuAbQOd"},
+{n:"Ibn Kesir 11",t:"rivayet",i:"1F4Kyv-Xj1M0TQr7M9hp_dS_fW_89HaP4"},
+{n:"Ibn Kesir 12",t:"rivayet",i:"17lsjsZ1P_W4ksgXDaA5HyX-PVGbX199H"},
+{n:"Ibn Kesir 13",t:"rivayet",i:"1BgDwelDbrhRnB3eGoAFu5KA24bbqvKSn"},
+{n:"Ibn Kesir 14",t:"rivayet",i:"1bNAqlFRX0e3v8TOe9MwlCe5IxVU50sx8"},
+{n:"Ibn Kesir 15",t:"rivayet",i:"11l9QnyOpFbYGdfEGIYL_gMWAkuwGG_hK"},
+{n:"Ibn Kesir 16",t:"rivayet",i:"1GOxp69rrbLQe1dbUunfQl7Z1dktWGJR6"},
+{n:"Zemahseri 1",t:"dirayet",i:"14-5anuSZ2jTgD5gUxofRzBk_r6UvufYW"},
+{n:"Zemahseri 2",t:"dirayet",i:"1ic_iENC4ZcrdXyr4CLlcmRQTei3_fGiZ"},
+{n:"Zemahseri 3",t:"dirayet",i:"1CrI_4WfblWiFuhKLDnGkokuQzc5GebpH"},
+{n:"Zemahseri 4",t:"dirayet",i:"10n5Vb_BGKDLvoNZwgmp607N10S5_Bd8Z"},
+{n:"Zemahseri 5",t:"dirayet",i:"1kIdcSP0fu0N8vjBQqmx85fCeAIPuOgg0"},
+{n:"Zemahseri 6",t:"dirayet",i:"1dBRsVyT4ARWk7HuHrrQTheg2rSj8xU5a"},
+{n:"Fahreddin Râzî",t:"dirayet",i:"1yQrjP-4HCur2hMKyHbPFXrsXsxNM9SBy"},
+{n:"Fahreddin 23",t:"dirayet",i:"1w75ogY59sqAplZjs0NNVfmZFiCJdkf8f"},
+{n:"Beydavi 2",t:"dirayet",i:"1G30UFysybw-IOFGW2cy6B_NYwN9F7Rs8"},
+{n:"Beydavi 3",t:"dirayet",i:"14HbQkcBVbwpdhOb83r-fXnY-K7cC5vN4"},
+{n:"Beydavi 4",t:"dirayet",i:"1GmX34DmFd1B21UcUwbV6T7gRHxXoVUiw"},
+{n:"Beydavi 5",t:"dirayet",i:"1Vlf2-Hs852Wd5RW8XWDGjvvjkGPa2ccD"},
+{n:"Nesafi",t:"dirayet",i:"10fsPkFOn4Rux2VhYkNcNERAGHyEKvGLH"},
+{n:"Abdulkadir 1",t:"isari",i:"1LWup6MOfzB8i8VGPOimoI32Yqjlm7_4H"},
+{n:"Abdulkadir 2",t:"isari",i:"1OVFR7WRY9-KBfqr4Wo1QTlztG4l49tCo"},
+{n:"Abdulkadir 3",t:"isari",i:"1HJI1n1KqMjFTvFBv7lre2KARC58dLXXu"},
+{n:"Abdulkadir 4",t:"isari",i:"1WPgqNBXrv5tyA5p3EKZF8TAX_6ZZuN2V"},
+{n:"Abdulkadir 5",t:"isari",i:"1CGU0eap3ogCjuwru2lgakC4NMoAIot1r"},
+{n:"Abdulkadir 6",t:"isari",i:"1go1zY2Tj-lr95XgFUqhD6alAghLkdmv1"},
+{n:"Ibn Arabi",t:"isari",i:"1R8P1yQJbPlIdcwk8ZJzbn9iNzsvzqpP3"},
+{n:"Ruhu'l Beyan",t:"isari",i:"18RZY0jCBMLKGMT2dMeE8UxGSlxydj8uX"},
+{n:"Ibn Acibe",t:"isari",i:"1yM6ACABzoCHUhzBYiWmxhTrUgL4YSXm4"},
+{n:"Kuseyri",t:"isari",i:"1r8U5tX5zBTXkHi47evUciBIy292pEjSg"},
+{n:"Döndüren",t:"cagdas",i:"19dN0CFIFWdPlTwg-ahG8tQ60B0VFB5jf"}
+];
+
+let sure = 4, ayet = 1;
 let aktifKitapId = "";
-let recognition = null, dinliyor = false;
+let recognition = null, isRecording = false;
 
-function baslat() {
-  const sel = document.getElementById("selSure");
-  sel.innerHTML = sureler.map((s, idx) => `<option value="${idx+1}" ${idx+1 === 4 ? 'selected':''}>${s}</option>`).join('');
-  yukleAyet();
+function init() {
+  ["isari", "dirayet", "rivayet", "cagdas"].forEach(t => {
+    let grid = document.getElementById("tab-" + t);
+    grid.innerHTML = "";
+    kitaplar.filter(k => k.t === t).forEach(k => {
+      let btn = document.createElement("button");
+      btn.textContent = k.n;
+      btn.onclick = () => acPdf(k.n, k.i);
+      grid.appendChild(btn);
+    });
+  });
+  yeniAyet();
 }
 
-function degistirSure() {
-  document.getElementById("inpAyet").value = 1;
-  yukleAyet();
+function tabSec(tur, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + tur).classList.add('active');
 }
 
-function adimAyet(delta) {
-  let val = parseInt(document.getElementById("inpAyet").value) + delta;
-  if(val >= 1) {
-    document.getElementById("inpAyet").value = val;
-    yukleAyet();
-  }
+function sureSecildi() {
+  document.getElementById("ayet").value = 1;
+  yeniAyet();
 }
 
-async function yukleAyet() {
-  aktifSure = parseInt(document.getElementById("selSure").value) || 1;
-  aktifAyet = parseInt(document.getElementById("inpAyet").value) || 1;
+async function yeniAyet() {
+  sure = parseInt(document.getElementById("sure").value) || 1;
+  ayet = parseInt(document.getElementById("ayet").value) || 1;
 
-  document.getElementById("lblAyetKodu").textContent = `${aktifSure}. Sure, ${aktifAyet}. Ayet`;
-  document.getElementById("lblKonu").innerHTML = `<b>Sure Özeti:</b> ` + (ozetler[aktifSure] || "Tevhid, ibadet ve ahiret prensipleri.");
+  document.getElementById("sureKonusu").innerHTML = `<b>Sure Özeti:</b> ` + (sureKonulari[sure] || "Tevhid, ibadet ve ahiret prensipleri.");
 
-  fetch(`https://api.alquran.cloud/v1/ayah/${aktifSure}:${aktifAyet}/quran-uthmani`)
+  fetch(`https://api.alquran.cloud/v1/ayah/${sure}:${ayet}/quran-uthmani`)
     .then(r => r.json())
-    .then(d => {
-      if(d && d.data && d.data.text) document.getElementById("lblArapca").textContent = d.data.text;
-    }).catch(() => {});
+    .then(d => { if(d && d.data) document.getElementById("arap").textContent = d.data.text; })
+    .catch(() => {});
 
-  fetch(`https://api.alquran.cloud/v1/ayah/${aktifSure}:${aktifAyet}/tr.diyanet`)
+  fetch(`https://api.alquran.cloud/v1/ayah/${sure}:${ayet}/tr.diyanet`)
     .then(r => r.json())
-    .then(d => {
-      if(d && d.data && d.data.text) document.getElementById("lblMeal").textContent = d.data.text;
-    }).catch(() => {});
+    .then(d => { if(d && d.data) document.getElementById("meal").textContent = d.data.text; })
+    .catch(() => {});
 
   try {
-    document.getElementById("txtNot").value = localStorage.getItem(`tefsir_not_${aktifSure}_${aktifAyet}`) || "";
+    document.getElementById("not").value = localStorage.getItem(`tefsir_not_${sure}_${ayet}`) || "";
   } catch(e) {}
 }
 
-async function araFrekans() {
-  let kelime = document.getElementById("inpAra").value.trim();
+function geri() {
+  if(ayet > 1) {
+    ayet--;
+    document.getElementById("ayet").value = ayet;
+    yeniAyet();
+  }
+}
+
+function ileri() {
+  ayet++;
+  document.getElementById("ayet").value = ayet;
+  yeniAyet();
+}
+
+async function araYap() {
+  let kelime = document.getElementById("ara").value.trim();
   if(!kelime) return;
 
-  const box = document.getElementById("boxSonuc");
-  const stat = document.getElementById("lblIstatistik");
-  const list = document.getElementById("listSonuclar");
-
-  stat.textContent = "Kur'an taranıyor...";
-  list.innerHTML = "";
+  const box = document.getElementById("aramaIstatistik");
+  const ozet = document.getElementById("istatistikOzet");
+  const liste = document.getElementById("aramaListe");
+  
+  ozet.textContent = "Kur'an taranıyor...";
+  liste.innerHTML = "";
   box.style.display = "block";
 
   try {
@@ -349,13 +343,9 @@ async function araFrekans() {
     if(data && data.data && data.data.matches && data.data.matches.length > 0) {
       let matches = data.data.matches;
       let frekans = {};
-      
-      matches.forEach(m => {
-        let s = m.surah.number;
-        let sName = sureler[s-1] || m.surah.name;
-        if(!frekans[s]) frekans[s] = { name: sName, count: 0, ayetler: [] };
-        frekans[s].count++;
-        frekans[s].ayetler.push(m.numberInSurah);
-      });
 
-      stat.innerHTML = `"${kelime}" kelimesi Kur'an'da <b>${Object.keys(frekans).length} farklı surede</b> toplam <b>${data.data.count} kez</b> geçmektedir:
+      matches.forEach(m => {
+        let sNo = m.surah.number;
+        let opt = document.querySelector(`#sure option[value="${sNo}"]`);
+        let sName = opt ? opt.textContent : m.surah.name;
+        if(!frekans[sN
